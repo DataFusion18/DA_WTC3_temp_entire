@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1517454666744.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "110646200",
+    "id" : "80130E23",
+    "lastKnownWriteTime" : 1517543639,
+    "last_content_update" : 1517543639850,
+    "path" : "~/WSU/Final_projects/DA_WTC3_temp_entire/R/functions_wtc3_CBM.R",
+    "project_path" : "R/functions_wtc3_CBM.R",
+    "properties" : {
+        "cursorPosition" : "327,23",
+        "scrollLine" : "324"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

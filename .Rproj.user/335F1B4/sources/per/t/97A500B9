@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1517534169276.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2875589659",
+    "id" : "97A500B9",
+    "lastKnownWriteTime" : 1517543639,
+    "last_content_update" : 1517543639823,
+    "path" : "~/WSU/Final_projects/DA_WTC3_temp_entire/R/parameter_setting_wtc3.R",
+    "project_path" : "R/parameter_setting_wtc3.R",
+    "properties" : {
+        "cursorPosition" : "8,0",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
