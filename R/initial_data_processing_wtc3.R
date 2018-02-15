@@ -47,8 +47,8 @@ names(data)[4:9] = c("GPP","Ra","LA","GPP_SE","Ra_SE","LA_SE")
 # ignore the first few days of data to start on 2013-09-17 from where we have H & D measurements
 data = subset(data, Date >= as.Date("2013-09-17") & Date <= as.Date("2014-05-27"))
 
-# write csv file with daily inputs of GPP, Ra, LA
-write.csv(data, file = "processed_data/data_GPP_Ra_LA.csv", row.names = FALSE)
+# # write csv file with daily inputs of GPP, Ra, LA
+# write.csv(data, file = "processed_data/data_GPP_Ra_LA.csv", row.names = FALSE)
 
 #- plot GPP, Ra, and LA data over time for various treatments
 i = 0

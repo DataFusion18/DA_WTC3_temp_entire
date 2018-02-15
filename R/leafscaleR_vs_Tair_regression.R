@@ -50,6 +50,35 @@ Tair$time <- format(Tair$DateTime, format='%H:%M:%S')
 Tair$chamber = as.factor(Tair$chamber)
 Tair = merge(Tair, unique(height.dia[,c("chamber","T_treatment")]), by="chamber")
 
+###----------------------------------------------------------------------------------------------------------------
+###----------------------------------------------------------------------------------------------------------------
+# Temperature dependant parameter variability
+# Find the previous 3-day mean daily Tair
+Tair.sub = subset(Tair[, c("chamber","T_treatment","Date","time","Tair_al")], Date  >= "2013-09-14" & Date  <= "2014-05-26")
+
+prec.day.no = 3
+day = data.frame(Date = as.Date(1:(prec.day.no*(length(unique(Tair.sub$Date))-3)), origin=Sys.Date()), iter=numeric(prec.day.no*(length(unique(Tair.sub$Date))-3)),
+                 Date.resp = as.Date(1:(prec.day.no*(length(unique(Tair.sub$Date))-3)), origin=Sys.Date()))
+for (i in 4:length(unique(Tair.sub$Date))) {
+  day$Date[(1+(i-4)*prec.day.no):((i-3)*prec.day.no)] = as.Date((unique(Tair.sub$Date)-prec.day.no)[i] : (unique(Tair.sub$Date)-1)[i])
+  day$iter[(1+(i-4)*prec.day.no):((i-3)*prec.day.no)] = i-3
+  day$Date.resp[(1+(i-4)*prec.day.no):((i-3)*prec.day.no)] = as.Date(unique(Tair.sub$Date)[i])
+}
+
+# Tair.sub = subset(Tair.sub[, c("chamber","T_treatment","Date","time","Tair_al")], Date %in% day$Date)
+Tair.sub = merge(Tair.sub, day, by="Date", allow.cartesian=TRUE)
+Tair.sum = summaryBy(Tair_al ~ Date.resp+T_treatment, data=Tair.sub, FUN=c(mean), na.rm=TRUE)
+names(Tair.sum)[c(1,3)] = c("Date","Tair")
+
+# write csv file with daily inputs of GPP, Ra, LA, Tair
+write.csv(Tair.sum, file = "processed_data/Tair.csv", row.names = FALSE)
+
+# Merge Tair with other data set
+data.all = merge(data.all, Tair.sum, by=c("Date","T_treatment"), all=TRUE)
+
+###----------------------------------------------------------------------------------------------------------------
+###----------------------------------------------------------------------------------------------------------------
+
 prec.day.no = 3
 day = data.frame(Date = as.Date(1:(prec.day.no*length(unique(resp.fol$Date))), origin=Sys.Date()), iter=numeric(prec.day.no*length(unique(resp.fol$Date))),
                  Date.resp = as.Date(1:(prec.day.no*length(unique(resp.fol$Date))), origin=Sys.Date()))

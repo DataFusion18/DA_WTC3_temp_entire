@@ -9,13 +9,14 @@ logLikelihood.wtc3 <- function (no.param.par.var,data.set,output,with.storage,mo
   logLi <- matrix(0, nrow=nrow(data.set), ncol = 1) # Initialising the logLi
   # data_count = sum(!is.na(data.set$LM)) + sum(!is.na(data.set$WM)) + sum(!is.na(data.set$RM)) + sum(!is.na(data.set$Ra)) + sum(!is.na(data.set$TNC_leaf)) + sum(!is.na(data.set$litter))
   data_count = sum(!is.na(data.set$LM)) + sum(!is.na(data.set$WM)) + sum(!is.na(data.set$RM)) + sum(!is.na(data.set$TNC_leaf)) + sum(!is.na(data.set$litter))
+  # data_count = sum(!is.na(data.set$LM)) + sum(!is.na(data.set$WM)) + sum(!is.na(data.set$RM)) + sum(!is.na(data.set$litter))
   
   for (i in 1:nrow(data.set)) {
     if (!is.na(data.set$LM[i])) {
-      logLi[i] = - ((data_count/sum(!is.na(data.set$LM)))*0.5*((output$Mleaf[i] - data.set$LM[i])/data.set$LM_SE[i])^2 - log(data.set$LM_SE[i]) - log(2*pi)^0.5)
+      logLi[i] = - ((data_count/sum(!is.na(data.set$LM)))*(0.5*((output$Mleaf[i] - data.set$LM[i])/data.set$LM_SE[i])^2 - log(data.set$LM_SE[i]) - log(2*pi)^0.5))
     }
     if (!is.na(data.set$WM[i])) {
-      logLi[i] = logLi[i] - ((data_count/sum(!is.na(data.set$WM)))*0.5*((output$Mwood[i] - data.set$WM[i])/data.set$WM_SE[i])^2 - log(data.set$WM_SE[i]) - log(2*pi)^0.5)
+      logLi[i] = logLi[i] - ((data_count/sum(!is.na(data.set$WM)))*(0.5*((output$Mwood[i] - data.set$WM[i])/data.set$WM_SE[i])^2 - log(data.set$WM_SE[i]) - log(2*pi)^0.5))
     }
     if (!is.na(data.set$RM[i])) {
       logLi[i] = logLi[i] - ((data_count/sum(!is.na(data.set$RM)))*(0.5*((output$Mroot[i] - data.set$RM[i])/data.set$RM_SE[i])^2 - log(data.set$RM_SE[i]) - log(2*pi)^0.5)) # multiplied by 2 to give extra weight
@@ -28,7 +29,7 @@ logLikelihood.wtc3 <- function (no.param.par.var,data.set,output,with.storage,mo
     # }
     if (!is.null(data.set$litter)) {
       if (!is.na(data.set$litter[i])) {
-        logLi[i] = logLi[i] - (data_count/sum(!is.na(data.set$litter)))*0.5*((output$Mlit[i] - data.set$litter[i])/data.set$litter_SE[i])^2 - log(data.set$litter_SE[i]) - log(2*pi)^0.5
+        logLi[i] = logLi[i] - ((data_count/sum(!is.na(data.set$litter)))*(0.5*((output$Mlit[i] - data.set$litter[i])/data.set$litter_SE[i])^2 - log(data.set$litter_SE[i]) - log(2*pi)^0.5))
       }
     }
     # if (model.comparison==F) {
@@ -58,7 +59,7 @@ logLikelihood.wtc3.final <- function (no.param.par.var,data.set,output,with.stor
     }
     if (!is.na(data.set$RM[i])) {
       # logLi[i] = logLi[i] - 10*(0.5*((output$Mroot[i] - data.set$RM[i])/data.set$RM_SE[i])^2 - log(data.set$RM_SE[i]) - log(2*pi)^0.5) # multiplied by 20 to give extra weight
-      logLi[i] = logLi[i] - (0.5*((output$Mroot[i] - data.set$RM[i])/data.set$RM_SE[i])^2 - log(data.set$RM_SE[i]) - log(2*pi)^0.5) # multiplied by 20 to give extra weight
+      logLi[i] = logLi[i] - 0.5*((output$Mroot[i] - data.set$RM[i])/data.set$RM_SE[i])^2 - log(data.set$RM_SE[i]) - log(2*pi)^0.5 # multiplied by 20 to give extra weight
     }
     # if (i > 1) {
     #   if (!is.na(data.set$Ra[i])) {
@@ -88,7 +89,7 @@ logLikelihood.wtc3.final <- function (no.param.par.var,data.set,output,with.stor
         if (!is.null(data.set$TNC_leaf)) {
           if (!is.na(data.set$TNC_leaf[i])) {
             # logLi[i] = logLi[i] - 1.5*(0.5*((output$Sleaf[i] - data.set$TNC_leaf[i])/data.set$TNC_leaf_SE[i])^2 - log(data.set$TNC_leaf_SE[i]) - log(2*pi)^0.5)
-            logLi[i] = logLi[i] - (0.5*((output$Sleaf[i] - data.set$TNC_leaf[i])/data.set$TNC_leaf_SE[i])^2 - log(data.set$TNC_leaf_SE[i]) - log(2*pi)^0.5)
+            logLi[i] = logLi[i] - 0.5*((output$Sleaf[i] - data.set$TNC_leaf[i])/data.set$TNC_leaf_SE[i])^2 - log(data.set$TNC_leaf_SE[i]) - log(2*pi)^0.5
           }
         }
       }
@@ -137,7 +138,7 @@ CBM.wtc3 <- function(chainLength, no.param.par.var, treat.group, with.storage, m
                     time.taken=numeric(length(no.param.par.var)*length(treat.group)))
   
   q = 0 # Indicates the iteration number
-  set.seed(3)
+  # set.seed(3)
   # set.seed(15) # final seed for reproducible results
   # set.seed(18) 
   
@@ -169,13 +170,20 @@ CBM.wtc3 <- function(chainLength, no.param.par.var, treat.group, with.storage, m
         
         # Setting lower and upper bounds of the prior parameter pdf, and starting point of the chain
         if (with.storage==T) {
-          param.k <- matrix(c(0,0.8,1) , nrow=no.param, ncol=3, byrow=T) 
+          param.k <- matrix(c(0,0.15,25) , nrow=no.param, ncol=3, byrow=T)
+          # param.k <- matrix(c(0,0.5,1) , nrow=no.param, ncol=3, byrow=T) 
         }
-        param.Y <- matrix(c(0.2,0.3,0.4) , nrow=no.param, ncol=3, byrow=T) 
-        param.af <- matrix(c(0,0.2,1) , nrow=no.param, ncol=3, byrow=T) 
-        param.as <- matrix(c(0,0.4,1) , nrow=no.param, ncol=3, byrow=T) 
-        param.sf <- matrix(c(0,0.0005,0.001) , nrow=no.param, ncol=3, byrow=T) 
-        param.sr <- matrix(c(0,0.0005,0.001) , nrow=no.param, ncol=3, byrow=T)
+        param.Y <- matrix(c(0.25,0.3,0.35) , nrow=no.param, ncol=3, byrow=T)
+        param.af <- matrix(c(0,0.25,0.35) , nrow=no.param, ncol=3, byrow=T)
+        param.as <- matrix(c(0.55,0.65,0.8) , nrow=no.param, ncol=3, byrow=T)
+        param.sf <- matrix(c(0,0.0005,0.001) , nrow=no.param, ncol=3, byrow=T)
+        param.sr <- matrix(c(0,0.0001,0.0002) , nrow=no.param, ncol=3, byrow=T)
+        
+        # param.Y <- matrix(c(0.2,0.3,0.4) , nrow=no.param, ncol=3, byrow=T)
+        # param.af <- matrix(c(0,0.3,1) , nrow=no.param, ncol=3, byrow=T) # Forcing af not to be negetive
+        # param.as <- matrix(c(0,0.4,1) , nrow=no.param, ncol=3, byrow=T)
+        # param.sf <- matrix(c(0,0.0005,0.001) , nrow=no.param, ncol=3, byrow=T) # All Groups having same sf
+        # param.sr <- matrix(c(0,0.0005,0.001) , nrow=no.param, ncol=3, byrow=T) # All Groups having same sr
         
         if (with.storage==T) {
           param = data.frame(param.k,param.Y,param.af,param.as,param.sf,param.sr)
@@ -208,39 +216,39 @@ CBM.wtc3 <- function(chainLength, no.param.par.var, treat.group, with.storage, m
       }
       logPrior0 <- sum(unlist(prior.dist))
       
-      # # Calculating model outputs for the starting point of the chain
-      # if (no.param.par.var < 5) {
-      #   if (with.storage==T) {
-      #     output.set = model(no.param,data.set,tnc.partitioning,Y=pValues$Y,k=pValues$k,af=pValues$af,as=pValues$as,sf=pValues$sf,sr=pValues$sr)
-      #   } else {
-      #     output.set = model.without.storage(no.param,data.set,Y=pValues$Y,af=pValues$af,as=pValues$as,sf=pValues$sf,sr=pValues$sr)
-      #   }
-      # } else { # no.param.par.var > 5; monthly parameter setting)
-      #   if (with.storage==T) {
-      #     output.set = model.monthly(data.set,j,tnc.partitioning,Y=pValues$Y,k=pValues$k,af=pValues$af,as=pValues$as,sf=pValues$sf,sr=pValues$sr)
-      #   } else {
-      #     output.set = model.without.storage.monthly(data.set,j,Y=pValues$Y,af=pValues$af,as=pValues$as,sf=pValues$sf,sr=pValues$sr)
-      #   }
-      # }
-      # Consider the input uncertainty with u=10 model runs
-      listofdfs <- list()
-      for (u in 1:10) {
-        if (no.param.par.var < 5) {
-          if (with.storage==T) {
-            output.set = model(no.param,data.set,tnc.partitioning,Y=pValues$Y,k=pValues$k,af=pValues$af,as=pValues$as,sf=pValues$sf,sr=pValues$sr)
-          } else {
-            output.set = model.without.storage(no.param,data.set,Y=pValues$Y,af=pValues$af,as=pValues$as,sf=pValues$sf,sr=pValues$sr)
-          }
-        } else { # no.param.par.var > 5; monthly parameter setting)
-          if (with.storage==T) {
-            output.set = model.monthly(data.set,j,tnc.partitioning,Y=pValues$Y,k=pValues$k,af=pValues$af,as=pValues$as,sf=pValues$sf,sr=pValues$sr)
-          } else {
-            output.set = model.without.storage.monthly(data.set,j,Y=pValues$Y,af=pValues$af,as=pValues$as,sf=pValues$sf,sr=pValues$sr)
-          }
+      # Calculating model outputs for the starting point of the chain
+      if (no.param.par.var < 5) {
+        if (with.storage==T) {
+          output.set = model(no.param,data.set,tnc.partitioning,Y=pValues$Y,k=pValues$k,af=pValues$af,as=pValues$as,sf=pValues$sf,sr=pValues$sr)
+        } else {
+          output.set = model.without.storage(no.param,data.set,Y=pValues$Y,af=pValues$af,as=pValues$as,sf=pValues$sf,sr=pValues$sr)
         }
-        listofdfs[[u]] <- output.set
+      } else { # no.param.par.var > 5; monthly parameter setting)
+        if (with.storage==T) {
+          output.set = model.monthly(data.set,j,tnc.partitioning,Y=pValues$Y,k=pValues$k,af=pValues$af,as=pValues$as,sf=pValues$sf,sr=pValues$sr)
+        } else {
+          output.set = model.without.storage.monthly(data.set,j,Y=pValues$Y,af=pValues$af,as=pValues$as,sf=pValues$sf,sr=pValues$sr)
+        }
       }
-      output.set = aaply(laply(listofdfs, as.matrix), c(2, 3), mean)
+      # # Consider the input uncertainty with u=10 model runs
+      # listofdfs <- list()
+      # for (u in 1:10) {
+      #   if (no.param.par.var < 5) {
+      #     if (with.storage==T) {
+      #       output.set = model(no.param,data.set,tnc.partitioning,Y=pValues$Y,k=pValues$k,af=pValues$af,as=pValues$as,sf=pValues$sf,sr=pValues$sr)
+      #     } else {
+      #       output.set = model.without.storage(no.param,data.set,Y=pValues$Y,af=pValues$af,as=pValues$as,sf=pValues$sf,sr=pValues$sr)
+      #     }
+      #   } else { # no.param.par.var > 5; monthly parameter setting)
+      #     if (with.storage==T) {
+      #       output.set = model.monthly(data.set,j,tnc.partitioning,Y=pValues$Y,k=pValues$k,af=pValues$af,as=pValues$as,sf=pValues$sf,sr=pValues$sr)
+      #     } else {
+      #       output.set = model.without.storage.monthly(data.set,j,Y=pValues$Y,af=pValues$af,as=pValues$as,sf=pValues$sf,sr=pValues$sr)
+      #     }
+      #   }
+      #   listofdfs[[u]] <- output.set
+      # }
+      # output.set = aaply(laply(listofdfs, as.matrix), c(2, 3), mean)
       
       # output.set$volume = as.factor(vol[v[j]])
       # if (j == 1) {
@@ -305,47 +313,47 @@ CBM.wtc3 <- function(chainLength, no.param.par.var, treat.group, with.storage, m
           #   Mwood[1] <- data.set$Mwood[1]
           #   Mroot[1] <- data.set$Mroot[1]
           
-          # if (no.param.par.var < 5) {
-          #   if (with.storage==T) {
-          #     out.cand.set = model(no.param,data.set,tnc.partitioning,candidatepValues$Y,
-          #                          candidatepValues$k,candidatepValues$af,candidatepValues$as,candidatepValues$sf,candidatepValues$sr)
-          #   } else {
-          #     out.cand.set = model.without.storage(no.param,data.set,candidatepValues$Y,
-          #                                          candidatepValues$af,candidatepValues$as,candidatepValues$sf,candidatepValues$sr)
-          #   }
-          # } else { # no.param.par.var > 5; monthly parameter setting)
-          #   if (with.storage==T) {
-          #     out.cand.set = model.monthly(data.set,j,tnc.partitioning,candidatepValues$Y,
-          #                                  candidatepValues$k,candidatepValues$af,candidatepValues$as,candidatepValues$sf,candidatepValues$sr)
-          #   } else {
-          #     out.cand.set = model.without.storage.monthly(data.set,j,candidatepValues$Y,
-          #                                                  candidatepValues$af,candidatepValues$as,candidatepValues$sf,candidatepValues$sr)
-          #   }
-          # }
-          
-          # Consider the input uncertainty with u=10 model runs
-          listofdfs <- list()
-          for (u in 1:10) {
-            if (no.param.par.var < 5) {
-              if (with.storage==T) {
-                out.cand.set = model(no.param,data.set,tnc.partitioning,candidatepValues$Y,
-                                     candidatepValues$k,candidatepValues$af,candidatepValues$as,candidatepValues$sf,candidatepValues$sr)
-              } else {
-                out.cand.set = model.without.storage(no.param,data.set,candidatepValues$Y,
-                                                     candidatepValues$af,candidatepValues$as,candidatepValues$sf,candidatepValues$sr)
-              }
-            } else { # no.param.par.var > 5; monthly parameter setting)
-              if (with.storage==T) {
-                out.cand.set = model.monthly(data.set,j,tnc.partitioning,candidatepValues$Y,
-                                             candidatepValues$k,candidatepValues$af,candidatepValues$as,candidatepValues$sf,candidatepValues$sr)
-              } else {
-                out.cand.set = model.without.storage.monthly(data.set,j,candidatepValues$Y,
-                                                             candidatepValues$af,candidatepValues$as,candidatepValues$sf,candidatepValues$sr)
-              }
+          if (no.param.par.var < 5) {
+            if (with.storage==T) {
+              out.cand.set = model(no.param,data.set,tnc.partitioning,candidatepValues$Y,
+                                   candidatepValues$k,candidatepValues$af,candidatepValues$as,candidatepValues$sf,candidatepValues$sr)
+            } else {
+              out.cand.set = model.without.storage(no.param,data.set,candidatepValues$Y,
+                                                   candidatepValues$af,candidatepValues$as,candidatepValues$sf,candidatepValues$sr)
             }
-            listofdfs[[u]] <- out.cand.set
+          } else { # no.param.par.var > 5; monthly parameter setting)
+            if (with.storage==T) {
+              out.cand.set = model.monthly(data.set,j,tnc.partitioning,candidatepValues$Y,
+                                           candidatepValues$k,candidatepValues$af,candidatepValues$as,candidatepValues$sf,candidatepValues$sr)
+            } else {
+              out.cand.set = model.without.storage.monthly(data.set,j,candidatepValues$Y,
+                                                           candidatepValues$af,candidatepValues$as,candidatepValues$sf,candidatepValues$sr)
+            }
           }
-          out.cand.set = aaply(laply(listofdfs, as.matrix), c(2, 3), mean)
+          
+          # # Consider the input uncertainty with u=10 model runs
+          # listofdfs <- list()
+          # for (u in 1:10) {
+          #   if (no.param.par.var < 5) {
+          #     if (with.storage==T) {
+          #       out.cand.set = model(no.param,data.set,tnc.partitioning,candidatepValues$Y,
+          #                            candidatepValues$k,candidatepValues$af,candidatepValues$as,candidatepValues$sf,candidatepValues$sr)
+          #     } else {
+          #       out.cand.set = model.without.storage(no.param,data.set,candidatepValues$Y,
+          #                                            candidatepValues$af,candidatepValues$as,candidatepValues$sf,candidatepValues$sr)
+          #     }
+          #   } else { # no.param.par.var > 5; monthly parameter setting)
+          #     if (with.storage==T) {
+          #       out.cand.set = model.monthly(data.set,j,tnc.partitioning,candidatepValues$Y,
+          #                                    candidatepValues$k,candidatepValues$af,candidatepValues$as,candidatepValues$sf,candidatepValues$sr)
+          #     } else {
+          #       out.cand.set = model.without.storage.monthly(data.set,j,candidatepValues$Y,
+          #                                                    candidatepValues$af,candidatepValues$as,candidatepValues$sf,candidatepValues$sr)
+          #     }
+          #   }
+          #   listofdfs[[u]] <- out.cand.set
+          # }
+          # out.cand.set = aaply(laply(listofdfs, as.matrix), c(2, 3), mean)
           
           out.cand = as.data.frame(out.cand.set)
           # out.cand.set$volume = as.factor(vol[v[j]])
@@ -877,13 +885,35 @@ model <- function (no.param,data.set,tnc.partitioning,Y,k,af,as,sf,sr) {
       k.i = k[1] + k[2]*i; Y.i = Y[1]+ Y[2]*i; af.i = af[1]+ af[2]*i; as.i = as[1]+ as[2]*i; sf.i = sf[1]+ sf[2]*i; sr.i = sr[1]+ sr[2]*i
     }
     if (no.param == 3) {
-      k.i = k[1] + k[2]*i + k[3]*i*i; Y.i = Y[1]+ Y[2]*i + Y[3]*i*i; af.i = af[1]+ af[2]*i + af[3]*i*i; 
+      k.i = k[1] + k[2]*i + k[3]*i*i; Y.i = Y[1]+ Y[2]*i + Y[3]*i*i; af.i = af[1]+ af[2]*i + af[3]*i*i;
       as.i = as[1]+ as[2]*i + as[3]*i*i; sf.i = sf[1]+ sf[2]*i + sf[3]*i*i; sr.i = sr[1]+ sr[2]*i + sr[3]*i*i
     }
     if (no.param == 4) {
-      k.i = k[1] + k[2]*i + k[3]*i*i + k[4]*i*i*i; Y.i = Y[1]+ Y[2]*i + Y[3]*i*i + Y[4]*i*i*i; af.i = af[1]+ af[2]*i + af[3]*i*i + af[4]*i*i*i; 
+      k.i = k[1] + k[2]*i + k[3]*i*i + k[4]*i*i*i; Y.i = Y[1]+ Y[2]*i + Y[3]*i*i + Y[4]*i*i*i; af.i = af[1]+ af[2]*i + af[3]*i*i + af[4]*i*i*i;
       as.i = as[1]+ as[2]*i + as[3]*i*i + as[4]*i*i*i; sf.i = sf[1]+ sf[2]*i + sf[3]*i*i + sf[4]*i*i*i; sr.i = sr[1]+ sr[2]*i + sr[3]*i*i + sr[4]*i*i*i
     }
+    # if (no.param == 1) {
+    #   k.i = k[1]*data.all$Tair[i]; Y.i = Y[1]*data.all$Tair[i]; af.i = af[1]*data.all$Tair[i]; 
+    #   as.i = as[1]*data.all$Tair[i]; sf.i = sf[1]*data.all$Tair[i]; sr.i = sr[1]*data.all$Tair[i]
+    # }
+    # if (no.param == 2) {
+    #   k.i = k[1] + k[2]*data.all$Tair[i]; Y.i = Y[1]+ Y[2]*data.all$Tair[i]; af.i = af[1]+ af[2]*data.all$Tair[i]; 
+    #   as.i = as[1]+ as[2]*data.all$Tair[i]; sf.i = sf[1]+ sf[2]*data.all$Tair[i]; sr.i = sr[1]+ sr[2]*data.all$Tair[i]
+    # }
+    # if (no.param == 3) {
+    #   k.i = k[1] + k[2]*data.all$Tair[i] + k[3]*data.all$Tair[i]*data.all$Tair[i]; Y.i = Y[1]+ Y[2]*data.all$Tair[i] + Y[3]*data.all$Tair[i]*data.all$Tair[i]; 
+    #   af.i = af[1]+ af[2]*data.all$Tair[i] + af[3]*data.all$Tair[i]*data.all$Tair[i]; as.i = as[1]+ as[2]*data.all$Tair[i] + as[3]*data.all$Tair[i]*data.all$Tair[i]; 
+    #   sf.i = sf[1]+ sf[2]*data.all$Tair[i] + sf[3]*data.all$Tair[i]*data.all$Tair[i]; sr.i = sr[1]+ sr[2]*data.all$Tair[i] + sr[3]*data.all$Tair[i]*data.all$Tair[i]
+    # }
+    # if (no.param == 4) {
+    #   k.i = k[1] + k[2]*data.all$Tair[i] + k[3]*data.all$Tair[i]*data.all$Tair[i] + k[4]*data.all$Tair[i]*data.all$Tair[i]*data.all$Tair[i]; 
+    #   Y.i = Y[1]+ Y[2]*data.all$Tair[i] + Y[3]*data.all$Tair[i]*data.all$Tair[i] + Y[4]*data.all$Tair[i]*data.all$Tair[i]*data.all$Tair[i]; 
+    #   af.i = af[1]+ af[2]*data.all$Tair[i] + af[3]*data.all$Tair[i]*data.all$Tair[i] + af[4]*data.all$Tair[i]*data.all$Tair[i]*data.all$Tair[i]; 
+    #   as.i = as[1]+ as[2]*data.all$Tair[i] + as[3]*data.all$Tair[i]*data.all$Tair[i] + as[4]*data.all$Tair[i]*data.all$Tair[i]*data.all$Tair[i]; 
+    #   sf.i = sf[1]+ sf[2]*data.all$Tair[i] + sf[3]*data.all$Tair[i]*data.all$Tair[i] + sf[4]*data.all$Tair[i]*data.all$Tair[i]*data.all$Tair[i]; 
+    #   sr.i = sr[1]+ sr[2]*data.all$Tair[i] + sr[3]*data.all$Tair[i]*data.all$Tair[i] + sr[4]*data.all$Tair[i]*data.all$Tair[i]*data.all$Tair[i]
+    # }
+    
     Rm[i] = data.set$Rd.foliage.mean[i-1]*Mleaf[i-1] + data.set$Rd.stem.mean[i-1]*Mwood[i-1]*data.set$SMratio[i-1] + 
       data.set$Rd.branch.mean[i-1]*Mwood[i-1]*data.set$BMratio[i-1] + 
       data.set$Rd.fineroot.mean[i-1]*Mroot[i-1]*data.set$FRratio[i-1] + data.set$Rd.intermediateroot.mean[i-1]*Mroot[i-1]*data.set$IRratio[i-1] + 
@@ -961,26 +991,35 @@ model.monthly <- function (data.set,j,tnc.partitioning,Y,k,af,as,sf,sr) {
       data.set$Rd.fineroot.mean[i-1]*Mroot[i-1]*data.set$FRratio[i-1] + data.set$Rd.intermediateroot.mean[i-1]*Mroot[i-1]*data.set$IRratio[i-1] + 
       data.set$Rd.coarseroot.mean[i-1]*Mroot[i-1]*data.set$CRratio[i-1] + data.set$Rd.boleroot.mean[i-1]*Mroot[i-1]*data.set$BRratio[i-1]
     
-    Cstorage[i] <- Cstorage[i-1] + data.set$GPP[i-1] - Rm[i-1] - k[(i-1)-(j[i-1])]*Cstorage[i-1]
+    # Cstorage[i] <- Cstorage[i-1] + data.set$GPP[i-1] - Rm[i-1] - k[(i-1)-(j[i-1])]*Cstorage[i-1]
+    Cstorage[i] <- (Cstorage[i-1] + rnorm(1, data.set$GPP[i], data.set$GPP_SE[i]) - Rm[i]) / (1 + k[(i-1)-(j[i-1])])
+    
     Sleaf[i] <- Cstorage[i] * tnc.partitioning$foliage[i] # 33% of storage goes to leaf (WTC-4 experiment)
     Swood[i] <- Cstorage[i] * tnc.partitioning$wood[i] # 53% of storage goes to wood (WTC-4 experiment)
     Sroot[i] <- Cstorage[i] * tnc.partitioning$root[i] # 14% of storage goes to root (WTC-4 experiment)
-    Mlit[i] <- sf[(i-1)-(j[i-1])]*Cleaf[i-1] # foliage litter fall
+
+    # Sleaf[i] <- Cstorage[i] * 0.33 # 33% of storage goes to leaf (WTC-4 experiment)
+    # Swood[i] <- Cstorage[i] * 0.53 # 53% of storage goes to wood (WTC-4 experiment)
+    # Sroot[i] <- Cstorage[i] * 0.14 # 14% of storage goes to root (WTC-4 experiment)
     
-    Cleaf[i] <- Cleaf[i-1] + k[(i-1)-(j[i-1])]*Cstorage[i-1]*af[(i-1)-(j[i-1])]*(1-Y[(i-1)-(j[i-1])]) - Mlit[i]
-    Cwood[i] <- Cwood[i-1] + k[(i-1)-(j[i-1])]*Cstorage[i-1]*as[(i-1)-(j[i-1])]*(1-Y[(i-1)-(j[i-1])])
-    Croot[i] <- Croot[i-1] + k[(i-1)-(j[i-1])]*Cstorage[i-1]*(1-af[(i-1)-(j[i-1])]-as[(i-1)-(j[i-1])])*(1-Y[(i-1)-(j[i-1])]) - sr[(i-1)-(j[i-1])]*Croot[i-1]
+    # Mlit[i] <- sf[(i-1)-(j[i-1])]*Cleaf[i-1] # foliage litter fall
+    # Cleaf[i] <- Cleaf[i-1] + k[(i-1)-(j[i-1])]*Cstorage[i-1]*af[(i-1)-(j[i-1])]*(1-Y[(i-1)-(j[i-1])]) - Mlit[i]
+    # Cwood[i] <- Cwood[i-1] + k[(i-1)-(j[i-1])]*Cstorage[i-1]*as[(i-1)-(j[i-1])]*(1-Y[(i-1)-(j[i-1])])
+    # Croot[i] <- Croot[i-1] + k[(i-1)-(j[i-1])]*Cstorage[i-1]*(1-af[(i-1)-(j[i-1])]-as[(i-1)-(j[i-1])])*(1-Y[(i-1)-(j[i-1])]) - sr[(i-1)-(j[i-1])]*Croot[i-1]
     
-    # Cleaf[i] <- Cleaf[i-1] + k.i*Cstorage[i-1]*af.i*(1-Y.i) - sf.i*data.set$LM[i-1]
-    # Cwood[i] <- Cwood[i-1] + k.i*Cstorage[i-1]*as.i*(1-Y.i)
-    # Croot[i] <- Croot[i-1] + k.i*Cstorage[i-1]*(1-af.i-as.i)*(1-Y.i) - sr.i*data.set$RM[i-1]
+    Cleaf[i] <- Cleaf[i-1] + k[(i-1)-(j[i-1])]*Cstorage[i]*af[(i-1)-(j[i-1])]*(1-Y[(i-1)-(j[i-1])]) / (1 + sf[(i-1)-(j[i-1])])
+    Cwood[i] <- Cwood[i-1] + k[(i-1)-(j[i-1])]*Cstorage[i]*as[(i-1)-(j[i-1])]*(1-Y[(i-1)-(j[i-1])])
+    Croot[i] <- Croot[i-1] + k[(i-1)-(j[i-1])]*Cstorage[i]*(1-af[(i-1)-(j[i-1])]-as[(i-1)-(j[i-1])])*(1-Y[(i-1)-(j[i-1])]) / (1 + sr[(i-1)-(j[i-1])])
     
     Mleaf[i] <- Cleaf[i] + Sleaf[i]
     Mwood[i] <- Cwood[i] + Swood[i]
     Mroot[i] <- Croot[i] + Sroot[i]
     
+    # Rabove[i] = data.set$Rd.foliage.mean[i]*Mleaf[i] + data.set$Rd.stem.mean[i]*Mwood[i]*data.set$SMratio[i] + data.set$Rd.branch.mean[i]*Mwood[i]*data.set$BMratio[i] +
+    #   Y[(i-1)-(j[i-1])]*(Mleaf[i]-Mleaf[i-1] + Mwood[i]-Mwood[i-1])
     Rabove[i] = data.set$Rd.foliage.mean[i]*Mleaf[i] + data.set$Rd.stem.mean[i]*Mwood[i]*data.set$SMratio[i] + data.set$Rd.branch.mean[i]*Mwood[i]*data.set$BMratio[i] +
       Y[(i-1)-(j[i-1])]*(Mleaf[i]-Mleaf[i-1] + Mwood[i]-Mwood[i-1])
+    Mlit[i] <- sf[(i-1)-(j[i-1])]*Cleaf[i] # foliage litter fall
   }
   # Rm[i] = data.set$Rd.foliage.mean[i]*Mleaf[i] + data.set$Rd.stem.mean[i]*Mwood[i]*data.set$SMratio[i] + 
   #   data.set$Rd.branch.mean[i]*Mwood[i]*data.set$BMratio[i] + 

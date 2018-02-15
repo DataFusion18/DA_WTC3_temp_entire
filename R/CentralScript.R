@@ -57,6 +57,9 @@ source("R/functions_wtc3_CBM.R")
 treat.group = as.factor(c("ambient","elevated")) # Assign all treatments
 data.all = read.csv("processed_data/data_all.csv") 
 tnc.partitioning = read.csv("processed_data/tnc_partitioning_data.csv")
+# data.all[,c("GPP_SE","Ra_SE","LA_SE","LM_SE","WM_SE","RM_SE","litter_SE","TNC_tot_SE","TNC_leaf_SE","TNC_wood_SE","TNC_root_SE")] = 
+#   0.5*data.all[,c("GPP_SE","Ra_SE","LA_SE","LM_SE","WM_SE","RM_SE","litter_SE","TNC_tot_SE","TNC_leaf_SE","TNC_wood_SE","TNC_root_SE")]
+# data.all[,c("TNC_tot_SE","TNC_leaf_SE","TNC_wood_SE","TNC_root_SE")] = 3 * data.all[,c("TNC_tot_SE","TNC_leaf_SE","TNC_wood_SE","TNC_root_SE")]
 
 # #-------------------------------------------------------------------------------------
 # #- Matching C balance of the entire experiment considering C inputs and outputs
@@ -65,7 +68,7 @@ tnc.partitioning = read.csv("processed_data/tnc_partitioning_data.csv")
 # #-------------------------------------------------------------------------------------
 # # 3000 chain length is sufficient for the convergance
 # chainLength = 1000
-# no.param.par.var=2
+# no.param.par.var=9
 # with.storage = T
 # model.comparison=F
 # model.optimization=F
@@ -74,7 +77,7 @@ tnc.partitioning = read.csv("processed_data/tnc_partitioning_data.csv")
 # result = CBM.wtc3(chainLength, no.param.par.var, treat.group, with.storage, model.comparison, model.optimization) # Quadratic/Cubic parameters
 # time_elapsed_series <- proc.time() - start # End clock
 # result[[6]]
-# write.csv(result[[6]], "output/bic.csv", row.names=FALSE) # unit of respiration rates: gC per gC plant per day	
+# write.csv(result[[6]], "output/bic.csv", row.names=FALSE) # unit of respiration rates: gC per gC plant per day
 # 
 # # Plot parameters and biomass data fit
 # plot.Modelled.parameters(result,with.storage)
@@ -94,9 +97,9 @@ bic.cluster = list()
 
 start <- proc.time() # Start clock
 result <- clusterMap(cluster, CBM.wtc3, with.storage=c(T,T), model.comparison=c(F,F), model.optimization=c(F,F), 
-                     no.param.par.var=c(2,2),
+                     no.param.par.var=c(9,9),
                      treat.group=treat.group,
-                     MoreArgs=list(chainLength=1000))
+                     MoreArgs=list(chainLength=2000))
 
 time_elapsed_series <- proc.time() - start # End clock
 stopCluster(cluster)
