@@ -13,14 +13,16 @@ logLikelihood.wtc3 <- function (no.param.par.var,data.set,output,with.storage,mo
   
   for (i in 1:nrow(data.set)) {
     if (!is.na(data.set$LM[i])) {
-      logLi[i] = - ((data_count/sum(!is.na(data.set$LM)))*(0.5*((output$Mleaf[i] - data.set$LM[i])/data.set$LM_SE[i])^2 - log(data.set$LM_SE[i]) - log(2*pi)^0.5))
+      logLi[i] = - 2*((data_count/sum(!is.na(data.set$LM)))*(0.5*((output$Mleaf[i] - data.set$LM[i])/data.set$LM_SE[i])^2 - log(data.set$LM_SE[i]) - log(2*pi)^0.5))
+      # logLi[i] = - 0.5*((output$Mleaf[i] - data.set$LM[i])/data.set$LM_SE[i])^2 - log(data.set$LM_SE[i]) - log(2*pi)^0.5
     }
     if (!is.na(data.set$WM[i])) {
       logLi[i] = logLi[i] - ((data_count/sum(!is.na(data.set$WM)))*(0.5*((output$Mwood[i] - data.set$WM[i])/data.set$WM_SE[i])^2 - log(data.set$WM_SE[i]) - log(2*pi)^0.5))
+      # logLi[i] = logLi[i] - 0.5*((output$Mwood[i] - data.set$WM[i])/data.set$WM_SE[i])^2 - log(data.set$WM_SE[i]) - log(2*pi)^0.5
     }
     if (!is.na(data.set$RM[i])) {
       logLi[i] = logLi[i] - ((data_count/sum(!is.na(data.set$RM)))*(0.5*((output$Mroot[i] - data.set$RM[i])/data.set$RM_SE[i])^2 - log(data.set$RM_SE[i]) - log(2*pi)^0.5)) # multiplied by 2 to give extra weight
-      # logLi[i] = logLi[i] - (0.5*((output$Mroot[i] - data.set$RM[i])/data.set$RM_SE[i])^2 - log(data.set$RM_SE[i]) - log(2*pi)^0.5) # multiplied by 20 to give extra weight
+      # logLi[i] = logLi[i] - ((output$Mroot[i] - data.set$RM[i])/data.set$RM_SE[i])^2 - log(data.set$RM_SE[i]) - log(2*pi)^0.5 # multiplied by 20 to give extra weight
     }
     # if (i > 1) {
     #   if (!is.na(data.set$Ra[i])) {
@@ -30,13 +32,14 @@ logLikelihood.wtc3 <- function (no.param.par.var,data.set,output,with.storage,mo
     if (!is.null(data.set$litter)) {
       if (!is.na(data.set$litter[i])) {
         logLi[i] = logLi[i] - ((data_count/sum(!is.na(data.set$litter)))*(0.5*((output$Mlit[i] - data.set$litter[i])/data.set$litter_SE[i])^2 - log(data.set$litter_SE[i]) - log(2*pi)^0.5))
+        # logLi[i] = logLi[i] - 0.5*((output$Mlit[i] - data.set$litter[i])/data.set$litter_SE[i])^2 - log(data.set$litter_SE[i]) - log(2*pi)^0.5
       }
     }
     # if (model.comparison==F) {
     if (with.storage==T) {
       if (!is.null(data.set$TNC_leaf)) {
         if (!is.na(data.set$TNC_leaf[i])) {
-          logLi[i] = logLi[i] - ((data_count/sum(!is.na(data.set$TNC_leaf)))*(0.5*((output$Sleaf[i] - data.set$TNC_leaf[i])/data.set$TNC_leaf_SE[i])^2 - log(data.set$TNC_leaf_SE[i]) - log(2*pi)^0.5))
+          logLi[i] = logLi[i] - 0.25*((data_count/sum(!is.na(data.set$TNC_leaf)))*(0.5*((output$Sleaf[i] - data.set$TNC_leaf[i])/data.set$TNC_leaf_SE[i])^2 - log(data.set$TNC_leaf_SE[i]) - log(2*pi)^0.5))
           # logLi[i] = logLi[i] - (0.5*((output$Sleaf[i] - data.set$TNC_leaf[i])/data.set$TNC_leaf_SE[i])^2 - log(data.set$TNC_leaf_SE[i]) - log(2*pi)^0.5)
         }
       }
@@ -44,6 +47,7 @@ logLikelihood.wtc3 <- function (no.param.par.var,data.set,output,with.storage,mo
     # }
   }
   return(sum(logLi)/data_count)
+  # return(sum(logLi))
 }
 
 # This script calcualtes LogLikelihood to find the most accurate model
@@ -89,7 +93,7 @@ logLikelihood.wtc3.final <- function (no.param.par.var,data.set,output,with.stor
         if (!is.null(data.set$TNC_leaf)) {
           if (!is.na(data.set$TNC_leaf[i])) {
             # logLi[i] = logLi[i] - 1.5*(0.5*((output$Sleaf[i] - data.set$TNC_leaf[i])/data.set$TNC_leaf_SE[i])^2 - log(data.set$TNC_leaf_SE[i]) - log(2*pi)^0.5)
-            logLi[i] = logLi[i] - 0.5*((output$Sleaf[i] - data.set$TNC_leaf[i])/data.set$TNC_leaf_SE[i])^2 - log(data.set$TNC_leaf_SE[i]) - log(2*pi)^0.5
+            logLi[i] = logLi[i] - 0.25*(0.5*((output$Sleaf[i] - data.set$TNC_leaf[i])/data.set$TNC_leaf_SE[i])^2 - log(data.set$TNC_leaf_SE[i]) - log(2*pi)^0.5)
           }
         }
       }
@@ -170,20 +174,20 @@ CBM.wtc3 <- function(chainLength, no.param.par.var, treat.group, with.storage, m
         
         # Setting lower and upper bounds of the prior parameter pdf, and starting point of the chain
         if (with.storage==T) {
-          param.k <- matrix(c(0,0.15,25) , nrow=no.param, ncol=3, byrow=T)
-          # param.k <- matrix(c(0,0.5,1) , nrow=no.param, ncol=3, byrow=T) 
+          param.k <- matrix(c(0,0.15,0.25) , nrow=no.param, ncol=3, byrow=T)
+          # param.k <- matrix(c(0,0.15,1) , nrow=no.param, ncol=3, byrow=T)
         }
-        param.Y <- matrix(c(0.25,0.3,0.35) , nrow=no.param, ncol=3, byrow=T)
-        param.af <- matrix(c(0,0.25,0.35) , nrow=no.param, ncol=3, byrow=T)
-        param.as <- matrix(c(0.55,0.65,0.8) , nrow=no.param, ncol=3, byrow=T)
-        param.sf <- matrix(c(0,0.0005,0.001) , nrow=no.param, ncol=3, byrow=T)
+        param.Y <- matrix(c(0.2,0.3,0.4) , nrow=no.param, ncol=3, byrow=T)
+        param.af <- matrix(c(0,0.25,0.5) , nrow=no.param, ncol=3, byrow=T)
+        param.as <- matrix(c(0.3,0.65,0.9) , nrow=no.param, ncol=3, byrow=T)
+        param.sf <- matrix(c(0,0.0005,0.0015) , nrow=no.param, ncol=3, byrow=T)
         param.sr <- matrix(c(0,0.0001,0.0002) , nrow=no.param, ncol=3, byrow=T)
         
         # param.Y <- matrix(c(0.2,0.3,0.4) , nrow=no.param, ncol=3, byrow=T)
-        # param.af <- matrix(c(0,0.3,1) , nrow=no.param, ncol=3, byrow=T) # Forcing af not to be negetive
-        # param.as <- matrix(c(0,0.4,1) , nrow=no.param, ncol=3, byrow=T)
+        # param.af <- matrix(c(0,0.25,1) , nrow=no.param, ncol=3, byrow=T) # Forcing af not to be negetive
+        # param.as <- matrix(c(0,0.65,1) , nrow=no.param, ncol=3, byrow=T)
         # param.sf <- matrix(c(0,0.0005,0.001) , nrow=no.param, ncol=3, byrow=T) # All Groups having same sf
-        # param.sr <- matrix(c(0,0.0005,0.001) , nrow=no.param, ncol=3, byrow=T) # All Groups having same sr
+        # param.sr <- matrix(c(0,0.0001,0.0002) , nrow=no.param, ncol=3, byrow=T) # All Groups having same sr
         
         if (with.storage==T) {
           param = data.frame(param.k,param.Y,param.af,param.as,param.sf,param.sr)
@@ -203,7 +207,7 @@ CBM.wtc3 <- function(chainLength, no.param.par.var, treat.group, with.storage, m
       
       # Defining the variance-covariance matrix for proposal generation
       # vcov = (0.006*(pMaxima-pMinima))^2
-      vcov = (0.005*(pMaxima-pMinima))^2
+      vcov = (0.05*(pMaxima-pMinima))^2
       # vcov = (0.0025*(pMaxima-pMinima))^2
       # vcov = (0.001*(pMaxima-pMinima))^2
       vcovProposal =  vcov # The higher the coefficient, the higher the deviations in parameter time series
@@ -375,47 +379,69 @@ CBM.wtc3 <- function(chainLength, no.param.par.var, treat.group, with.storage, m
           # if ( log(runif(1, min = 0, max =1)) < logalpha && candidatepValues$af[1] + candidatepValues$as[1] <= 1
           #      && candidatepValues$as[1] >= 0 && candidatepValues$af[1] >= 0 && candidatepValues$af[2] >= 0 && candidatepValues$af[3] >= 0 && candidatepValues$af[4] >= 0) {
           if (no.param.par.var == 4) {
-            if ( log(runif(1, min = 0, max =1)) < logalpha && (candidatepValues$sr[1]*(nrow(data.set)) + candidatepValues$sr[2]*(nrow(data.set))^2 + candidatepValues$sr[3]*(nrow(data.set))^3 + candidatepValues$sr[4]*(nrow(data.set))^4) >= 0
-                 && (candidatepValues$sf[1]*(nrow(data.set)) + candidatepValues$sf[2]*(nrow(data.set))^2 + candidatepValues$sf[3]*(nrow(data.set))^3 + candidatepValues$sf[4]*(nrow(data.set))^4) >= 0
-                 && (candidatepValues$k[1]*(nrow(data.set)) + candidatepValues$k[2]*(nrow(data.set))^2 + candidatepValues$k[3]*(nrow(data.set))^3 + candidatepValues$k[4]*(nrow(data.set))^4) >= 0
-                 && (candidatepValues$as[1]*(nrow(data.set)) + candidatepValues$as[2]*(nrow(data.set))^2 + candidatepValues$as[3]*(nrow(data.set))^3 + candidatepValues$as[4]*(nrow(data.set))^4) >= 0
-                 && (candidatepValues$af[1]*(nrow(data.set)) + candidatepValues$af[2]*(nrow(data.set))^2 + candidatepValues$af[3]*(nrow(data.set))^3 + candidatepValues$af[4]*(nrow(data.set))^4) >= 0) {
+            if ( log(runif(1, min = 0, max =1)) < logalpha && (candidatepValues$sr[1] + candidatepValues$sr[2]*(nrow(data.set)) + candidatepValues$sr[3]*(nrow(data.set))^2 + candidatepValues$sr[4]*(nrow(data.set))^3) >= 0
+                 && (candidatepValues$sf[1] + candidatepValues$sf[2]*(nrow(data.set)) + candidatepValues$sf[3]*(nrow(data.set))^2 + candidatepValues$sf[4]*(nrow(data.set))^3) >= 0
+                 && (candidatepValues$k[1] + candidatepValues$k[2]*(nrow(data.set)) + candidatepValues$k[3]*(nrow(data.set))^2 + candidatepValues$k[4]*(nrow(data.set))^3) >= 0
+                 && (candidatepValues$as[1] + candidatepValues$as[2]*(nrow(data.set)) + candidatepValues$as[3]*(nrow(data.set))^2 + candidatepValues$as[4]*(nrow(data.set))^3) >= 0
+                 && (candidatepValues$af[1] + candidatepValues$af[2]*(nrow(data.set)) + candidatepValues$af[3]*(nrow(data.set))^2 + candidatepValues$af[4]*(nrow(data.set))^3) >= 0
+                 # && (1-candidatepValues$af[1]+candidatepValues$as[1]) >= 0
+                 && (1 - (candidatepValues$af[1] + candidatepValues$af[2]*(nrow(data.set)) + candidatepValues$af[3]*(nrow(data.set))^2 + candidatepValues$af[4]*(nrow(data.set))^3) - 
+                     (candidatepValues$as[1] + candidatepValues$as[2]*(nrow(data.set)) + candidatepValues$as[3]*(nrow(data.set))^2 + candidatepValues$as[4]*(nrow(data.set))^3)) >= 0 ) {
+              # && ((1-candidatepValues$af[1]-candidatepValues$as[1])*(nrow(data.set)) + (1-candidatepValues$af[2]-candidatepValues$as[2])*(nrow(data.set))^2 + (1-candidatepValues$af[3]-candidatepValues$as[3])*(nrow(data.set))^3 + (1-candidatepValues$af[4]-candidatepValues$as[4])*(nrow(data.set))^4) >= 0) {
               pValues <- candidatepValues
               logPrior0 <- logPrior1
               logL0 <- logL1
             }
+            # if ( log(runif(1, min = 0, max =1)) < logalpha && (candidatepValues$sr[1]*(nrow(data.set)) + candidatepValues$sr[2]*(nrow(data.set))^2 + candidatepValues$sr[3]*(nrow(data.set))^3 + candidatepValues$sr[4]*(nrow(data.set))^4) >= 0
+            #      && (candidatepValues$sf[1]*(nrow(data.set)) + candidatepValues$sf[2]*(nrow(data.set))^2 + candidatepValues$sf[3]*(nrow(data.set))^3 + candidatepValues$sf[4]*(nrow(data.set))^4) >= 0
+            #      && (candidatepValues$k[1]*(nrow(data.set)) + candidatepValues$k[2]*(nrow(data.set))^2 + candidatepValues$k[3]*(nrow(data.set))^3 + candidatepValues$k[4]*(nrow(data.set))^4) >= 0
+            #      && (candidatepValues$as[1]*(nrow(data.set)) + candidatepValues$as[2]*(nrow(data.set))^2 + candidatepValues$as[3]*(nrow(data.set))^3 + candidatepValues$as[4]*(nrow(data.set))^4) >= 0
+            #      && (candidatepValues$af[1]*(nrow(data.set)) + candidatepValues$af[2]*(nrow(data.set))^2 + candidatepValues$af[3]*(nrow(data.set))^3 + candidatepValues$af[4]*(nrow(data.set))^4) >= 0
+            #      # && (1-candidatepValues$af[1]+candidatepValues$as[1]) >= 0
+            #      && (1 - (candidatepValues$af[1] + candidatepValues$af[2]*(nrow(data.set)) + candidatepValues$af[3]*(nrow(data.set))^2 + candidatepValues$af[4]*(nrow(data.set))^3) - 
+            #          (candidatepValues$as[1]* + candidatepValues$as[2]*(nrow(data.set)) + candidatepValues$as[3]*(nrow(data.set))^2 + candidatepValues$as[4]*(nrow(data.set))^3)) >= 0 ) {
+            #      # && ((1-candidatepValues$af[1]-candidatepValues$as[1])*(nrow(data.set)) + (1-candidatepValues$af[2]-candidatepValues$as[2])*(nrow(data.set))^2 + (1-candidatepValues$af[3]-candidatepValues$as[3])*(nrow(data.set))^3 + (1-candidatepValues$af[4]-candidatepValues$as[4])*(nrow(data.set))^4) >= 0) {
+            #   pValues <- candidatepValues
+            #   logPrior0 <- logPrior1
+            #   logL0 <- logL1
+            # }
           } else if (no.param.par.var == 3) {
             if ( log(runif(1, min = 0, max =1)) < logalpha && (candidatepValues$sr[1]*(nrow(data.set)) + candidatepValues$sr[2]*(nrow(data.set))^2 + candidatepValues$sr[3]*(nrow(data.set))^3) >= 0
-                 && (candidatepValues$sf[1]*(nrow(data.set)) + candidatepValues$sf[2]*(nrow(data.set))^2 + candidatepValues$sf[3]*(nrow(data.set))^3) >= 0
-                 && (candidatepValues$k[1]*(nrow(data.set)) + candidatepValues$k[2]*(nrow(data.set))^2 + candidatepValues$k[3]*(nrow(data.set))^3) >= 0
-                 && (candidatepValues$as[1]*(nrow(data.set)) + candidatepValues$as[2]*(nrow(data.set))^2 + candidatepValues$as[3]*(nrow(data.set))^3) >= 0
-                 && (candidatepValues$af[1]*(nrow(data.set)) + candidatepValues$af[2]*(nrow(data.set))^2 + candidatepValues$af[3]*(nrow(data.set))^3) >= 0) {
+                 && (candidatepValues$sf[1] + candidatepValues$sf[2]*(nrow(data.set)) + candidatepValues$sf[3]*(nrow(data.set))^2) >= 0
+                 && (candidatepValues$k[1] + candidatepValues$k[2]*(nrow(data.set)) + candidatepValues$k[3]*(nrow(data.set))^2) >= 0
+                 && (candidatepValues$as[1] + candidatepValues$as[2]*(nrow(data.set)) + candidatepValues$as[3]*(nrow(data.set))^2) >= 0
+                 && (candidatepValues$af[1] + candidatepValues$af[2]*(nrow(data.set)) + candidatepValues$af[3]*(nrow(data.set))^2) >= 0
+                 && (1 - (candidatepValues$af[1] + candidatepValues$af[2]*(nrow(data.set)) + candidatepValues$af[3]*(nrow(data.set))^2) - 
+                     (candidatepValues$as[1] + candidatepValues$as[2]*(nrow(data.set)) + candidatepValues$as[3]*(nrow(data.set))^2)) >= 0 ) {
               pValues <- candidatepValues
               logPrior0 <- logPrior1
               logL0 <- logL1
             }
           } else if (no.param.par.var == 2) {
             if ( log(runif(1, min = 0, max =1)) < logalpha && (candidatepValues$sr[1]*(nrow(data.set)) + candidatepValues$sr[2]*(nrow(data.set))^2) >= 0
-                 && (candidatepValues$sf[1]*(nrow(data.set)) + candidatepValues$sf[2]*(nrow(data.set))^2) >= 0
-                 && (candidatepValues$k[1]*(nrow(data.set)) + candidatepValues$k[2]*(nrow(data.set))^2) >= 0
-                 && (candidatepValues$as[1]*(nrow(data.set)) + candidatepValues$as[2]*(nrow(data.set))^2) >= 0
-                 && (candidatepValues$af[1]*(nrow(data.set)) + candidatepValues$af[2]*(nrow(data.set))^2) >= 0) {
+                 && (candidatepValues$sf[1] + candidatepValues$sf[2]*(nrow(data.set))) >= 0
+                 && (candidatepValues$k[1] + candidatepValues$k[2]*(nrow(data.set))) >= 0
+                 && (candidatepValues$as[1] + candidatepValues$as[2]*(nrow(data.set))) >= 0
+                 && (candidatepValues$af[1] + candidatepValues$af[2]*(nrow(data.set))) >= 0
+                 && (1 - (candidatepValues$af[1] + candidatepValues$af[2]*(nrow(data.set))) - 
+                     (candidatepValues$as[1] + candidatepValues$as[2]*(nrow(data.set)))) >= 0 ) {
               pValues <- candidatepValues
               logPrior0 <- logPrior1
               logL0 <- logL1
             }
           } else if (no.param.par.var == 1) {
             if ( log(runif(1, min = 0, max =1)) < logalpha && (candidatepValues$sr[1]*(nrow(data.set)) + candidatepValues$sr[2]*(nrow(data.set))^2) >= 0
-                 && (candidatepValues$sf[1]*(nrow(data.set))) >= 0
-                 && (candidatepValues$k[1]*(nrow(data.set))) >= 0
-                 && (candidatepValues$as[1]*(nrow(data.set))) >= 0
-                 && (candidatepValues$af[1]*(nrow(data.set))) >= 0) {
+                 && (candidatepValues$sf[1]) >= 0
+                 && (candidatepValues$k[1]) >= 0
+                 && (candidatepValues$as[1]) >= 0
+                 && (candidatepValues$af[1]) >= 0
+                 && (1 - candidatepValues$af[1] - candidatepValues$as[1]) >= 0 ) {
               pValues <- candidatepValues
               logPrior0 <- logPrior1
               logL0 <- logL1
             }
           } else {
-            if ( log(runif(1, min = 0, max =1)) < logalpha && candidatepValues >= 0 && (candidatepValues$af + candidatepValues$as) < 1) {
+            if ( log(runif(1, min = 0, max =1)) < logalpha && candidatepValues >= 0 && all((candidatepValues$af + candidatepValues$as) < 1)) {
               pValues <- candidatepValues
               logPrior0 <- logPrior1
               logL0 <- logL1
@@ -801,9 +827,9 @@ CBM.wtc3 <- function(chainLength, no.param.par.var, treat.group, with.storage, m
       aic.bic[q,2] = -2*aic.bic[q,1] + k1*npar
       
       if (model.comparison==F) {
-        n = sum(!is.na(data.set$TNC_leaf)) + sum(!is.na(data.set$LM)) + sum(!is.na(data.set$WM)) + sum(!is.na(data.set$RM)) + sum(!is.na(data.set$litter)) + sum(!is.na(data.set$Ra))
+        n = sum(!is.na(data.set$TNC_leaf)) + sum(!is.na(data.set$LM)) + sum(!is.na(data.set$WM)) + sum(!is.na(data.set$RM)) + sum(!is.na(data.set$litter))
       } else {
-        n = sum(!is.na(data.set$LM)) + sum(!is.na(data.set$WM)) + sum(!is.na(data.set$RM)) + sum(!is.na(data.set$litter)) + sum(!is.na(data.set$Ra))
+        n = sum(!is.na(data.set$LM)) + sum(!is.na(data.set$WM)) + sum(!is.na(data.set$RM)) + sum(!is.na(data.set$litter))
       }
       k2 = log(n) # n being the number of observations for the so-called BIC
       aic.bic[q,3] = -2*aic.bic[q,1] + k2*npar
@@ -991,8 +1017,8 @@ model.monthly <- function (data.set,j,tnc.partitioning,Y,k,af,as,sf,sr) {
       data.set$Rd.fineroot.mean[i-1]*Mroot[i-1]*data.set$FRratio[i-1] + data.set$Rd.intermediateroot.mean[i-1]*Mroot[i-1]*data.set$IRratio[i-1] + 
       data.set$Rd.coarseroot.mean[i-1]*Mroot[i-1]*data.set$CRratio[i-1] + data.set$Rd.boleroot.mean[i-1]*Mroot[i-1]*data.set$BRratio[i-1]
     
-    # Cstorage[i] <- Cstorage[i-1] + data.set$GPP[i-1] - Rm[i-1] - k[(i-1)-(j[i-1])]*Cstorage[i-1]
-    Cstorage[i] <- (Cstorage[i-1] + rnorm(1, data.set$GPP[i], data.set$GPP_SE[i]) - Rm[i]) / (1 + k[(i-1)-(j[i-1])])
+    Cstorage[i] <- Cstorage[i-1] + data.set$GPP[i-1] - Rm[i-1] - k[(i-1)-(j[i-1])]*Cstorage[i-1]
+    # Cstorage[i] <- (Cstorage[i-1] + rnorm(1, data.set$GPP[i], data.set$GPP_SE[i]) - Rm[i]) / (1 + k[(i-1)-(j[i-1])])
     
     Sleaf[i] <- Cstorage[i] * tnc.partitioning$foliage[i] # 33% of storage goes to leaf (WTC-4 experiment)
     Swood[i] <- Cstorage[i] * tnc.partitioning$wood[i] # 53% of storage goes to wood (WTC-4 experiment)

@@ -1,17 +1,17 @@
 # # Setting lower and upper bounds of the prior parameter pdf, and starting point of the chain
 # Try wide priors
 #-------------------------------------------------------------------------------------
-param.Y <- matrix(c(0.2,0.3,0.4) , nrow=1, ncol=3, byrow=T)
-param.af <- matrix(c(0,0.2,1) , nrow=1, ncol=3, byrow=T) # Forcing af not to be negetive
-param.as <- matrix(c(0,0.6,1) , nrow=1, ncol=3, byrow=T)
-param.sf <- matrix(c(0,0.0005,0.001) , nrow=1, ncol=3, byrow=T) # All Groups having same sf
-param.sr <- matrix(c(0,0.0005,0.001) , nrow=1, ncol=3, byrow=T) # All Groups having same sr
+# param.Y <- matrix(c(0.2,0.3,0.4) , nrow=1, ncol=3, byrow=T)
+# param.af <- matrix(c(0,0.25,1) , nrow=1, ncol=3, byrow=T) # Forcing af not to be negetive
+# param.as <- matrix(c(0,0.65,1) , nrow=1, ncol=3, byrow=T)
+# param.sf <- matrix(c(0,0.0005,0.0015) , nrow=1, ncol=3, byrow=T) # All Groups having same sf
+# param.sr <- matrix(c(0,0.0001,0.0002) , nrow=1, ncol=3, byrow=T) # All Groups having same sr
 
-# param.Y <- matrix(c(0.25,0.3,0.35) , nrow=1, ncol=3, byrow=T) 
-# param.af <- matrix(c(0,0.25,0.35) , nrow=1, ncol=3, byrow=T) 
-# param.as <- matrix(c(0.55,0.65,0.8) , nrow=1, ncol=3, byrow=T) 
-# param.sf <- matrix(c(0,0.0005,0.001) , nrow=1, ncol=3, byrow=T) 
-# param.sr <- matrix(c(0,0.0001,0.0002) , nrow=1, ncol=3, byrow=T)
+param.Y <- matrix(c(0.2,0.3,0.4) , nrow=1, ncol=3, byrow=T)
+param.af <- matrix(c(0,0.25,0.5) , nrow=1, ncol=3, byrow=T)
+param.as <- matrix(c(0.3,0.65,0.9) , nrow=1, ncol=3, byrow=T)
+param.sf <- matrix(c(0,0.001,0.002) , nrow=1, ncol=3, byrow=T)
+param.sr <- matrix(c(0,0.01,0.02) , nrow=1, ncol=3, byrow=T)
 
 # # wide ranges (didn't work)
 # param.Y <- matrix(c(0,0.3,1) , nrow=1, ncol=3, byrow=T)
@@ -98,8 +98,8 @@ if (with.storage==F) {
   pMaxima <- param[ ,c("Y_max","af_max","as_max","sf_max","sr_max")]
   pValues <- param[ ,c("Y","af","as","sf","sr")] # Starting point of the chain
 } else { # (with.storage==T) 
-  param.k <- matrix(c(0,0.15,1) , nrow=1, ncol=3, byrow=T)
-  # param.k <- matrix(c(0,0.15,25) , nrow=1, ncol=3, byrow=T) 
+  # param.k <- matrix(c(0,0.15,1) , nrow=1, ncol=3, byrow=T)
+  param.k <- matrix(c(0,0.15,0.25) , nrow=1, ncol=3, byrow=T)
   
   if (no.param > 1) {
     param.k <- rbind(param.k, c(-(param.k[3]-param.k[1])/nrow(data.set), 0, (param.k[3]-param.k[1])/nrow(data.set)))

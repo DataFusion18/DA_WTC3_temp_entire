@@ -16,7 +16,7 @@ source("R/functions_wtc3_CBM.R")
 
 #-------------------------------------------------------------------------------------
 #-------------------------------------------------------------------------------------
-CBM.wtc3 <- function(no.param.par.var, treat.group, with.storage, model.comparison, model.optimization, param.set) {
+CBM.wtc3.manual <- function(no.param.par.var, treat.group, with.storage, model.comparison, model.optimization, param.set) {
   
   if (with.storage==T) {
     no.var = 6 # variables to be modelled are: k,Y,af,as,sf,sr
@@ -106,15 +106,23 @@ CBM.wtc3 <- function(no.param.par.var, treat.group, with.storage, model.comparis
       summary.data = rbind(summary.data,melted.data)
     }
     
+    # Calculate LogLi, AIC, BIC, Time to find the most accurate model for best balance between model fit and complexity
+    output = output
+    if (with.storage==T) { 
+      names(output) = c("Cstorage","Mleaf","Mwood","Mroot","Mlit","Sleaf","Rm","Rabove","Date") # Rename for the logLikelihood function
+    } else {
+      names(output) = c("Mleaf","Mwood","Mroot","Mlit","Rm","Rabove","Date")
+    }
+    
     aic.bic[q,1] <- logLikelihood.wtc3.final(no.param.par.var,data.set,output,with.storage,model.comparison) # Calculate logLikelihood
     k1 = 2 # k = 2 for the usual AIC
     npar = no.param*no.var # npar = total number of parameters in the fitted model
     aic.bic[q,2] = -2*aic.bic[q,1] + k1*npar
     
     if (model.comparison==F) {
-      n = sum(!is.na(data.set$TNC_leaf)) + sum(!is.na(data.set$LM)) + sum(!is.na(data.set$WM)) + sum(!is.na(data.set$RM)) + sum(!is.na(data.set$litter)) + sum(!is.na(data.set$Ra))
+      n = sum(!is.na(data.set$TNC_leaf)) + sum(!is.na(data.set$LM)) + sum(!is.na(data.set$WM)) + sum(!is.na(data.set$RM)) + sum(!is.na(data.set$litter))
     } else {
-      n = sum(!is.na(data.set$LM)) + sum(!is.na(data.set$WM)) + sum(!is.na(data.set$RM)) + sum(!is.na(data.set$litter)) + sum(!is.na(data.set$Ra))
+      n = sum(!is.na(data.set$LM)) + sum(!is.na(data.set$WM)) + sum(!is.na(data.set$RM)) + sum(!is.na(data.set$litter))
     }
     k2 = log(n) # n being the number of observations for the so-called BIC
     aic.bic[q,3] = -2*aic.bic[q,1] + k2*npar
@@ -177,8 +185,8 @@ model.monthly.manual <- function (data.set,j,tnc.partitioning,param) {
       data.set$Rd.fineroot.mean[i-1]*Mroot[i-1]*data.set$FRratio[i-1] + data.set$Rd.intermediateroot.mean[i-1]*Mroot[i-1]*data.set$IRratio[i-1] + 
       data.set$Rd.coarseroot.mean[i-1]*Mroot[i-1]*data.set$CRratio[i-1] + data.set$Rd.boleroot.mean[i-1]*Mroot[i-1]*data.set$BRratio[i-1]
     
-    # Cstorage[i] <- Cstorage[i-1] + data.set$GPP[i-1] - Rm[i-1] - k[(i-1)-(j[i-1])]*Cstorage[i-1]
-    Cstorage[i] <- (Cstorage[i-1] + rnorm(1, data.set$GPP[i], data.set$GPP_SE[i]) - Rm[i]) / (1 + k[(i-1)-(j[i-1])])
+    Cstorage[i] <- Cstorage[i-1] + data.set$GPP[i-1] - Rm[i-1] - k[(i-1)-(j[i-1])]*Cstorage[i-1]
+    # Cstorage[i] <- (Cstorage[i-1] + rnorm(1, data.set$GPP[i], data.set$GPP_SE[i]) - Rm[i]) / (1 + k[(i-1)-(j[i-1])])
     
     Sleaf[i] <- Cstorage[i] * tnc.partitioning$foliage[i] # 33% of storage goes to leaf (WTC-4 experiment)
     Swood[i] <- Cstorage[i] * tnc.partitioning$wood[i] # 53% of storage goes to wood (WTC-4 experiment)
@@ -544,6 +552,7 @@ plot.Modelled.biomass <- function(result,with.storage) {
 treat.group = as.factor(c("ambient","elevated")) # Assign all treatments
 data.all = read.csv("processed_data/data_all.csv") 
 tnc.partitioning = read.csv("processed_data/tnc_partitioning_data.csv")
+# data.all[,c("TNC_tot_SE","TNC_leaf_SE","TNC_wood_SE","TNC_root_SE")] = 3 * data.all[,c("TNC_tot_SE","TNC_leaf_SE","TNC_wood_SE","TNC_root_SE")]
 
 # inputs
 no.param.par.var = 9
@@ -555,9 +564,9 @@ param.vary = ceiling(nrow(data.all)/2/no.param.par.var)
 no.param = ceiling(nrow(data.all)/2/param.vary)
 
 # Setting parameters values
-param.1.k <- matrix(c(0.2,0.2,0.2,0.2,0.2,0.1,0.1,0.1,0.15) , nrow=no.param, ncol=1, byrow=T) 
+param.1.k <- matrix(c(0.2,0.2,0.2,0.2,0.25,0.1,0.08,0.1,0.15) , nrow=no.param, ncol=1, byrow=T) 
 param.1.Y <- matrix(c(0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3) , nrow=no.param, ncol=1, byrow=T) 
-param.1.af <- matrix(c(0.3,0.3,0.3,0.2,0.2,0.2,0.2,0.15,0.05) , nrow=no.param, ncol=1, byrow=T) 
+param.1.af <- matrix(c(0.3,0.25,0.25,0.2,0.2,0.2,0.2,0.15,0.05) , nrow=no.param, ncol=1, byrow=T) 
 param.1.as <- matrix(c(0.6,0.6,0.6,0.6,0.6,0.6,0.6,0.7,0.75) , nrow=no.param, ncol=1, byrow=T) 
 param.1.sf <- matrix(c(0.00075,0.00075,0.00075,0.00075,0.0005,0.0005,0.00025,0.00025,0.00025) , nrow=no.param, ncol=1, byrow=T) 
 param.1.sr <- matrix(c(0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001) , nrow=no.param, ncol=1, byrow=T)
@@ -565,9 +574,9 @@ param.1.sr <- matrix(c(0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0
 param.1 = data.frame(param.1.k,param.1.Y,param.1.af,param.1.as,param.1.sf,param.1.sr)
 names(param.1) <- c("k","Y","af","as","sf","sr")
 
-param.2.k <- matrix(c(0.2,0.2,0.2,0.2,0.1,0.05,0.05,0.1,0.15) , nrow=no.param, ncol=1, byrow=T) 
+param.2.k <- matrix(c(0.2,0.2,0.15,0.1,0.2,0.05,0.05,0.1,0.15) , nrow=no.param, ncol=1, byrow=T) 
 param.2.Y <- matrix(c(0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3) , nrow=no.param, ncol=1, byrow=T) 
-param.2.af <- matrix(c(0.3,0.3,0.3,0.2,0.2,0.2,0.2,0.15,0.025) , nrow=no.param, ncol=1, byrow=T) 
+param.2.af <- matrix(c(0.3,0.3,0.3,0.25,0.25,0.15,0.15,0.1,0.025) , nrow=no.param, ncol=1, byrow=T) 
 param.2.as <- matrix(c(0.6,0.6,0.65,0.7,0.7,0.75,0.75,0.7,0.7) , nrow=no.param, ncol=1, byrow=T) 
 param.2.sf <- matrix(c(0.00075,0.0005,0.0005,0.0005,0.00075,0.00075,0.00095,0.00095,0.00095) , nrow=no.param, ncol=1, byrow=T) 
 param.2.sr <- matrix(c(0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001) , nrow=no.param, ncol=1, byrow=T)
@@ -577,7 +586,7 @@ names(param.2) <- c("k","Y","af","as","sf","sr")
 
 param.set = list(param.1, param.2)
 
-result = CBM.wtc3(no.param.par.var, treat.group, with.storage, model.comparison, model.optimization, param.set) # Quadratic/Cubic parameters
+result = CBM.wtc3.manual(no.param.par.var, treat.group, with.storage, model.comparison, model.optimization, param.set) # Quadratic/Cubic parameters
 
 result[[6]]
 write.csv(result[[6]], "output/bic.csv", row.names=FALSE) # unit of respiration rates: gC per gC plant per day
