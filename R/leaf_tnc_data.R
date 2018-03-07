@@ -49,7 +49,10 @@ treeMass.daily.sum[,c(3:4)] = treeMass.daily.sum[,c(3:4)] * c1 # unit conversion
 
 tnc.final = merge(tnc.mean, treeMass.daily.sum[,c("Date","T_treatment","LM","LM_SE")], by=c("Date","T_treatment"), all=FALSE)
 tnc.final$TNC_leaf = tnc.final$tnc.conc * tnc.final$LM # Unit = gC
-tnc.final$TNC_leaf_SE = tnc.final$tnc.conc_SE * tnc.final$LM # Unit = gC
+# tnc.final$TNC_leaf_SE = tnc.final$tnc.conc_SE * tnc.final$LM # Unit = gC
+
+tnc.final$TNC_leaf_SE = (((tnc.final$tnc.conc_SE/tnc.final$tnc.conc)^2 + (tnc.final$LM_SE/tnc.final$LM)^2)^0.5) * tnc.final$TNC_leaf
+
 
 tnc.final = merge(tnc.final,tnc.partitioning, by="Date")
 

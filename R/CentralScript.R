@@ -36,7 +36,7 @@ source("R/functions_wtc3_CBM.R")
 # #- This script imports and processes the raw WTC3 experiment data to model the carbon pools and fluxes using DA
 # # source("R/initial_data_processing_wtc3.R")
 # rmd2rscript("report_initial_data_processing_wtc3.Rmd")
-source("report_initial_data_processing_wtc3.R")
+# source("report_initial_data_processing_wtc3.R")
 # #-------------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------------
@@ -56,6 +56,8 @@ source("report_initial_data_processing_wtc3.R")
 # treat.group = as.factor(c("ambient drought","ambient watered")) # Assign 2 treatments to compare the results
 treat.group = as.factor(c("ambient","elevated")) # Assign all treatments
 data.all = read.csv("processed_data/data_all.csv") 
+data.all$treatment.no [data.all$Treatment %in% as.factor("ambient") ] = 1
+data.all$treatment.no [data.all$Treatment %in% as.factor("elevated") ] = 2
 tnc.partitioning = read.csv("processed_data/tnc_partitioning_data.csv")
 # data.all[,c("GPP_SE","Ra_SE","LA_SE","LM_SE","WM_SE","RM_SE","litter_SE","TNC_tot_SE","TNC_leaf_SE","TNC_wood_SE","TNC_root_SE")] =
 #   0.5*data.all[,c("GPP_SE","Ra_SE","LA_SE","LM_SE","WM_SE","RM_SE","litter_SE","TNC_tot_SE","TNC_leaf_SE","TNC_wood_SE","TNC_root_SE")]
@@ -67,11 +69,11 @@ tnc.partitioning = read.csv("processed_data/tnc_partitioning_data.csv")
 # 
 # #-------------------------------------------------------------------------------------
 # # 3000 chain length is sufficient for the convergance
-# chainLength = 1000
-# no.param.par.var=9
-# with.storage = T
-# model.comparison=F
-# model.optimization=F
+chainLength = 100
+no.param.par.var = 2
+with.storage = T
+model.comparison=F
+model.optimization=F
 # start <- proc.time() # Start clock
 # # result = CBM.wtc3(chainLength = 3000, no.param.par.var=(nrow(data.all)/4)/30, treat.group=treat.group, with.storage, model.comparison=F, model.optimization=F) # Monthly parameters
 # result = CBM.wtc3(chainLength, no.param.par.var, treat.group, with.storage, model.comparison, model.optimization) # Quadratic/Cubic parameters
@@ -87,7 +89,7 @@ source("R/functions_wtc3.R")
 source("R/functions_wtc3_CBM.R")	
 
 # Model run for WTC3 dataset with clustering
-cluster <- makeCluster(detectCores()-6)
+cluster <- makeCluster(detectCores()-1)
 # clusterEvalQ(cluster, library(xts))
 clusterExport(cl=cluster, list("data.all","tnc.partitioning","treat.group"))
 ex <- Filter(function(x) is.function(get(x, .GlobalEnv)), ls(.GlobalEnv))
@@ -96,20 +98,19 @@ result.cluster = list()
 bic.cluster = list()
 
 start <- proc.time() # Start clock
-result <- clusterMap(cluster, CBM.wtc3, with.storage=c(T,T), model.comparison=c(F,F), model.optimization=c(F,F), 
-                     no.param.par.var=c(9,9),
-                     treat.group=treat.group,
-                     MoreArgs=list(chainLength=3000))
+result <- clusterMap(cluster, CBM.wtc3, treat.group=c(list(list(1,2,c(1,2)))),
+                     MoreArgs=list(chainLength=100, no.param.par.var=2, with.storage=T, model.comparison=F, model.optimization=F))
 
 time_elapsed_series <- proc.time() - start # End clock
 stopCluster(cluster)
 
-listOfDataFrames <- vector(mode = "list", length = 2)
-for (i in 1:2) {
-  listOfDataFrames[[i]] <- data.frame(result[[i]][[6]])
-}
-bic = do.call("rbind", listOfDataFrames)
-write.csv(bic, "output/bic.csv", row.names=FALSE)
+# listOfDataFrames <- vector(mode = "list", length = length(treat.group[[1]]))
+# for (i in 1:length(treat.group[[1]])) {
+#   listOfDataFrames[[i]] <- data.frame(result[[i]][[6]])
+# }
+# bic = do.call("rbind", listOfDataFrames)
+# write.csv(bic, "output/bic.csv", row.names=FALSE)
+write.csv(result[[1]][[6]], "output/bic.csv", row.names=FALSE)
 
 # Plot parameters and biomass data fit
 plot.Modelled.parameters.wtc3(result,with.storage=T)
