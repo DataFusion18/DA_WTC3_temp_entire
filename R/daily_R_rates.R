@@ -56,7 +56,7 @@ files <- list.files(path = "raw_data/WTC_TEMP_CM_WTCMET", pattern = ".csv", full
 temp <- lapply(files, fread, sep=",")
 met.data <- rbindlist( temp )
 
-met.data <- met.data[ , c("chamber","DateTime","Tair_al","SoilTemp_Avg.1.","SoilTemp_Avg.2.")]
+met.data <- met.data[ , c("chamber","DateTime","Tair_al","SoilTemp_Avg.1.","SoilTemp_Avg.2.","PPFD_Avg")]
 met.data$SoilTemp <- rowMeans(met.data[,c("SoilTemp_Avg.1.","SoilTemp_Avg.2.")], na.rm=TRUE)
 met.data$Date <- as.Date(met.data$DateTime)
 
@@ -65,9 +65,11 @@ met.data$DateTime <- ymd_hms(met.data$DateTime)
 met.data$time <- format(met.data$DateTime, format='%H:%M:%S')
 
 # subset by Date range of experiment
-met.data <- subset(met.data[, c("chamber","Date","time","Tair_al","SoilTemp")], Date  >= "2013-09-17" & Date  <= "2014-05-26")
+met.data <- subset(met.data[, c("chamber","Date","time","Tair_al","SoilTemp","PPFD_Avg")], Date  >= "2013-09-17" & Date  <= "2014-05-26")
 met.data$chamber = as.factor(met.data$chamber)
 met.data = merge(met.data, unique(height.dia[,c("chamber","T_treatment")]), by="chamber")
+
+met.data$period <- ifelse(met.data$PPFD_Avg>2,"Day","Night")
 
 # Remove the data with missing air and soil temperatures from met data
 # met.data = met.data[complete.cases(met.data$SoilTemp),]
@@ -91,6 +93,7 @@ met.data[,c("Rd.stem","Rd.branch")] =
 
 # calculate foliage respiration rates in 15-mins interval
 met.data[,"Rd.foliage"] = with(met.data, met.data[,"rd25.foliage"] * q10^((Tair_al-25)/10)) # unit (gC per gC foliage per day)
+met.data[met.data$period == "Day","Rd.foliage"] = 0.7*met.data[met.data$period == "Day","Rd.foliage"] # 30% reduction in leaf respiration during day time
 
 # Calculate daily mean respiration rates for all tree components by summing all 15-mins data for each day
 Rd <- summaryBy(Rd.foliage+Rd.stem+Rd.branch+Rd.fineroot+Rd.intermediateroot+Rd.coarseroot+Rd.boleroot ~ Date+T_treatment, data=met.data, FUN=mean, na.rm=TRUE) # Sum of all same day Rd
@@ -180,5 +183,5 @@ ncols = 1
 do.call("grid.arrange", c(plot, ncol=ncols))
 dev.off()
 
-# do.call("grid.arrange", c(plot, ncol=ncols))
+do.call("grid.arrange", c(plot, ncol=ncols))
 

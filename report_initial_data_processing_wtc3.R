@@ -1,7 +1,7 @@
 #' ---	
 #' title: "Processing WTC-3 data to infer temperature effect on Carbon Balance"	
 #' author: "Kashif Mahmud"	
-#' date: "16 October 2017"	
+#' date: "27 March 2018"	
 #' output:	
 #'   html_document: default	
 #'   word_document: default	
@@ -318,7 +318,7 @@ source('R/leafscaleR_vs_Tair_regression.R')
 #' 7. Intermediate root respiration: For the intermediate size class of 2 to 10 mm, We interpolated respiration rates between the size classes to estimate the middle class using a simple log-log plot.     	
 #' 	
 #' 8. **15-mins interval respiration rates**:     	
-#'   - *We estimated 15-mins interval foliage respiration rates, R~leaf~ at 15-mins air temperatures (T~air~) using the site weather data, mass-based daily mean leaf-scale respiration at 25°C, R~leaf,25~ and Q~10~ of 2.26: $R_{leaf} = R_{leaf,25}Q_{10}^{(T_{leaf}-25)/10}$. We assume $T_{leaf} = T_{air}$.*    	
+#'   - *We estimated 15-mins interval foliage respiration rates, R~leaf~ at 15-mins air temperatures (T~air~) using the site weather data, mass-based daily mean leaf-scale respiration at 25°C, R~leaf,25~ and Q~10~ of 2.26: $R_{leaf} = R_{leaf,25}Q_{10}^{(T_{leaf}-25)/10}$. We assume $T_{leaf} = T_{air}$. We then consider a 30% reduction in foliage respiration during day time.*    	
 #'   - *Wood respiration rates in 15-mins interval were calculated at air temperature (T~air~) using the site weather data, mass-based wood respiration rates at 15°C and Q~10~ of 2.26.*    	
 #'   - *Similarly root respiration rates in 15-mins interval were calculated using soil temperature at 10 cm depth, mass-based root respiration rates at 15°C and Q~10~ of 2.26.*    	
 #' 9. **Daily mean respiration rates**: *Daily mean respiration rates for all tree components were calculated by summing all 15-mins data for each day.*    	

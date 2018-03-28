@@ -42,7 +42,7 @@ predRleaf_ele <- exp(log(rd25_ele) + (log(q10) * (xvals_Rleaf-25)/10))
 #----------------------------------------------------------------------------------------------------------------
 #- plot Rleaf vs. Tair
 rvt.treat <- summaryBy(Rmass~Date+T_treatment+Tleaf_bin_mid,data=rvt.treat.bin,keep.names=F,FUN=c(mean,standard.error))
-png("output/5.Rdark_vs_T.png", units="px", width=1200, height=1000, res=130)
+png("output/5.Rdark_vs_T.png", units="px", width=1200, height=1000, res=300)
 par(mfrow=c(1,1), mar = c(4,4.5,0.2,0.2))
 xlims=c(18,40)
 
@@ -59,3 +59,21 @@ legend("topleft",legend=unique(rvt.treat$T_treatment),col=c('black','red'),lty=1
 
 # dev.copy2pdf(file="output/5.Rdark_vs_T.pdf")
 dev.off()
+
+img <- readPNG("output/5.Rdark_vs_T.png")
+# h<-dim(img)[1]
+# w<-dim(img)[2]
+# 
+# # #open new file for saving the image in "output" folder
+# # png("output/Figure_1_CBM_wtc3.png", width=w, height=h)
+# par(mar=c(0,0,0,0), xpd=NA, mgp=c(0,0,0), oma=c(0,0,0,0), ann=F)
+# plot.new()
+# plot.window(0:1, 0:1)
+# 
+# #fill plot with image
+# usr<-par("usr")
+# rasterImage(img, usr[1], usr[3], usr[2], usr[4])
+grid.raster(img)
+
+# plot.q10()
+

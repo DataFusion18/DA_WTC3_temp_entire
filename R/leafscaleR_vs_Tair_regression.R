@@ -213,7 +213,7 @@ png("output/7.Rf25_vs_Tair.png", units="px", width=2000, height=1000, res=130)
 do.call(grid.arrange,  plots)
 dev.off()
 
-# do.call(grid.arrange,  plots)
+do.call(grid.arrange,  plots)
 
 #----------------------------------------------------------------------------------------------------------------
 prec.day.no = 3

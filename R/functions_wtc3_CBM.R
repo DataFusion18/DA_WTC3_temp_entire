@@ -128,7 +128,7 @@ CBM.wtc3 <- function(chainLength, no.param.par.var, treat.group, with.storage, m
     no.var = 5 # variables to be modelled are: Y,af,as,sf,sr
   }
   
-  treat = as.factor(c("ambient","elevated","amb+ele")) # Assign all treatments
+  treat = as.factor(c("ambient","elevated","amb+ele","amb+ele+const")) # Assign all treatments
   treat = factor(treat, levels=c(sort(setdiff(unique(treat), 'amb+ele'),decreasing=FALSE), 'amb+ele'))
   
   param.mean = data.frame(matrix(ncol = no.var+1, nrow = length(no.param.par.var)*length(treat.group)))
@@ -168,7 +168,6 @@ CBM.wtc3 <- function(chainLength, no.param.par.var, treat.group, with.storage, m
       if (no.param.par.var < 5) {
         # This script initializes the parameter setting
         source("R/parameter_setting_wtc3.R", local=TRUE) # initialize 'sf' prior differently for grouped treatments
-        
       } else { # no.param.par.var > 5; monthly parameter setting) 
         j = c()
         j[1] = 0
@@ -408,15 +407,12 @@ CBM.wtc3 <- function(chainLength, no.param.par.var, treat.group, with.storage, m
           logalpha <- (logPrior1+logL1) - (logPrior0+logL0) 
           
           # Accepting or rejecting the candidate vector
-          # if ( log(runif(1, min = 0, max =1)) < logalpha && candidatepValues$af[1] + candidatepValues$as[1] <= 1
-          #      && candidatepValues$as[1] >= 0 && candidatepValues$af[1] >= 0 && candidatepValues$af[2] >= 0 && candidatepValues$af[3] >= 0 && candidatepValues$af[4] >= 0) {
           if (no.param.par.var == 4) {
             if ( log(runif(1, min = 0, max =1)) < logalpha && (candidatepValues$sr[1] + candidatepValues$sr[2]*(nrow(data.set)) + candidatepValues$sr[3]*(nrow(data.set))^2 + candidatepValues$sr[4]*(nrow(data.set))^3) >= 0
                  && (candidatepValues$sf[1] + candidatepValues$sf[2]*(nrow(data.set)) + candidatepValues$sf[3]*(nrow(data.set))^2 + candidatepValues$sf[4]*(nrow(data.set))^3) >= 0
                  && (candidatepValues$k[1] + candidatepValues$k[2]*(nrow(data.set)) + candidatepValues$k[3]*(nrow(data.set))^2 + candidatepValues$k[4]*(nrow(data.set))^3) >= 0
                  && (candidatepValues$as[1] + candidatepValues$as[2]*(nrow(data.set)) + candidatepValues$as[3]*(nrow(data.set))^2 + candidatepValues$as[4]*(nrow(data.set))^3) >= 0
                  && (candidatepValues$af[1] + candidatepValues$af[2]*(nrow(data.set)) + candidatepValues$af[3]*(nrow(data.set))^2 + candidatepValues$af[4]*(nrow(data.set))^3) >= 0
-                 # && (1-candidatepValues$af[1]+candidatepValues$as[1]) >= 0
                  && (1 - (candidatepValues$af[1] + candidatepValues$af[2]*(nrow(data.set)) + candidatepValues$af[3]*(nrow(data.set))^2 + candidatepValues$af[4]*(nrow(data.set))^3) - 
                      (candidatepValues$as[1] + candidatepValues$as[2]*(nrow(data.set)) + candidatepValues$as[3]*(nrow(data.set))^2 + candidatepValues$as[4]*(nrow(data.set))^3)) >= 0 ) {
               # && ((1-candidatepValues$af[1]-candidatepValues$as[1])*(nrow(data.set)) + (1-candidatepValues$af[2]-candidatepValues$as[2])*(nrow(data.set))^2 + (1-candidatepValues$af[3]-candidatepValues$as[3])*(nrow(data.set))^3 + (1-candidatepValues$af[4]-candidatepValues$as[4])*(nrow(data.set))^4) >= 0) {
@@ -424,19 +420,6 @@ CBM.wtc3 <- function(chainLength, no.param.par.var, treat.group, with.storage, m
               logPrior0 <- logPrior1
               logL0 <- logL1
             }
-            # if ( log(runif(1, min = 0, max =1)) < logalpha && (candidatepValues$sr[1]*(nrow(data.set)) + candidatepValues$sr[2]*(nrow(data.set))^2 + candidatepValues$sr[3]*(nrow(data.set))^3 + candidatepValues$sr[4]*(nrow(data.set))^4) >= 0
-            #      && (candidatepValues$sf[1]*(nrow(data.set)) + candidatepValues$sf[2]*(nrow(data.set))^2 + candidatepValues$sf[3]*(nrow(data.set))^3 + candidatepValues$sf[4]*(nrow(data.set))^4) >= 0
-            #      && (candidatepValues$k[1]*(nrow(data.set)) + candidatepValues$k[2]*(nrow(data.set))^2 + candidatepValues$k[3]*(nrow(data.set))^3 + candidatepValues$k[4]*(nrow(data.set))^4) >= 0
-            #      && (candidatepValues$as[1]*(nrow(data.set)) + candidatepValues$as[2]*(nrow(data.set))^2 + candidatepValues$as[3]*(nrow(data.set))^3 + candidatepValues$as[4]*(nrow(data.set))^4) >= 0
-            #      && (candidatepValues$af[1]*(nrow(data.set)) + candidatepValues$af[2]*(nrow(data.set))^2 + candidatepValues$af[3]*(nrow(data.set))^3 + candidatepValues$af[4]*(nrow(data.set))^4) >= 0
-            #      # && (1-candidatepValues$af[1]+candidatepValues$as[1]) >= 0
-            #      && (1 - (candidatepValues$af[1] + candidatepValues$af[2]*(nrow(data.set)) + candidatepValues$af[3]*(nrow(data.set))^2 + candidatepValues$af[4]*(nrow(data.set))^3) - 
-            #          (candidatepValues$as[1]* + candidatepValues$as[2]*(nrow(data.set)) + candidatepValues$as[3]*(nrow(data.set))^2 + candidatepValues$as[4]*(nrow(data.set))^3)) >= 0 ) {
-            #      # && ((1-candidatepValues$af[1]-candidatepValues$as[1])*(nrow(data.set)) + (1-candidatepValues$af[2]-candidatepValues$as[2])*(nrow(data.set))^2 + (1-candidatepValues$af[3]-candidatepValues$as[3])*(nrow(data.set))^3 + (1-candidatepValues$af[4]-candidatepValues$as[4])*(nrow(data.set))^4) >= 0) {
-            #   pValues <- candidatepValues
-            #   logPrior0 <- logPrior1
-            #   logL0 <- logL1
-            # }
           } else if (no.param.par.var == 3) {
             if ( log(runif(1, min = 0, max =1)) < logalpha && (candidatepValues$sr[1]*(nrow(data.set)) + candidatepValues$sr[2]*(nrow(data.set))^2 + candidatepValues$sr[3]*(nrow(data.set))^3) >= 0
                  && (candidatepValues$sf[1] + candidatepValues$sf[2]*(nrow(data.set)) + candidatepValues$sf[3]*(nrow(data.set))^2) >= 0
@@ -662,58 +645,58 @@ CBM.wtc3 <- function(chainLength, no.param.par.var, treat.group, with.storage, m
       #----------------------------------------------------------------------------------------------------------------
       
       for (j in 1:length(v)) {
-      data.set = subset(data,(treatment.no %in% treat.group[v[j]]))
-      
-      output.final.set = subset(output.final,(treatment %in% treat[v[j]]))
-      output.final.set$Date = data.set$Date
-      
-      if (with.storage==T) {
-        names(output.final.set) = c("Cstorage.modelled","Mleaf.modelled","Mwood.modelled","Mroot.modelled","Mlit.modelled","Sleaf.modelled","Rm","Rabove","Treatment","Date")
-        melted.output = melt(output.final.set[,c("Mleaf.modelled","Mwood.modelled","Mroot.modelled","Mlit.modelled","Sleaf.modelled","Rm","Rabove","Date")], id.vars="Date")
-        melted.Cstorage = output.final.set[,c("Cstorage.modelled","Treatment","Date")]
-        melted.data = melt(data.set[ , c("LM","WM","RM","litter","TNC_leaf","Ra","Date")], id.vars="Date")
-        melted.error = melt(data.set[ , c("LM_SE","WM_SE","RM_SE","litter_SE","TNC_leaf_SE","Ra_SE","Date")], id.vars="Date")
-        melted.Cstorage$Date = as.Date(melted.Cstorage$Date)
-        melted.Cstorage$treatment = as.factor(treat[v[j]])
-        melted.Cstorage$treat.type = as.factor(length(v))
-        melted.Cstorage$no.param = as.factor(ceiling(no.param.par.var[z]))
-      } else {
-        names(output.final.set) = c("Mleaf.modelled","Mwood.modelled","Mroot.modelled","Mlit.modelled","Rm","Rabove","Treatment","Date")
-        melted.output = melt(output.final.set[,c("Mleaf.modelled","Mwood.modelled","Mroot.modelled","Mlit.modelled","Rm","Rabove","Date")], id.vars="Date")
-        melted.data = melt(data.set[ , c("LM","WM","RM","litter","Ra","Date")], id.vars="Date")
-        melted.error = melt(data.set[ , c("LM_SE","WM_SE","RM_SE","litter_SE","Ra_SE","Date")], id.vars="Date")
-      }
-      melted.output$Date = as.Date(melted.output$Date)
-      melted.output$treatment = as.factor(treat[v[j]])
-      melted.output$treat.type = as.factor(length(v))
-      melted.output$no.param = as.factor(ceiling(no.param.par.var[z]))
-      
-      melted.data$Date = as.Date(melted.data$Date)
-      melted.data$treatment = as.factor(treat[v[j]])
-      melted.data$treat.type = as.factor(length(v))
-      
-      melted.error$Date = as.Date(melted.error$Date)
-      melted.error$treatment = as.factor(treat[v[j]])
-      melted.error$treat.type = as.factor(length(v))
-      melted.error$parameter = melted.data$value
-      melted.error$no.param = as.factor(ceiling(no.param.par.var[z]))
-      
-      # if (v1 < 8){
-      #   melted.output$volume.group = as.factor(1)
-      #   if (with.storage==T) {
-      #     melted.Cstorage$volume.group = as.factor(1)
-      #   }
-      #   melted.error$volume.group = as.factor(1)
-      # }
-      # if (v1 == 8){
-      #   melted.output$volume.group = as.factor(2)
-      #   if (with.storage==T) {
-      #     melted.Cstorage$volume.group = as.factor(2)
-      #   }
-      #   melted.error$volume.group = as.factor(2)
-      # }
-      
-
+        data.set = subset(data,(treatment.no %in% treat.group[v[j]]))
+        
+        output.final.set = subset(output.final,(treatment %in% treat[v[j]]))
+        output.final.set$Date = data.set$Date
+        
+        if (with.storage==T) {
+          names(output.final.set) = c("Cstorage.modelled","Mleaf.modelled","Mwood.modelled","Mroot.modelled","Mlit.modelled","Sleaf.modelled","Rm","Rabove","Treatment","Date")
+          melted.output = melt(output.final.set[,c("Mleaf.modelled","Mwood.modelled","Mroot.modelled","Mlit.modelled","Sleaf.modelled","Rm","Rabove","Date")], id.vars="Date")
+          melted.Cstorage = output.final.set[,c("Cstorage.modelled","Treatment","Date")]
+          melted.data = melt(data.set[ , c("LM","WM","RM","litter","TNC_leaf","Ra","Date")], id.vars="Date")
+          melted.error = melt(data.set[ , c("LM_SE","WM_SE","RM_SE","litter_SE","TNC_leaf_SE","Ra_SE","Date")], id.vars="Date")
+          melted.Cstorage$Date = as.Date(melted.Cstorage$Date)
+          melted.Cstorage$treatment = as.factor(treat[v[j]])
+          melted.Cstorage$treat.type = as.factor(length(v))
+          melted.Cstorage$no.param = as.factor(ceiling(no.param.par.var[z]))
+        } else {
+          names(output.final.set) = c("Mleaf.modelled","Mwood.modelled","Mroot.modelled","Mlit.modelled","Rm","Rabove","Treatment","Date")
+          melted.output = melt(output.final.set[,c("Mleaf.modelled","Mwood.modelled","Mroot.modelled","Mlit.modelled","Rm","Rabove","Date")], id.vars="Date")
+          melted.data = melt(data.set[ , c("LM","WM","RM","litter","Ra","Date")], id.vars="Date")
+          melted.error = melt(data.set[ , c("LM_SE","WM_SE","RM_SE","litter_SE","Ra_SE","Date")], id.vars="Date")
+        }
+        melted.output$Date = as.Date(melted.output$Date)
+        melted.output$treatment = as.factor(treat[v[j]])
+        melted.output$treat.type = as.factor(length(v))
+        melted.output$no.param = as.factor(ceiling(no.param.par.var[z]))
+        
+        melted.data$Date = as.Date(melted.data$Date)
+        melted.data$treatment = as.factor(treat[v[j]])
+        melted.data$treat.type = as.factor(length(v))
+        
+        melted.error$Date = as.Date(melted.error$Date)
+        melted.error$treatment = as.factor(treat[v[j]])
+        melted.error$treat.type = as.factor(length(v))
+        melted.error$parameter = melted.data$value
+        melted.error$no.param = as.factor(ceiling(no.param.par.var[z]))
+        
+        # if (v1 < 8){
+        #   melted.output$volume.group = as.factor(1)
+        #   if (with.storage==T) {
+        #     melted.Cstorage$volume.group = as.factor(1)
+        #   }
+        #   melted.error$volume.group = as.factor(1)
+        # }
+        # if (v1 == 8){
+        #   melted.output$volume.group = as.factor(2)
+        #   if (with.storage==T) {
+        #     melted.Cstorage$volume.group = as.factor(2)
+        #   }
+        #   melted.error$volume.group = as.factor(2)
+        # }
+        
+        
         # Storing the summary of this volume group of data, outputs, Cstorage (Parameter is same for the group, will be stored later)
         if (j == 1) {
           summary.data.set = melted.data
@@ -800,10 +783,10 @@ CBM.wtc3 <- function(chainLength, no.param.par.var, treat.group, with.storage, m
         }
         summary.param = rbind(summary.param,melted.param)
         # if (v1 < length(treat.group)) {
-          summary.error = rbind(summary.error,summary.error.set)
-          if (z == 1) {
-            summary.data = rbind(summary.data,summary.data.set)
-          }
+        summary.error = rbind(summary.error,summary.error.set)
+        if (z == 1) {
+          summary.data = rbind(summary.data,summary.data.set)
+        }
         # }
       }
       

@@ -35,8 +35,8 @@ source("R/functions_wtc3_CBM.R")
 # #-------------------------------------------------------------------------------------
 # #- This script imports and processes the raw WTC3 experiment data to model the carbon pools and fluxes using DA
 # # source("R/initial_data_processing_wtc3.R")
-# rmd2rscript("report_initial_data_processing_wtc3.Rmd")
-# source("report_initial_data_processing_wtc3.R")
+rmd2rscript("report_initial_data_processing_wtc3.Rmd")
+source("report_initial_data_processing_wtc3.R")
 # #-------------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------------
@@ -54,6 +54,7 @@ source("R/functions_wtc3_CBM.R")
 # treat.group = as.factor(c("ambient")) # Assign 1 treatment to check the model
 # treat.group = as.factor(c("ambient drought","elevated drought")) # Assign 1 treatment to check the model
 # treat.group = as.factor(c("ambient drought","ambient watered")) # Assign 2 treatments to compare the results
+
 treat.group = as.factor(c("ambient","elevated")) # Assign all treatments
 data.all = read.csv("processed_data/data_all.csv") 
 data.all$treatment.no [data.all$Treatment %in% as.factor("ambient") ] = 1
@@ -69,21 +70,26 @@ tnc.partitioning = read.csv("processed_data/tnc_partitioning_data.csv")
 # 
 # #-------------------------------------------------------------------------------------
 # # 3000 chain length is sufficient for the convergance
-chainLength = 100
+chainLength = 300
 no.param.par.var = 2
 with.storage = T
 model.comparison=F
 model.optimization=F
+treat.group=c(list(list(c(1,2),c(1,2))))
 # start <- proc.time() # Start clock
 # # result = CBM.wtc3(chainLength = 3000, no.param.par.var=(nrow(data.all)/4)/30, treat.group=treat.group, with.storage, model.comparison=F, model.optimization=F) # Monthly parameters
-# result = CBM.wtc3(chainLength, no.param.par.var, treat.group, with.storage, model.comparison, model.optimization) # Quadratic/Cubic parameters
+result = CBM.wtc3(chainLength, no.param.par.var, treat.group, with.storage, model.comparison, model.optimization) # Quadratic/Cubic parameters
+
+# Run the model with constant k and Y parameters
+result = CBM.wtc3_const_k_Y(chainLength, no.param.par.var, treat.group, with.storage, model.comparison, model.optimization) # Quadratic/Cubic parameters
+
 # time_elapsed_series <- proc.time() - start # End clock
 # result[[6]]
 # write.csv(result[[6]], "output/bic.csv", row.names=FALSE) # unit of respiration rates: gC per gC plant per day
 # 
-# # Plot parameters and biomass data fit
-# plot.Modelled.parameters(result,with.storage)
-# plot.Modelled.biomass(result,with.storage)
+# Plot parameters and biomass data fit
+plot.Modelled.parameters(result,with.storage)
+plot.Modelled.biomass(result,with.storage)
 #-------------------------------------------------------------------------------------
 source("R/functions_wtc3.R")	
 source("R/functions_wtc3_CBM.R")	
@@ -98,8 +104,12 @@ result.cluster = list()
 bic.cluster = list()
 
 start <- proc.time() # Start clock
+# Test whether parameters need to be seperate for both ambient and warmed treatments
+# result <- clusterMap(cluster, CBM.wtc3, treat.group=c(list(list(1,2,c(1,2)))),
+#                      MoreArgs=list(chainLength=300, no.param.par.var=2, with.storage=T, model.comparison=F, model.optimization=F))
+
 result <- clusterMap(cluster, CBM.wtc3, treat.group=c(list(list(1,2,c(1,2)))),
-                     MoreArgs=list(chainLength=100, no.param.par.var=2, with.storage=T, model.comparison=F, model.optimization=F))
+                     MoreArgs=list(chainLength=300, no.param.par.var=2, with.storage=T, model.comparison=F, model.optimization=F))
 
 time_elapsed_series <- proc.time() - start # End clock
 stopCluster(cluster)
@@ -125,6 +135,10 @@ source("R/C_partitioning_wtc3.R")
 
 
 #-------------------------------------------------------------------------------------
+# Check Rabove from data
+source("R/Rabove_balance_wtc3.R")
+
+#-------------------------------------------------------------------------------------
 
 # Check the C input and output balance
 data.set = subset(data.all,(Treatment %in% treat.group[v]))
@@ -137,7 +151,7 @@ Rm.daily = mean(data.set$Rd.foliage.mean)*(data.set$LM[1]+data.set$LM[nrow(data.
   mean(data.set$Rd.fineroot.mean)*(data.set$RM[1]+data.set$RM[nrow(data.set)])/2*mean(data.set$FRratio_SE) + mean(data.set$Rd.intermediateroot.mean)*(data.set$RM[1]+data.set$RM[nrow(data.set)])/2*mean(data.set$IRratio) + 
   mean(data.set$Rd.coarseroot.mean)*(data.set$RM[1]+data.set$RM[nrow(data.set)])/2*mean(data.set$CRratio_SE) + mean(data.set$Rd.boleroot.mean)*(data.set$RM[1]+data.set$RM[nrow(data.set)])/2*mean(data.set$BRratio) 
 Rm.sum = Rm.daily * 252
-  
+
 output = Rm.sum + (data.set$LM[nrow(data.set)] - data.set$LM[1]) + (data.set$WM[nrow(data.set)] - data.set$WM[1]) + (data.set$RM[nrow(data.set)] - data.set$RM[1]) + 
   (data.set$TNC_tot[max(which(complete.cases(data.set$TNC_tot)))] - data.set$TNC_tot[min(which(complete.cases(data.set$TNC_tot)))]) + data.set$litter[max(which(complete.cases(data.set$litter)))]
 
@@ -149,7 +163,7 @@ Rabove.ini = data.set$Rd.foliage.mean[1]*data.set$LM[1] + data.set$Rd.stem.mean[
   Y.modelled$Parameter[1]*((data.set$LM[nrow(data.set)]-data.set$LM[1])/251 + (data.set$WM[nrow(data.set)]-data.set$WM[1])/251)
 
 Rabove.end = data.set$Rd.foliage.mean[nrow(data.set)]*data.set$LM[nrow(data.set)] + data.set$Rd.stem.mean[nrow(data.set)]*data.set$WM[nrow(data.set)]*data.set$SMratio[nrow(data.set)] + data.set$Rd.branch.mean[nrow(data.set)]*data.set$WM[nrow(data.set)]*data.set$BMratio[nrow(data.set)] +
-    Y.modelled$Parameter[nrow(data.set)]*((data.set$LM[nrow(data.set)]-data.set$LM[1])/251 + (data.set$WM[nrow(data.set)]-data.set$WM[1])/251)
+  Y.modelled$Parameter[nrow(data.set)]*((data.set$LM[nrow(data.set)]-data.set$LM[1])/251 + (data.set$WM[nrow(data.set)]-data.set$WM[1])/251)
 
 # mean(data.set$Ra)/mean(data.set$GPP)
 
