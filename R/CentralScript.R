@@ -35,8 +35,8 @@ source("R/functions_wtc3_CBM.R")
 # #-------------------------------------------------------------------------------------
 # #- This script imports and processes the raw WTC3 experiment data to model the carbon pools and fluxes using DA
 # # source("R/initial_data_processing_wtc3.R")
-rmd2rscript("report_initial_data_processing_wtc3.Rmd")
-source("report_initial_data_processing_wtc3.R")
+# rmd2rscript("report_initial_data_processing_wtc3.Rmd")
+# source("report_initial_data_processing_wtc3.R")
 # #-------------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------------

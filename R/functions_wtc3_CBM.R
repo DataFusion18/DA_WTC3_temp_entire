@@ -7,8 +7,8 @@
 # This script calcualtes LogLikelihood to find the most accurate model
 logLikelihood.wtc3 <- function (no.param.par.var,data.set,output,with.storage,model.comparison) {
   logLi <- matrix(0, nrow=nrow(data.set), ncol = 1) # Initialising the logLi
-  # data_count = sum(!is.na(data.set$LM)) + sum(!is.na(data.set$WM)) + sum(!is.na(data.set$RM)) + sum(!is.na(data.set$Ra)) + sum(!is.na(data.set$TNC_leaf)) + sum(!is.na(data.set$litter))
-  data_count = sum(!is.na(data.set$LM)) + sum(!is.na(data.set$WM)) + sum(!is.na(data.set$RM)) + sum(!is.na(data.set$TNC_leaf)) + sum(!is.na(data.set$litter))
+  data_count = sum(!is.na(data.set$LM)) + sum(!is.na(data.set$WM)) + sum(!is.na(data.set$RM)) + sum(!is.na(data.set$Ra)) + sum(!is.na(data.set$TNC_leaf)) + sum(!is.na(data.set$litter))
+  # data_count = sum(!is.na(data.set$LM)) + sum(!is.na(data.set$WM)) + sum(!is.na(data.set$RM)) + sum(!is.na(data.set$TNC_leaf)) + sum(!is.na(data.set$litter))
   # data_count = sum(!is.na(data.set$LM)) + sum(!is.na(data.set$WM)) + sum(!is.na(data.set$RM)) + sum(!is.na(data.set$litter))
   
   for (i in 1:nrow(data.set)) {
@@ -24,11 +24,11 @@ logLikelihood.wtc3 <- function (no.param.par.var,data.set,output,with.storage,mo
       logLi[i] = logLi[i] - ((data_count/sum(!is.na(data.set$RM)))*(0.5*((output$Mroot[i] - data.set$RM[i])/data.set$RM_SE[i])^2 - log(data.set$RM_SE[i]) - log(2*pi)^0.5)) # multiplied by 2 to give extra weight
       # logLi[i] = logLi[i] - ((output$Mroot[i] - data.set$RM[i])/data.set$RM_SE[i])^2 - log(data.set$RM_SE[i]) - log(2*pi)^0.5 # multiplied by 20 to give extra weight
     }
-    # if (i > 1) {
-    #   if (!is.na(data.set$Ra[i])) {
-    #     logLi[i] = logLi[i] - ((data_count/sum(!is.na(data.set$Ra)))*(0.5*((output$Rabove[i] - data.set$Ra[i]) / data.set$Ra_SE[i])^2 - log(data.set$Ra_SE[i]) - log(2*pi)^0.5))
-    #   }
-    # }
+    if (i > 1) {
+      if (!is.na(data.set$Ra[i])) {
+        logLi[i] = logLi[i] - ((data_count/sum(!is.na(data.set$Ra)))*(0.5*((output$Rabove[i] - data.set$Ra[i]) / data.set$Ra_SE[i])^2 - log(data.set$Ra_SE[i]) - log(2*pi)^0.5))
+      }
+    }
     if (!is.null(data.set$litter)) {
       if (!is.na(data.set$litter[i])) {
         logLi[i] = logLi[i] - ((data_count/sum(!is.na(data.set$litter)))*(0.5*((output$Mlit[i] - data.set$litter[i])/data.set$litter_SE[i])^2 - log(data.set$litter_SE[i]) - log(2*pi)^0.5))
