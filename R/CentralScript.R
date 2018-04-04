@@ -69,27 +69,27 @@ tnc.partitioning = read.csv("processed_data/tnc_partitioning_data.csv")
 # source("R/C_balance_wtc3.R")
 # 
 # #-------------------------------------------------------------------------------------
-# # 3000 chain length is sufficient for the convergance
-chainLength = 300
-no.param.par.var = 2
-with.storage = T
-model.comparison=F
-model.optimization=F
-treat.group=c(list(list(c(1,2),c(1,2))))
-# start <- proc.time() # Start clock
-# # result = CBM.wtc3(chainLength = 3000, no.param.par.var=(nrow(data.all)/4)/30, treat.group=treat.group, with.storage, model.comparison=F, model.optimization=F) # Monthly parameters
-result = CBM.wtc3(chainLength, no.param.par.var, treat.group, with.storage, model.comparison, model.optimization) # Quadratic/Cubic parameters
-
-# Run the model with constant k and Y parameters
-result = CBM.wtc3_const_k_Y(chainLength, no.param.par.var, treat.group, with.storage, model.comparison, model.optimization) # Quadratic/Cubic parameters
-
-# time_elapsed_series <- proc.time() - start # End clock
-# result[[6]]
-# write.csv(result[[6]], "output/bic.csv", row.names=FALSE) # unit of respiration rates: gC per gC plant per day
+# # # 3000 chain length is sufficient for the convergance
+# chainLength = 300
+# no.param.par.var = 2
+# with.storage = T
+# model.comparison=F
+# model.optimization=F
+# treat.group=c(list(list(c(1,2),c(1,2))))
+# # start <- proc.time() # Start clock
+# # # result = CBM.wtc3(chainLength = 3000, no.param.par.var=(nrow(data.all)/4)/30, treat.group=treat.group, with.storage, model.comparison=F, model.optimization=F) # Monthly parameters
+# result = CBM.wtc3(chainLength, no.param.par.var, treat.group, with.storage, model.comparison, model.optimization) # Quadratic/Cubic parameters
 # 
-# Plot parameters and biomass data fit
-plot.Modelled.parameters(result,with.storage)
-plot.Modelled.biomass(result,with.storage)
+# # Run the model with constant k and Y parameters
+# result = CBM.wtc3_const_k_Y(chainLength, no.param.par.var, treat.group, with.storage, model.comparison, model.optimization) # Quadratic/Cubic parameters
+# 
+# # time_elapsed_series <- proc.time() - start # End clock
+# # result[[6]]
+# # write.csv(result[[6]], "output/bic.csv", row.names=FALSE) # unit of respiration rates: gC per gC plant per day
+# # 
+# # Plot parameters and biomass data fit
+# plot.Modelled.parameters(result,with.storage)
+# plot.Modelled.biomass(result,with.storage)
 #-------------------------------------------------------------------------------------
 source("R/functions_wtc3.R")	
 source("R/functions_wtc3_CBM.R")	
@@ -104,12 +104,12 @@ result.cluster = list()
 bic.cluster = list()
 
 start <- proc.time() # Start clock
-# Test whether parameters need to be seperate for both ambient and warmed treatments
+result <- clusterMap(cluster, CBM.wtc3, treat.group=c(list(list(1,2))),
+                     MoreArgs=list(chainLength=1000, no.param.par.var=2, with.storage=T, model.comparison=F, model.optimization=F))
+
+# # Test whether parameters need to be seperate for both ambient and warmed treatments
 # result <- clusterMap(cluster, CBM.wtc3, treat.group=c(list(list(1,2,c(1,2)))),
 #                      MoreArgs=list(chainLength=300, no.param.par.var=2, with.storage=T, model.comparison=F, model.optimization=F))
-
-result <- clusterMap(cluster, CBM.wtc3, treat.group=c(list(list(1,2,c(1,2)))),
-                     MoreArgs=list(chainLength=300, no.param.par.var=2, with.storage=T, model.comparison=F, model.optimization=F))
 
 time_elapsed_series <- proc.time() - start # End clock
 stopCluster(cluster)
@@ -137,6 +137,19 @@ source("R/C_partitioning_wtc3.R")
 #-------------------------------------------------------------------------------------
 # Check Rabove from data
 source("R/Rabove_balance_wtc3.R")
+
+#-------------------------------------------------------------------------------------
+
+
+#-------------------------------------------------------------------------------------
+# Check Tree height whether they hit the chamber top
+source("R/check_tree_height_wtc3.R")
+
+#-------------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------------
+# Check initial and final biomass variation
+source("R/check_biomass_wtc3.R")
 
 #-------------------------------------------------------------------------------------
 

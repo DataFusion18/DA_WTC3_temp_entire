@@ -1380,11 +1380,11 @@ plot.Modelled.biomass.wtc3 <- function(result,with.storage) {
     if (meas[p]=="Ra") {
       plot[[i]] = ggplot(summary.error.Cpool, aes(x=Date, y=parameter, group = treatment, colour=treatment)) + 
         geom_point(position=pd,size=0.3) +
-        geom_ribbon(data = summary.error.Cpool, aes(ymin=parameter-value, ymax=parameter+value), linetype=2, alpha=0.1,size=0.1) +
-        # geom_errorbar(position=pd,aes(ymin=parameter-value, ymax=parameter+value), colour="grey", width=0.5) +
+        # geom_ribbon(data = summary.error.Cpool, aes(ymin=parameter-value, ymax=parameter+value), linetype=2, alpha=0.1,size=0.1) +
+        geom_errorbar(position=pd,aes(ymin=parameter-value, ymax=parameter+value), colour="light grey", size=0.2, width=0.25) +
         # geom_line(position=pd,data = summary.output.Cpool, aes(x = Date, y = value, group = interaction(volume,volume.group,no.param), linetype=volume.group, colour=volume, size=no.param)) +
         # geom_line(position=pd,data = summary.output.Cpool, aes(x = Date, y = value, group = interaction(volume,no.param), linetype=no.param, colour=volume)) +
-        geom_line(position=pd,data = summary.output.Cpool, aes(x = Date, y = value, group = interaction(treatment,treat.type), colour=treatment, linetype=treat.type)) +
+        geom_line(position=pd, size=0.2, data = summary.output.Cpool, aes(x = Date, y = value, group = interaction(treatment,treat.type), colour=treatment, linetype=treat.type)) +
         ylab(paste(as.character(meas[p]),"(g C)")) + xlab("Month") +
         # ggtitle("C pools - Measured (points) vs Modelled (lines)") +
         # labs(colour="Soil Volume", linetype="Grouping treatment", size="Total No of Parameter") +

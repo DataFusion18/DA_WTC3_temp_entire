@@ -1,6 +1,10 @@
 {
-    "path" : "~/WSU/Final_projects/DA_WTC3_temp_entire/output",
+    "path" : "~/WSU/Final_projects/DA_WTC3_temp_entire/R",
     "sortOrder" : [
+        {
+            "ascending" : true,
+            "columnIndex" : 2
+        },
         {
             "ascending" : false,
             "columnIndex" : 4
@@ -8,10 +12,6 @@
         {
             "ascending" : false,
             "columnIndex" : 3
-        },
-        {
-            "ascending" : true,
-            "columnIndex" : 2
         }
     ]
 }
