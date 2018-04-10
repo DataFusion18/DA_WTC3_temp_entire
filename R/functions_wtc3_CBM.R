@@ -128,8 +128,9 @@ CBM.wtc3 <- function(chainLength, no.param.par.var, treat.group, with.storage, m
     no.var = 5 # variables to be modelled are: Y,af,as,sf,sr
   }
   
-  treat = as.factor(c("ambient","elevated","amb+ele","amb+ele+const")) # Assign all treatments
-  treat = factor(treat, levels=c(sort(setdiff(unique(treat), 'amb+ele'),decreasing=FALSE), 'amb+ele'))
+  treat = as.factor(c("ambient","elevated")) # Assign all treatments
+  # treat = as.factor(c("ambient","elevated","amb+ele","amb+ele+const")) # Assign all treatments
+  # treat = factor(treat, levels=c(sort(setdiff(unique(treat), 'amb+ele'),decreasing=FALSE), 'amb+ele'))
   
   param.mean = data.frame(matrix(ncol = no.var+1, nrow = length(no.param.par.var)*length(treat.group)))
   if (with.storage==T) {
@@ -154,7 +155,7 @@ CBM.wtc3 <- function(chainLength, no.param.par.var, treat.group, with.storage, m
     v = unlist(treat.group[v1])
     # # This script take the subset of processed data for particular treatment group
     # source("R/data_processing_wtc3.R", local=TRUE)
-    data = subset(data.all,(treatment.no %in% treat.group[v]))
+    data = subset(data.all,(treatment.no %in% v))
     
     for (z in 1:length(no.param.par.var)) {
       # Initialize few output data files
@@ -224,7 +225,7 @@ CBM.wtc3 <- function(chainLength, no.param.par.var, treat.group, with.storage, m
       
       # Calculating model outputs for the starting point of the chain
       for (j in 1:length(v)) {
-        data.set = subset(data,(treatment.no %in% treat.group[v[j]]))
+        data.set = subset(data,(treatment.no %in% v[j]))
         if (no.param.par.var < 5) {
           if (with.storage==T) {
             output.set = model(no.param,data.set,tnc.partitioning,Y=pValues$Y,k=pValues$k,af=pValues$af,as=pValues$as,sf=pValues$sf,sr=pValues$sr)
@@ -251,7 +252,7 @@ CBM.wtc3 <- function(chainLength, no.param.par.var, treat.group, with.storage, m
       # # Consider the input uncertainty with u=10 model runs
       # listofdfs <- list()
       # # for (j in 1:length(v)) {
-      #   data.set = subset(data,(treatment.no %in% treat.group[v[j]]))
+      #   data.set = subset(data,(treatment.no %in% v[j]))
       #   for (u in 1:10) {
       #     if (no.param.par.var < 5) {
       #       if (with.storage==T) {
@@ -330,7 +331,7 @@ CBM.wtc3 <- function(chainLength, no.param.par.var, treat.group, with.storage, m
         # Calculating the outputs for the candidate parameter vector and then log likelihood
         if (Prior1 > 0) {
           for (j in 1:length(v)) {
-            data.set = subset(data,(treatment.no %in% treat.group[v[j]]))
+            data.set = subset(data,(treatment.no %in% v[j]))
             #   Mleaf = Mwood = Mroot = c()
             #   Mleaf[1] <- data.set$Mleaf[1]
             #   Mwood[1] <- data.set$Mwood[1]
@@ -366,7 +367,7 @@ CBM.wtc3 <- function(chainLength, no.param.par.var, treat.group, with.storage, m
           # # Consider the input uncertainty with u=10 model runs
           # listofdfs <- list()
           # # for (j in 1:length(v)) {
-          #   data.set = subset(data,(treatment.no %in% treat.group[v[j]]))
+          #   data.set = subset(data,(treatment.no %in% v[j]))
           #   for (u in 1:10) {
           #     if (no.param.par.var < 5) {
           #       if (with.storage==T) {
@@ -529,7 +530,7 @@ CBM.wtc3 <- function(chainLength, no.param.par.var, treat.group, with.storage, m
       
       # Calculate final output set from the predicted parameter set
       for (j in 1:length(v)) {
-        data.set = subset(data,(treatment.no %in% treat.group[v[j]]))
+        data.set = subset(data,(treatment.no %in% v[j]))
         #   Mleaf = Mwood = Mroot = c()
         #   Mleaf[1] <- data.set$Mleaf[1]
         #   Mwood[1] <- data.set$Mwood[1]
@@ -645,7 +646,7 @@ CBM.wtc3 <- function(chainLength, no.param.par.var, treat.group, with.storage, m
       #----------------------------------------------------------------------------------------------------------------
       
       for (j in 1:length(v)) {
-        data.set = subset(data,(treatment.no %in% treat.group[v[j]]))
+        data.set = subset(data,(treatment.no %in% v[j]))
         
         output.final.set = subset(output.final,(treatment %in% treat[v[j]]))
         output.final.set$Date = data.set$Date
@@ -838,7 +839,11 @@ CBM.wtc3 <- function(chainLength, no.param.par.var, treat.group, with.storage, m
       aic.bic[q,2] = -2*aic.bic[q,1] + k1*npar
       
       if (model.comparison==F) {
-        n = sum(!is.na(data.set$TNC_leaf)) + sum(!is.na(data.set$LM)) + sum(!is.na(data.set$WM)) + sum(!is.na(data.set$RM)) + sum(!is.na(data.set$litter))
+        if (length(v) > 1) {
+          n = sum(!is.na(data$TNC_leaf)) + sum(!is.na(data$LM)) + sum(!is.na(data$WM)) + sum(!is.na(data$RM)) + sum(!is.na(data$litter))
+        } else {
+          n = sum(!is.na(data.set$TNC_leaf)) + sum(!is.na(data.set$LM)) + sum(!is.na(data.set$WM)) + sum(!is.na(data.set$RM)) + sum(!is.na(data.set$litter))
+        } 
       } else {
         n = sum(!is.na(data.set$LM)) + sum(!is.na(data.set$WM)) + sum(!is.na(data.set$RM)) + sum(!is.na(data.set$litter))
       }
@@ -852,6 +857,9 @@ CBM.wtc3 <- function(chainLength, no.param.par.var, treat.group, with.storage, m
       aic.bic[q,6] = as.character(treat[v1])
     }
   }
+  bic.combined = -2*sum(aic.bic[,1]) + log(137)*24
+  write.csv(bic.combined, "output/bic.combined.csv", row.names=FALSE)
+  write.csv(aic.bic, "output/aic.bic.csv", row.names=FALSE)
   aic.bic$treatment = as.factor(aic.bic$treatment)
   bic = data.frame(aic.bic[,c("bic","no.param","treatment")])
   # melted.aic.bic = melt(aic.bic[,c(1:5)], id.vars=c("no.param"))
