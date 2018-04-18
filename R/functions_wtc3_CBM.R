@@ -409,53 +409,106 @@ CBM.wtc3 <- function(chainLength, no.param.par.var, treat.group, with.storage, m
           
           # Accepting or rejecting the candidate vector
           if (no.param.par.var == 4) {
-            if ( log(runif(1, min = 0, max =1)) < logalpha && (candidatepValues$sr[1] + candidatepValues$sr[2]*(nrow(data.set)) + candidatepValues$sr[3]*(nrow(data.set))^2 + candidatepValues$sr[4]*(nrow(data.set))^3) >= 0
-                 && (candidatepValues$sf[1] + candidatepValues$sf[2]*(nrow(data.set)) + candidatepValues$sf[3]*(nrow(data.set))^2 + candidatepValues$sf[4]*(nrow(data.set))^3) >= 0
-                 && (candidatepValues$k[1] + candidatepValues$k[2]*(nrow(data.set)) + candidatepValues$k[3]*(nrow(data.set))^2 + candidatepValues$k[4]*(nrow(data.set))^3) >= 0
-                 && (candidatepValues$as[1] + candidatepValues$as[2]*(nrow(data.set)) + candidatepValues$as[3]*(nrow(data.set))^2 + candidatepValues$as[4]*(nrow(data.set))^3) >= 0
-                 && (candidatepValues$af[1] + candidatepValues$af[2]*(nrow(data.set)) + candidatepValues$af[3]*(nrow(data.set))^2 + candidatepValues$af[4]*(nrow(data.set))^3) >= 0
-                 && (1 - (candidatepValues$af[1] + candidatepValues$af[2]*(nrow(data.set)) + candidatepValues$af[3]*(nrow(data.set))^2 + candidatepValues$af[4]*(nrow(data.set))^3) - 
-                     (candidatepValues$as[1] + candidatepValues$as[2]*(nrow(data.set)) + candidatepValues$as[3]*(nrow(data.set))^2 + candidatepValues$as[4]*(nrow(data.set))^3)) >= 0 ) {
-              # && ((1-candidatepValues$af[1]-candidatepValues$as[1])*(nrow(data.set)) + (1-candidatepValues$af[2]-candidatepValues$as[2])*(nrow(data.set))^2 + (1-candidatepValues$af[3]-candidatepValues$as[3])*(nrow(data.set))^3 + (1-candidatepValues$af[4]-candidatepValues$as[4])*(nrow(data.set))^4) >= 0) {
-              pValues <- candidatepValues
-              logPrior0 <- logPrior1
-              logL0 <- logL1
+            if (with.storage == T) {
+              if ( log(runif(1, min = 0, max =1)) < logalpha && (candidatepValues$sr[1] + candidatepValues$sr[2]*(nrow(data.set)) + candidatepValues$sr[3]*(nrow(data.set))^2 + candidatepValues$sr[4]*(nrow(data.set))^3) >= 0
+                   && (candidatepValues$sf[1] + candidatepValues$sf[2]*(nrow(data.set)) + candidatepValues$sf[3]*(nrow(data.set))^2 + candidatepValues$sf[4]*(nrow(data.set))^3) >= 0
+                   && (candidatepValues$k[1] + candidatepValues$k[2]*(nrow(data.set)) + candidatepValues$k[3]*(nrow(data.set))^2 + candidatepValues$k[4]*(nrow(data.set))^3) >= 0
+                   && (candidatepValues$as[1] + candidatepValues$as[2]*(nrow(data.set)) + candidatepValues$as[3]*(nrow(data.set))^2 + candidatepValues$as[4]*(nrow(data.set))^3) >= 0
+                   && (candidatepValues$af[1] + candidatepValues$af[2]*(nrow(data.set)) + candidatepValues$af[3]*(nrow(data.set))^2 + candidatepValues$af[4]*(nrow(data.set))^3) >= 0
+                   && (1 - (candidatepValues$af[1] + candidatepValues$af[2]*(nrow(data.set)) + candidatepValues$af[3]*(nrow(data.set))^2 + candidatepValues$af[4]*(nrow(data.set))^3) - 
+                       (candidatepValues$as[1] + candidatepValues$as[2]*(nrow(data.set)) + candidatepValues$as[3]*(nrow(data.set))^2 + candidatepValues$as[4]*(nrow(data.set))^3)) >= 0 ) {
+                # && ((1-candidatepValues$af[1]-candidatepValues$as[1])*(nrow(data.set)) + (1-candidatepValues$af[2]-candidatepValues$as[2])*(nrow(data.set))^2 + (1-candidatepValues$af[3]-candidatepValues$as[3])*(nrow(data.set))^3 + (1-candidatepValues$af[4]-candidatepValues$as[4])*(nrow(data.set))^4) >= 0) {
+                pValues <- candidatepValues
+                logPrior0 <- logPrior1
+                logL0 <- logL1
+              }
+            } else {
+              if ( log(runif(1, min = 0, max =1)) < logalpha && (candidatepValues$sr[1] + candidatepValues$sr[2]*(nrow(data.set)) + candidatepValues$sr[3]*(nrow(data.set))^2 + candidatepValues$sr[4]*(nrow(data.set))^3) >= 0
+                   && (candidatepValues$sf[1] + candidatepValues$sf[2]*(nrow(data.set)) + candidatepValues$sf[3]*(nrow(data.set))^2 + candidatepValues$sf[4]*(nrow(data.set))^3) >= 0
+                   && (candidatepValues$as[1] + candidatepValues$as[2]*(nrow(data.set)) + candidatepValues$as[3]*(nrow(data.set))^2 + candidatepValues$as[4]*(nrow(data.set))^3) >= 0
+                   && (candidatepValues$af[1] + candidatepValues$af[2]*(nrow(data.set)) + candidatepValues$af[3]*(nrow(data.set))^2 + candidatepValues$af[4]*(nrow(data.set))^3) >= 0
+                   && (1 - (candidatepValues$af[1] + candidatepValues$af[2]*(nrow(data.set)) + candidatepValues$af[3]*(nrow(data.set))^2 + candidatepValues$af[4]*(nrow(data.set))^3) - 
+                       (candidatepValues$as[1] + candidatepValues$as[2]*(nrow(data.set)) + candidatepValues$as[3]*(nrow(data.set))^2 + candidatepValues$as[4]*(nrow(data.set))^3)) >= 0 ) {
+                # && ((1-candidatepValues$af[1]-candidatepValues$as[1])*(nrow(data.set)) + (1-candidatepValues$af[2]-candidatepValues$as[2])*(nrow(data.set))^2 + (1-candidatepValues$af[3]-candidatepValues$as[3])*(nrow(data.set))^3 + (1-candidatepValues$af[4]-candidatepValues$as[4])*(nrow(data.set))^4) >= 0) {
+                pValues <- candidatepValues
+                logPrior0 <- logPrior1
+                logL0 <- logL1
+              }
             }
           } else if (no.param.par.var == 3) {
-            if ( log(runif(1, min = 0, max =1)) < logalpha && (candidatepValues$sr[1]*(nrow(data.set)) + candidatepValues$sr[2]*(nrow(data.set))^2 + candidatepValues$sr[3]*(nrow(data.set))^3) >= 0
-                 && (candidatepValues$sf[1] + candidatepValues$sf[2]*(nrow(data.set)) + candidatepValues$sf[3]*(nrow(data.set))^2) >= 0
-                 && (candidatepValues$k[1] + candidatepValues$k[2]*(nrow(data.set)) + candidatepValues$k[3]*(nrow(data.set))^2) >= 0
-                 && (candidatepValues$as[1] + candidatepValues$as[2]*(nrow(data.set)) + candidatepValues$as[3]*(nrow(data.set))^2) >= 0
-                 && (candidatepValues$af[1] + candidatepValues$af[2]*(nrow(data.set)) + candidatepValues$af[3]*(nrow(data.set))^2) >= 0
-                 && (1 - (candidatepValues$af[1] + candidatepValues$af[2]*(nrow(data.set)) + candidatepValues$af[3]*(nrow(data.set))^2) - 
-                     (candidatepValues$as[1] + candidatepValues$as[2]*(nrow(data.set)) + candidatepValues$as[3]*(nrow(data.set))^2)) >= 0 ) {
-              pValues <- candidatepValues
-              logPrior0 <- logPrior1
-              logL0 <- logL1
+            if (with.storage == T) {
+              if ( log(runif(1, min = 0, max =1)) < logalpha && (candidatepValues$sr[1]*(nrow(data.set)) + candidatepValues$sr[2]*(nrow(data.set))^2 + candidatepValues$sr[3]*(nrow(data.set))^3) >= 0
+                   && (candidatepValues$sf[1] + candidatepValues$sf[2]*(nrow(data.set)) + candidatepValues$sf[3]*(nrow(data.set))^2) >= 0
+                   && (candidatepValues$k[1] + candidatepValues$k[2]*(nrow(data.set)) + candidatepValues$k[3]*(nrow(data.set))^2) >= 0
+                   && (candidatepValues$as[1] + candidatepValues$as[2]*(nrow(data.set)) + candidatepValues$as[3]*(nrow(data.set))^2) >= 0
+                   && (candidatepValues$af[1] + candidatepValues$af[2]*(nrow(data.set)) + candidatepValues$af[3]*(nrow(data.set))^2) >= 0
+                   && (1 - (candidatepValues$af[1] + candidatepValues$af[2]*(nrow(data.set)) + candidatepValues$af[3]*(nrow(data.set))^2) - 
+                       (candidatepValues$as[1] + candidatepValues$as[2]*(nrow(data.set)) + candidatepValues$as[3]*(nrow(data.set))^2)) >= 0 ) {
+                pValues <- candidatepValues
+                logPrior0 <- logPrior1
+                logL0 <- logL1
+              }
+            } else {
+              if ( log(runif(1, min = 0, max =1)) < logalpha && (candidatepValues$sr[1]*(nrow(data.set)) + candidatepValues$sr[2]*(nrow(data.set))^2 + candidatepValues$sr[3]*(nrow(data.set))^3) >= 0
+                   && (candidatepValues$sf[1] + candidatepValues$sf[2]*(nrow(data.set)) + candidatepValues$sf[3]*(nrow(data.set))^2) >= 0
+                   && (candidatepValues$as[1] + candidatepValues$as[2]*(nrow(data.set)) + candidatepValues$as[3]*(nrow(data.set))^2) >= 0
+                   && (candidatepValues$af[1] + candidatepValues$af[2]*(nrow(data.set)) + candidatepValues$af[3]*(nrow(data.set))^2) >= 0
+                   && (1 - (candidatepValues$af[1] + candidatepValues$af[2]*(nrow(data.set)) + candidatepValues$af[3]*(nrow(data.set))^2) - 
+                       (candidatepValues$as[1] + candidatepValues$as[2]*(nrow(data.set)) + candidatepValues$as[3]*(nrow(data.set))^2)) >= 0 ) {
+                pValues <- candidatepValues
+                logPrior0 <- logPrior1
+                logL0 <- logL1
+              }
             }
-          } else if (no.param.par.var == 2) {
-            if ( log(runif(1, min = 0, max =1)) < logalpha && (candidatepValues$sr[1]*(nrow(data.set)) + candidatepValues$sr[2]*(nrow(data.set))^2) >= 0
-                 && (candidatepValues$sf[1] + candidatepValues$sf[2]*(nrow(data.set))) >= 0
-                 && (candidatepValues$k[1] + candidatepValues$k[2]*(nrow(data.set))) >= 0
-                 && (candidatepValues$as[1] + candidatepValues$as[2]*(nrow(data.set))) >= 0
-                 && (candidatepValues$af[1] + candidatepValues$af[2]*(nrow(data.set))) >= 0
-                 && (1 - (candidatepValues$af[1] + candidatepValues$af[2]*(nrow(data.set))) - 
-                     (candidatepValues$as[1] + candidatepValues$as[2]*(nrow(data.set)))) >= 0 ) {
-              pValues <- candidatepValues
-              logPrior0 <- logPrior1
-              logL0 <- logL1
-            }
+          }
+          else if (no.param.par.var == 2) {
+            if (with.storage == T) {
+              if ( log(runif(1, min = 0, max =1)) < logalpha && (candidatepValues$sr[1]*(nrow(data.set)) + candidatepValues$sr[2]*(nrow(data.set))^2) >= 0
+                   && (candidatepValues$sf[1] + candidatepValues$sf[2]*(nrow(data.set))) >= 0
+                   && (candidatepValues$k[1] + candidatepValues$k[2]*(nrow(data.set))) >= 0
+                   && (candidatepValues$as[1] + candidatepValues$as[2]*(nrow(data.set))) >= 0
+                   && (candidatepValues$af[1] + candidatepValues$af[2]*(nrow(data.set))) >= 0
+                   && (1 - (candidatepValues$af[1] + candidatepValues$af[2]*(nrow(data.set))) - 
+                       (candidatepValues$as[1] + candidatepValues$as[2]*(nrow(data.set)))) >= 0 ) {
+                pValues <- candidatepValues
+                logPrior0 <- logPrior1
+                logL0 <- logL1
+              }
+            } else {
+              if ( log(runif(1, min = 0, max =1)) < logalpha && (candidatepValues$sr[1]*(nrow(data.set)) + candidatepValues$sr[2]*(nrow(data.set))^2) >= 0
+                   && (candidatepValues$sf[1] + candidatepValues$sf[2]*(nrow(data.set))) >= 0
+                   && (candidatepValues$as[1] + candidatepValues$as[2]*(nrow(data.set))) >= 0
+                   && (candidatepValues$af[1] + candidatepValues$af[2]*(nrow(data.set))) >= 0
+                   && (1 - (candidatepValues$af[1] + candidatepValues$af[2]*(nrow(data.set))) - 
+                       (candidatepValues$as[1] + candidatepValues$as[2]*(nrow(data.set)))) >= 0 ) {
+                pValues <- candidatepValues
+                logPrior0 <- logPrior1
+                logL0 <- logL1
+              }
+            } 
           } else if (no.param.par.var == 1) {
-            if ( log(runif(1, min = 0, max =1)) < logalpha && (candidatepValues$sr[1]) >= 0
-                 && (candidatepValues$sf[1]) >= 0
-                 && (candidatepValues$k[1]) >= 0
-                 && (candidatepValues$as[1]) >= 0
-                 && (candidatepValues$af[1]) >= 0
-                 && (1 - candidatepValues$af[1] - candidatepValues$as[1]) >= 0 ) {
-              pValues <- candidatepValues
-              logPrior0 <- logPrior1
-              logL0 <- logL1
-            }
+            if (with.storage == T) {
+              if ( log(runif(1, min = 0, max =1)) < logalpha && (candidatepValues$sr[1]) >= 0
+                   && (candidatepValues$sf[1]) >= 0
+                   && (candidatepValues$k[1]) >= 0
+                   && (candidatepValues$as[1]) >= 0
+                   && (candidatepValues$af[1]) >= 0
+                   && (1 - candidatepValues$af[1] - candidatepValues$as[1]) >= 0 ) {
+                pValues <- candidatepValues
+                logPrior0 <- logPrior1
+                logL0 <- logL1
+              }
+            } else {
+              if ( log(runif(1, min = 0, max =1)) < logalpha && (candidatepValues$sr[1]) >= 0
+                   && (candidatepValues$sf[1]) >= 0
+                   && (candidatepValues$as[1]) >= 0
+                   && (candidatepValues$af[1]) >= 0
+                   && (1 - candidatepValues$af[1] - candidatepValues$as[1]) >= 0 ) {
+                pValues <- candidatepValues
+                logPrior0 <- logPrior1
+                logL0 <- logL1
+              }
+            } 
           } else {
             if ( log(runif(1, min = 0, max =1)) < logalpha && candidatepValues >= 0 && all((candidatepValues$af + candidatepValues$as) < 1)) {
               pValues <- candidatepValues
@@ -859,7 +912,7 @@ CBM.wtc3 <- function(chainLength, no.param.par.var, treat.group, with.storage, m
   }
   bic.combined = -2*sum(aic.bic[,1]) + log(137)*24
   write.csv(bic.combined, "output/bic.combined.csv", row.names=FALSE)
-  write.csv(aic.bic, "output/aic.bic.csv", row.names=FALSE)
+  # write.csv(aic.bic, "output/aic.bic.csv", row.names=FALSE)
   aic.bic$treatment = as.factor(aic.bic$treatment)
   bic = data.frame(aic.bic[,c("bic","no.param","treatment")])
   # melted.aic.bic = melt(aic.bic[,c(1:5)], id.vars=c("no.param"))
@@ -1269,7 +1322,7 @@ plot.Modelled.parameters.wtc3 <- function(result,with.storage) {
         theme(axis.title.y = element_text(size = font.size, vjust=0.3)) +
         theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
       
-      if (with.storage==T) { 
+      if (with.storage==T) {
         if (p==1) {
           # plot[[i]] = plot[[i]] + scale_colour_manual(name="", breaks=c("1", "2", "3"),
           #                                             labels=c("Small", "Large", "Free"), values=cbPalette[2:4]) +

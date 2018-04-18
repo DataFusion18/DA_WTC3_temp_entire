@@ -72,7 +72,7 @@ tnc.partitioning = read.csv("processed_data/tnc_partitioning_data.csv")
 # # # 3000 chain length is sufficient for the convergance
 chainLength = 100
 no.param.par.var = 2
-with.storage = T
+with.storage = F
 model.comparison=F
 model.optimization=F
 treat.group=c(list(1,2))
