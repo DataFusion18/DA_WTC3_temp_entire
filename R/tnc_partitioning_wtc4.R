@@ -30,27 +30,34 @@ carbohydrates$tnc = carbohydrates$tnc / 10 # Unit = % of dry weight biomass
 # unit conversion from g of tnc per g of dry weight biomass to gC in tnc per gC in plant biomass
 # 1 g of tnc has 0.4 gC and 1 g of dry weight biomass has 0.48 gC
 carbohydrates$tnc = carbohydrates$tnc * (0.4/c1) # Unit = gC in tnc / gC in plant biomass
+tnc.pot <- summaryBy(tnc ~ Organ, data=carbohydrates, FUN=c(mean,standard.error))
+tnc.pot[,4] = tnc.pot[,2] / sum(tnc.pot[,2]) * 100
+tnc.pot[,3] = tnc.pot[,3] / tnc.pot[,2] * tnc.pot[,4]
+tnc.pot = tnc.pot[,-2]
+names(tnc.pot) = c("organ","tnc.SE","tnc.mean")
 #-----------------------------------------------------------------------------------------
 ##### Total TNC calculation considering tree organ biomass partitioning
-leaf.tnc = subset(carbohydrates,Organ == "Leaf") # Unit = % of dry weight leafmass
-stem.tnc = subset(carbohydrates,Organ == "Stem") # Unit = % of dry weight stemmass
-root.tnc = subset(carbohydrates,Organ == "Root") # Unit = % of dry weight rootmass
-
-tnc.pot = data.frame(leaf.tnc$tnc,stem.tnc$tnc,root.tnc$tnc)
-names(tnc.pot) <- c("leaf.tnc.C","stem.tnc.C","root.tnc.C") 
-
-tnc.pot[7,] = colMeans(tnc.pot)
-tnc.pot[8,] = tnc.pot[7,] / rowSums(tnc.pot[7,]) * 100
-# tnc.pot = sapply(tnc.pot,function(x)sd(x)/sqrt(length(x)))
+# leaf.tnc = subset(carbohydrates,Organ == "Leaf") # Unit = % of dry weight leafmass
+# stem.tnc = subset(carbohydrates,Organ == "Stem") # Unit = % of dry weight stemmass
+# root.tnc = subset(carbohydrates,Organ == "Root") # Unit = % of dry weight rootmass
+# 
+# tnc.pot = data.frame(leaf.tnc$tnc,stem.tnc$tnc,root.tnc$tnc)
+# names(tnc.pot) <- c("leaf.tnc.C","stem.tnc.C","root.tnc.C") 
+# 
+# tnc.pot[7,] = colMeans(tnc.pot)
+# tnc.pot[8,] = tnc.pot[7,] / rowSums(tnc.pot[7,]) * 100
+# # tnc.pot = sapply(tnc.pot,function(x)sd(x)/sqrt(length(x)))
 
 
 # Consider a linear change over time for TNC partitioning
-tnc.partitioning = data.frame(matrix(ncol = 4, nrow = 252))
-names(tnc.partitioning) = c("Date","foliage","wood","root")
+tnc.partitioning = data.frame(matrix(ncol = 7, nrow = 252))
+names(tnc.partitioning) = c("Date","foliage","wood","root","foliage_SE","wood_SE","root_SE")
 tnc.partitioning$Date = as.Date(as.Date("2013-09-17"):as.Date("2014-05-26"))
 
-tnc.partitioning[1,2:4] <- tnc.pot[8,]/100 # TNC partitioning according to Duan's experiment (used in Pot experiment)
-tnc.partitioning[nrow(tnc.partitioning),2:4] <- tnc.wtc4[,2]/100
+tnc.partitioning[1,2:4] <- tnc.pot$tnc.mean/100 # TNC partitioning according to Duan's experiment (used in Pot experiment)
+tnc.partitioning[1,5:7] <- tnc.pot$tnc.SE/100 # TNC partitioning according to Duan's experiment (used in Pot experiment)
+tnc.partitioning[nrow(tnc.partitioning),2:4] <- tnc.wtc4$tnc.ratio/100
+tnc.partitioning[nrow(tnc.partitioning),5:7] <- tnc.wtc4$tnc.ratio.SE/100
 
 for (i in 2:ncol(tnc.partitioning)) {
   tnc.partitioning[1:nrow(tnc.partitioning),i] = seq(tnc.partitioning[1,i], tnc.partitioning[nrow(tnc.partitioning),i], length.out = nrow(tnc.partitioning))

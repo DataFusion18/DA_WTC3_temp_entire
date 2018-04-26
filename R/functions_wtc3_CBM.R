@@ -223,24 +223,56 @@ CBM.wtc3 <- function(chainLength, no.param.par.var, treat.group, with.storage, m
       }
       logPrior0 <- sum(unlist(prior.dist))
       
-      # Calculating model outputs for the starting point of the chain
+      # # Calculating model outputs for the starting point of the chain
+      # for (j in 1:length(v)) {
+      #   data.set = subset(data,(treatment.no %in% v[j]))
+      #   if (no.param.par.var < 5) {
+      #     if (with.storage==T) {
+      #       output.set = model(no.param,data.set,tnc.partitioning,Y=pValues$Y,k=pValues$k,af=pValues$af,as=pValues$as,sf=pValues$sf,sr=pValues$sr)
+      #     } else {
+      #       output.set = model.without.storage(no.param,data.set,Y=pValues$Y,af=pValues$af,as=pValues$as,sf=pValues$sf,sr=pValues$sr)
+      #     }
+      #   } else { # no.param.par.var > 5; monthly parameter setting)
+      #     if (with.storage==T) {
+      #       output.set = model.monthly(data.set,j,tnc.partitioning,Y=pValues$Y,k=pValues$k,af=pValues$af,as=pValues$as,sf=pValues$sf,sr=pValues$sr)
+      #     } else {
+      #       output.set = model.without.storage.monthly(data.set,j,Y=pValues$Y,af=pValues$af,as=pValues$as,sf=pValues$sf,sr=pValues$sr)
+      #     }
+      #   }
+      #   # output.set$treatment = as.factor(treat[v1])
+      #   output.set$treatment = as.factor(treat[v[j]])
+      #   # output = output.set
+      #   if (j == 1) {
+      #     output = output.set
+      #   }
+      #   if (j > 1) {
+      #     output = rbind(output,output.set)
+      #   }
+      # }
+      
+      # Consider the input uncertainty with u=10 model runs
+      listofdfs <- list()
       for (j in 1:length(v)) {
         data.set = subset(data,(treatment.no %in% v[j]))
-        if (no.param.par.var < 5) {
-          if (with.storage==T) {
-            output.set = model(no.param,data.set,tnc.partitioning,Y=pValues$Y,k=pValues$k,af=pValues$af,as=pValues$as,sf=pValues$sf,sr=pValues$sr)
-          } else {
-            output.set = model.without.storage(no.param,data.set,Y=pValues$Y,af=pValues$af,as=pValues$as,sf=pValues$sf,sr=pValues$sr)
+        for (u in 1:10) {
+          if (no.param.par.var < 5) {
+            if (with.storage==T) {
+              output.set = model(no.param,data.set,tnc.partitioning,Y=pValues$Y,k=pValues$k,af=pValues$af,as=pValues$as,sf=pValues$sf,sr=pValues$sr)
+            } else {
+              output.set = model.without.storage(no.param,data.set,Y=pValues$Y,af=pValues$af,as=pValues$as,sf=pValues$sf,sr=pValues$sr)
+            }
+          } else { # no.param.par.var > 5; monthly parameter setting)
+            if (with.storage==T) {
+              output.set = model.monthly(data.set,j,tnc.partitioning,Y=pValues$Y,k=pValues$k,af=pValues$af,as=pValues$as,sf=pValues$sf,sr=pValues$sr)
+            } else {
+              output.set = model.without.storage.monthly(data.set,j,Y=pValues$Y,af=pValues$af,as=pValues$as,sf=pValues$sf,sr=pValues$sr)
+            }
           }
-        } else { # no.param.par.var > 5; monthly parameter setting)
-          if (with.storage==T) {
-            output.set = model.monthly(data.set,j,tnc.partitioning,Y=pValues$Y,k=pValues$k,af=pValues$af,as=pValues$as,sf=pValues$sf,sr=pValues$sr)
-          } else {
-            output.set = model.without.storage.monthly(data.set,j,Y=pValues$Y,af=pValues$af,as=pValues$as,sf=pValues$sf,sr=pValues$sr)
-          }
+          listofdfs[[u]] <- output.set
         }
-        # output.set$treatment = as.factor(treat[v1])
-        output.set$treatment = as.factor(treat[v[j]])
+        output.set = as.data.frame(aaply(laply(listofdfs, as.matrix), c(2, 3), mean))
+
+        output.set$treatment = as.factor(treat[v1])
         # output = output.set
         if (j == 1) {
           output = output.set
@@ -249,37 +281,6 @@ CBM.wtc3 <- function(chainLength, no.param.par.var, treat.group, with.storage, m
           output = rbind(output,output.set)
         }
       }
-      # # Consider the input uncertainty with u=10 model runs
-      # listofdfs <- list()
-      # # for (j in 1:length(v)) {
-      #   data.set = subset(data,(treatment.no %in% v[j]))
-      #   for (u in 1:10) {
-      #     if (no.param.par.var < 5) {
-      #       if (with.storage==T) {
-      #         output.set = model(no.param,data.set,tnc.partitioning,Y=pValues$Y,k=pValues$k,af=pValues$af,as=pValues$as,sf=pValues$sf,sr=pValues$sr)
-      #       } else {
-      #         output.set = model.without.storage(no.param,data.set,Y=pValues$Y,af=pValues$af,as=pValues$as,sf=pValues$sf,sr=pValues$sr)
-      #       }
-      #     } else { # no.param.par.var > 5; monthly parameter setting)
-      #       if (with.storage==T) {
-      #         output.set = model.monthly(data.set,j,tnc.partitioning,Y=pValues$Y,k=pValues$k,af=pValues$af,as=pValues$as,sf=pValues$sf,sr=pValues$sr)
-      #       } else {
-      #         output.set = model.without.storage.monthly(data.set,j,Y=pValues$Y,af=pValues$af,as=pValues$as,sf=pValues$sf,sr=pValues$sr)
-      #       }
-      #     }
-      #     listofdfs[[u]] <- output.set
-      #   }
-      #   output.set = aaply(laply(listofdfs, as.matrix), c(2, 3), mean)
-      # 
-      #   output.set$treatment = as.factor(treat[v1])
-      #   output = output.set
-      #   # if (j == 1) {
-      #   #   output = output.set
-      #   # }
-      #   # if (j > 1) {
-      #   #   output = rbind(output,output.set)
-      #   # }
-      # # }
       # output = as.data.frame(output)
       
       
@@ -330,31 +331,63 @@ CBM.wtc3 <- function(chainLength, no.param.par.var, treat.group, with.storage, m
         
         # Calculating the outputs for the candidate parameter vector and then log likelihood
         if (Prior1 > 0) {
+          # for (j in 1:length(v)) {
+          #   data.set = subset(data,(treatment.no %in% v[j]))
+          #   if (no.param.par.var < 5) {
+          #     if (with.storage==T) {
+          #       out.cand.set = model(no.param,data.set,tnc.partitioning,candidatepValues$Y,
+          #                            candidatepValues$k,candidatepValues$af,candidatepValues$as,candidatepValues$sf,candidatepValues$sr)
+          #     } else {
+          #       out.cand.set = model.without.storage(no.param,data.set,candidatepValues$Y,
+          #                                            candidatepValues$af,candidatepValues$as,candidatepValues$sf,candidatepValues$sr)
+          #     }
+          #   } else { # no.param.par.var > 5; monthly parameter setting)
+          #     if (with.storage==T) {
+          #       out.cand.set = model.monthly(data.set,j,tnc.partitioning,candidatepValues$Y,
+          #                                    candidatepValues$k,candidatepValues$af,candidatepValues$as,candidatepValues$sf,candidatepValues$sr)
+          #     } else {
+          #       out.cand.set = model.without.storage.monthly(data.set,j,candidatepValues$Y,
+          #                                                    candidatepValues$af,candidatepValues$as,candidatepValues$sf,candidatepValues$sr)
+          #     }
+          #   }
+          #   out.cand.set$treatment = as.factor(treat[v[j]])
+          #   # out.cand = out.cand.set
+          #   if (j == 1) {
+          #     out.cand = out.cand.set
+          #   }
+          #   if (j > 1) {
+          #     out.cand = rbind(out.cand,out.cand.set)
+          #   }
+          # }
+          
+          # Consider the input uncertainty with u=10 model runs
+          listofdfs <- list()
           for (j in 1:length(v)) {
             data.set = subset(data,(treatment.no %in% v[j]))
-            #   Mleaf = Mwood = Mroot = c()
-            #   Mleaf[1] <- data.set$Mleaf[1]
-            #   Mwood[1] <- data.set$Mwood[1]
-            #   Mroot[1] <- data.set$Mroot[1]
-            
-            if (no.param.par.var < 5) {
-              if (with.storage==T) {
-                out.cand.set = model(no.param,data.set,tnc.partitioning,candidatepValues$Y,
-                                     candidatepValues$k,candidatepValues$af,candidatepValues$as,candidatepValues$sf,candidatepValues$sr)
-              } else {
-                out.cand.set = model.without.storage(no.param,data.set,candidatepValues$Y,
-                                                     candidatepValues$af,candidatepValues$as,candidatepValues$sf,candidatepValues$sr)
+            for (u in 1:10) {
+              if (no.param.par.var < 5) {
+                if (with.storage==T) {
+                  out.cand.set = model(no.param,data.set,tnc.partitioning,candidatepValues$Y,
+                                       candidatepValues$k,candidatepValues$af,candidatepValues$as,candidatepValues$sf,candidatepValues$sr)
+                } else {
+                  out.cand.set = model.without.storage(no.param,data.set,candidatepValues$Y,
+                                                       candidatepValues$af,candidatepValues$as,candidatepValues$sf,candidatepValues$sr)
+                }
+              } else { # no.param.par.var > 5; monthly parameter setting)
+                if (with.storage==T) {
+                  out.cand.set = model.monthly(data.set,j,tnc.partitioning,candidatepValues$Y,
+                                               candidatepValues$k,candidatepValues$af,candidatepValues$as,candidatepValues$sf,candidatepValues$sr)
+                } else {
+                  out.cand.set = model.without.storage.monthly(data.set,j,candidatepValues$Y,
+                                                               candidatepValues$af,candidatepValues$as,candidatepValues$sf,candidatepValues$sr)
+                }
               }
-            } else { # no.param.par.var > 5; monthly parameter setting)
-              if (with.storage==T) {
-                out.cand.set = model.monthly(data.set,j,tnc.partitioning,candidatepValues$Y,
-                                             candidatepValues$k,candidatepValues$af,candidatepValues$as,candidatepValues$sf,candidatepValues$sr)
-              } else {
-                out.cand.set = model.without.storage.monthly(data.set,j,candidatepValues$Y,
-                                                             candidatepValues$af,candidatepValues$as,candidatepValues$sf,candidatepValues$sr)
-              }
+              listofdfs[[u]] <- out.cand.set
             }
-            out.cand.set$treatment = as.factor(treat[v[j]])
+            out.cand.set = as.data.frame(aaply(laply(listofdfs, as.matrix), c(2, 3), mean))
+
+            # out.cand = as.data.frame(out.cand.set)
+            out.cand.set$treatment = as.factor(treat[v1])
             # out.cand = out.cand.set
             if (j == 1) {
               out.cand = out.cand.set
@@ -363,43 +396,6 @@ CBM.wtc3 <- function(chainLength, no.param.par.var, treat.group, with.storage, m
               out.cand = rbind(out.cand,out.cand.set)
             }
           }
-          
-          # # Consider the input uncertainty with u=10 model runs
-          # listofdfs <- list()
-          # # for (j in 1:length(v)) {
-          #   data.set = subset(data,(treatment.no %in% v[j]))
-          #   for (u in 1:10) {
-          #     if (no.param.par.var < 5) {
-          #       if (with.storage==T) {
-          #         out.cand.set = model(no.param,data.set,tnc.partitioning,candidatepValues$Y,
-          #                              candidatepValues$k,candidatepValues$af,candidatepValues$as,candidatepValues$sf,candidatepValues$sr)
-          #       } else {
-          #         out.cand.set = model.without.storage(no.param,data.set,candidatepValues$Y,
-          #                                              candidatepValues$af,candidatepValues$as,candidatepValues$sf,candidatepValues$sr)
-          #       }
-          #     } else { # no.param.par.var > 5; monthly parameter setting)
-          #       if (with.storage==T) {
-          #         out.cand.set = model.monthly(data.set,j,tnc.partitioning,candidatepValues$Y,
-          #                                      candidatepValues$k,candidatepValues$af,candidatepValues$as,candidatepValues$sf,candidatepValues$sr)
-          #       } else {
-          #         out.cand.set = model.without.storage.monthly(data.set,j,candidatepValues$Y,
-          #                                                      candidatepValues$af,candidatepValues$as,candidatepValues$sf,candidatepValues$sr)
-          #       }
-          #     }
-          #     listofdfs[[u]] <- out.cand.set
-          #   }
-          #   out.cand.set = aaply(laply(listofdfs, as.matrix), c(2, 3), mean)
-          # 
-          #   out.cand = as.data.frame(out.cand.set)
-          #   out.cand.set$treatment = as.factor(treat[v1])
-          #   out.cand = out.cand.set
-          #   # if (j == 1) {
-          #   #   out.cand = out.cand.set
-          #   # }
-          #   # if (j > 1) {
-          #   #   out.cand = rbind(out.cand,out.cand.set)
-          #   # }
-          # # }
           
           # data = data[order(data$volume),]
           logL1 <- logLikelihood.wtc3(no.param.par.var,data,out.cand,with.storage,model.comparison) # Calculate log likelihood
@@ -954,10 +950,10 @@ model <- function (no.param,data.set,tnc.partitioning,Y,k,af,as,sf,sr) {
   Cstorage = Sleaf = Swood = Sroot = c()
   
   # From WTC-4 experiment for TNC partitioning to tree organs
-  Sleaf[1] = data.set$TNC_leaf[min(which(complete.cases(data.set$TNC_leaf)))]*0.75 # Consider the first available leaf tnc data as the starting point
-  Swood[1] = data.set$TNC_wood[min(which(complete.cases(data.set$TNC_wood)))]*0.75 # Consider the first available leaf tnc data as the starting point
-  Sroot[1] = data.set$TNC_root[min(which(complete.cases(data.set$TNC_root)))]*0.75 # Consider the first available leaf tnc data as the starting point
-  Cstorage[1] = data.set$TNC_tot[min(which(complete.cases(data.set$TNC_tot)))]*0.75 # Consider the first available leaf tnc data as the starting point
+  Sleaf[1] = data.set$TNC_leaf[min(which(complete.cases(data.set$TNC_leaf)))] # Consider the first available leaf tnc data as the starting point
+  Swood[1] = data.set$TNC_wood[min(which(complete.cases(data.set$TNC_wood)))] # Consider the first available leaf tnc data as the starting point
+  Sroot[1] = data.set$TNC_root[min(which(complete.cases(data.set$TNC_root)))] # Consider the first available leaf tnc data as the starting point
+  Cstorage[1] = data.set$TNC_tot[min(which(complete.cases(data.set$TNC_tot)))] # Consider the first available leaf tnc data as the starting point
   
   # Sleaf[1] = 10
   # Swood[1] = 5
@@ -991,38 +987,24 @@ model <- function (no.param,data.set,tnc.partitioning,Y,k,af,as,sf,sr) {
       k.i = k[1] + k[2]*i + k[3]*i*i + k[4]*i*i*i; Y.i = Y[1]+ Y[2]*i + Y[3]*i*i + Y[4]*i*i*i; af.i = af[1]+ af[2]*i + af[3]*i*i + af[4]*i*i*i;
       as.i = as[1]+ as[2]*i + as[3]*i*i + as[4]*i*i*i; sf.i = sf[1]+ sf[2]*i + sf[3]*i*i + sf[4]*i*i*i; sr.i = sr[1]+ sr[2]*i + sr[3]*i*i + sr[4]*i*i*i
     }
-    # if (no.param == 1) {
-    #   k.i = k[1]*data.all$Tair[i]; Y.i = Y[1]*data.all$Tair[i]; af.i = af[1]*data.all$Tair[i]; 
-    #   as.i = as[1]*data.all$Tair[i]; sf.i = sf[1]*data.all$Tair[i]; sr.i = sr[1]*data.all$Tair[i]
-    # }
-    # if (no.param == 2) {
-    #   k.i = k[1] + k[2]*data.all$Tair[i]; Y.i = Y[1]+ Y[2]*data.all$Tair[i]; af.i = af[1]+ af[2]*data.all$Tair[i]; 
-    #   as.i = as[1]+ as[2]*data.all$Tair[i]; sf.i = sf[1]+ sf[2]*data.all$Tair[i]; sr.i = sr[1]+ sr[2]*data.all$Tair[i]
-    # }
-    # if (no.param == 3) {
-    #   k.i = k[1] + k[2]*data.all$Tair[i] + k[3]*data.all$Tair[i]*data.all$Tair[i]; Y.i = Y[1]+ Y[2]*data.all$Tair[i] + Y[3]*data.all$Tair[i]*data.all$Tair[i]; 
-    #   af.i = af[1]+ af[2]*data.all$Tair[i] + af[3]*data.all$Tair[i]*data.all$Tair[i]; as.i = as[1]+ as[2]*data.all$Tair[i] + as[3]*data.all$Tair[i]*data.all$Tair[i]; 
-    #   sf.i = sf[1]+ sf[2]*data.all$Tair[i] + sf[3]*data.all$Tair[i]*data.all$Tair[i]; sr.i = sr[1]+ sr[2]*data.all$Tair[i] + sr[3]*data.all$Tair[i]*data.all$Tair[i]
-    # }
-    # if (no.param == 4) {
-    #   k.i = k[1] + k[2]*data.all$Tair[i] + k[3]*data.all$Tair[i]*data.all$Tair[i] + k[4]*data.all$Tair[i]*data.all$Tair[i]*data.all$Tair[i]; 
-    #   Y.i = Y[1]+ Y[2]*data.all$Tair[i] + Y[3]*data.all$Tair[i]*data.all$Tair[i] + Y[4]*data.all$Tair[i]*data.all$Tair[i]*data.all$Tair[i]; 
-    #   af.i = af[1]+ af[2]*data.all$Tair[i] + af[3]*data.all$Tair[i]*data.all$Tair[i] + af[4]*data.all$Tair[i]*data.all$Tair[i]*data.all$Tair[i]; 
-    #   as.i = as[1]+ as[2]*data.all$Tair[i] + as[3]*data.all$Tair[i]*data.all$Tair[i] + as[4]*data.all$Tair[i]*data.all$Tair[i]*data.all$Tair[i]; 
-    #   sf.i = sf[1]+ sf[2]*data.all$Tair[i] + sf[3]*data.all$Tair[i]*data.all$Tair[i] + sf[4]*data.all$Tair[i]*data.all$Tair[i]*data.all$Tair[i]; 
-    #   sr.i = sr[1]+ sr[2]*data.all$Tair[i] + sr[3]*data.all$Tair[i]*data.all$Tair[i] + sr[4]*data.all$Tair[i]*data.all$Tair[i]*data.all$Tair[i]
-    # }
     
     Rm[i] = data.set$Rd.foliage.mean[i-1]*Mleaf[i-1] + data.set$Rd.stem.mean[i-1]*Mwood[i-1]*data.set$SMratio[i-1] + 
       data.set$Rd.branch.mean[i-1]*Mwood[i-1]*data.set$BMratio[i-1] + 
       data.set$Rd.fineroot.mean[i-1]*Mroot[i-1]*data.set$FRratio[i-1] + data.set$Rd.intermediateroot.mean[i-1]*Mroot[i-1]*data.set$IRratio[i-1] + 
       data.set$Rd.coarseroot.mean[i-1]*Mroot[i-1]*data.set$CRratio[i-1] + data.set$Rd.boleroot.mean[i-1]*Mroot[i-1]*data.set$BRratio[i-1]
     
-    # Cstorage[i] <- Cstorage[i-1] + data.set$GPP[i-1] - Rm[i-1] - k.i*Cstorage[i-1]
+    # Include the uncertainty of GPP and TNC partitioning
     Cstorage[i] <- (Cstorage[i-1] + rnorm(1, data.set$GPP[i], data.set$GPP_SE[i]) - Rm[i]) / (1 + k.i)
-    Sleaf[i] <- Cstorage[i] * tnc.partitioning$foliage[i] 
-    Swood[i] <- Cstorage[i] * tnc.partitioning$wood[i] 
-    Sroot[i] <- Cstorage[i] * tnc.partitioning$root[i] 
+    tnc.to.root = rnorm(1, tnc.partitioning$root[i], tnc.partitioning$root_SE[i])
+    tnc.to.wood = rnorm(1, tnc.partitioning$wood[i], tnc.partitioning$wood_SE[i])
+    Sleaf[i] <- Cstorage[i] * (1-tnc.to.root-tnc.to.wood)
+    Swood[i] <- Cstorage[i] * tnc.to.wood
+    Sroot[i] <- Cstorage[i] * tnc.to.root
+    
+    # Cstorage[i] <- Cstorage[i-1] + data.set$GPP[i-1] - Rm[i-1] - k.i*Cstorage[i-1]
+    # Sleaf[i] <- Cstorage[i] * tnc.partitioning$foliage[i] 
+    # Swood[i] <- Cstorage[i] * tnc.partitioning$wood[i] 
+    # Sroot[i] <- Cstorage[i] * tnc.partitioning$root[i] 
     
     # Mlit[i] <- sf.i*Cleaf[i-1] # foliage litter fall
     # Cleaf[i] <- Cleaf[i-1] + k.i*Cstorage[i-1]*af.i*(1-Y.i) - Mlit[i]
