@@ -1,0 +1,865 @@
+date,chamber,avg_leafmass,avg_leafarea,leaves,total_leaf_mass,total_leaf_area,branch_mass,canopy_position,purpose,collector,notes
+2012-12-09,C01,52.15,0.56,1,0.56,52.15,NA,sun,water potential,"campany, courtney",dried/ground
+2012-12-09,C01,45.38,0.48,1,0.48,45.38,NA,shade,water potential,"campany, courtney",dried/ground
+2012-12-09,C01,48.98,0.52,1,0.52,48.98,NA,sun,water potential,"campany, courtney",dried/ground
+2012-12-09,C01,48.08,0.49,1,0.49,48.08,NA,shade,water potential,"campany, courtney",dried/ground
+2012-12-09,C10,34.28,0.46,1,0.46,34.28,NA,sun,water potential,"campany, courtney",dried/ground
+2012-12-09,C10,31.42,0.41,1,0.41,31.42,NA,shade,water potential,"campany, courtney",dried/ground
+2012-12-09,C10,37.88,0.39,1,0.39,37.88,NA,sun,water potential,"campany, courtney",dried/ground
+2012-12-09,C10,31.61,0.3,1,0.3,31.61,NA,shade,water potential,"campany, courtney",dried/ground
+2012-12-09,C11,44.72,0.46,1,0.46,44.72,NA,sun,water potential,"campany, courtney",dried/ground
+2012-12-09,C11,25.71,0.31,1,0.31,25.71,NA,shade,water potential,"campany, courtney",dried/ground
+2012-12-09,C11,46.98,0.74,1,0.74,46.98,NA,sun,water potential,"campany, courtney",dried/ground
+2012-12-09,C11,52.04,0.57,1,0.57,52.04,NA,shade,water potential,"campany, courtney",dried/ground
+2012-12-09,C12,51.2,0.71,1,0.71,51.2,NA,sun,water potential,"campany, courtney",dried/ground
+2012-12-09,C12,42.62,0.42,1,0.42,42.62,NA,shade,water potential,"campany, courtney",dried/ground
+2012-12-09,C12,45.23,0.67,1,0.67,45.23,NA,sun,water potential,"campany, courtney",dried/ground
+2012-12-09,C12,47.14,0.82,1,0.82,47.14,NA,shade,water potential,"campany, courtney",dried/ground
+2013-05-15,C01,0.4543,48.9233,3,1.3628,146.77,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-05-15,C01,NA,NA,3,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-05-15,C02,0.346,45.3933,3,1.0379,136.18,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-05-15,C02,NA,NA,3,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-05-15,C03,0.3287,34.33,3,0.986,102.99,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-05-15,C03,NA,NA,3,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-05-15,C04,0.3939,40.0167,3,1.1816,120.05,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-05-15,C04,NA,NA,3,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-05-15,C05,0.3272,26.52,3,0.9817,79.56,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-05-15,C05,NA,NA,3,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-05-15,C06,0.324,32.3567,3,0.9721,97.07,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-05-15,C06,NA,NA,3,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-05-15,C07,0.3984,41.1333,3,1.1953,123.4,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-05-15,C07,NA,NA,3,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-05-15,C08,0.4388,45.99,3,1.3164,137.97,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-05-15,C08,NA,NA,3,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-05-15,C09,0.5524,50.6433,3,1.6571,151.93,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-05-15,C09,NA,NA,3,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-05-15,C10,0.2579,31.7533,3,0.7738,95.26,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-05-15,C10,NA,NA,3,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-05-15,C11,0.3555,35.8533,3,1.0666,107.56,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-05-15,C11,NA,NA,3,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-05-15,C12,0.3591,34.26,3,1.0773,102.78,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-05-15,C12,NA,NA,3,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-06-17,C01,0.5322,48.84,3,1.5967,146.52,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-06-17,C01,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-06-17,C02,0.3996,40.21,3,1.1989,120.63,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-06-17,C02,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-06-17,C03,0.3516,34.41,3,1.0547,103.23,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-06-17,C03,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-06-17,C04,0.4203,40.106,3,1.2608,120.318,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-06-17,C04,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-06-17,C05,0.4472,30.1867,3,1.3415,90.56,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-06-17,C05,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-06-17,C06,0.339,29.9663,3,1.0169,89.899,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-06-17,C06,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-06-17,C07,0.7942,64.4933,3,2.3826,193.48,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-06-17,C07,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-06-17,C08,0.6703,64.729,3,2.0109,194.187,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-06-17,C08,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-06-17,C09,0.4736,44.67,3,1.4207,134.01,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-06-17,C09,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-06-17,C10,0.3295,32.5967,3,0.9886,97.79,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-06-17,C10,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-06-17,C11,0.4301,32.6467,3,1.2903,97.94,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-06-17,C11,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-06-17,C12,0.5358,45.3183,3,1.6074,135.955,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-06-17,C12,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-07-08,C01,0.4652,39.0933,3,1.3955,117.28,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-07-08,C01,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-07-08,C02,0.4301,38.7729,3,1.3006,117.77,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-07-08,C02,NA,NA,1,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-07-08,C03,0.3908,34.8933,3,1.1725,104.68,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-07-08,C03,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-07-08,C04,0.3776,35.3067,3,1.1329,105.92,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-07-08,C04,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-07-08,C05,0.4128,31.0531,3,1.2043,91.27,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-07-08,C05,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-07-08,C06,0.4324,37.72,3,1.2973,113.16,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-07-08,C06,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-07-08,C07,0.9647,64.96,3,2.8942,194.88,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-07-08,C07,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-07-08,C08,0.7324,62.9633,3,2.1971,188.89,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-07-08,C08,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-07-08,C09,0.4176,39.6533,3,1.2527,118.96,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-07-08,C09,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-07-08,C10,0.3404,31.1975,3,1.0195,93.43,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-07-08,C10,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-07-08,C11,0.5937,43.0367,3,1.781,129.11,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-07-08,C11,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-07-08,C12,0.6226,45.0067,3,1.8679,135.02,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-07-08,C12,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-08-20,C01,0.3613,30.2833,3,1.084,90.85,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-08-20,C01,NA,NA,1,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-08-20,C02,0.503,44.25,3,1.509,132.75,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-08-20,C02,NA,NA,1,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-08-20,C03,0.4613,42.63,3,1.384,127.89,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-08-20,C03,NA,NA,1,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-08-20,C04,0.591,41.15,3,1.773,123.45,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-08-20,C04,NA,NA,1,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-08-20,C05,0.3427,23.0633,3,1.028,69.19,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-08-20,C05,NA,NA,1,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-08-20,C06,0.4257,34.7967,3,1.277,104.39,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-08-20,C06,NA,NA,1,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-08-20,C07,0.6697,48.8867,3,2.009,146.66,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-08-20,C07,NA,NA,1,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-08-20,C08,0.814,61.7267,3,2.442,185.18,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-08-20,C08,NA,NA,1,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-08-20,C09,0.5757,39.3467,3,1.727,118.04,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-08-20,C09,NA,NA,1,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-08-20,C10,0.326,33.0567,3,0.978,99.17,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-08-20,C10,NA,NA,1,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-08-20,C11,0.3887,34.76,3,1.166,104.28,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-08-20,C11,NA,NA,1,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-08-20,C12,0.4563,39.6167,3,1.369,118.85,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-08-20,C12,NA,NA,1,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-09-19,C01,0.4014,37.8367,3,1.2041,113.51,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-09-19,C02,0.4011,41.6433,3,1.2033,124.93,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-09-19,C03,0.5725,50.06,3,1.7174,150.18,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-09-19,C04,0.5771,39.6133,3,1.7312,118.84,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-09-19,C05,0.3378,24.9067,3,1.0135,74.72,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-09-19,C06,0.3925,36.2933,3,1.1776,108.88,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-09-19,C07,0.7628,51.47,3,2.2885,154.41,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-09-19,C08,0.7088,49.4167,3,2.1263,148.25,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-09-19,C09,0.4075,36.9233,3,1.2225,110.77,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-09-19,C10,0.4503,36.6453,3,1.3376,109.13,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-09-19,C11,0.5927,47.4667,3,1.7782,142.4,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-09-19,C12,0.4992,35.5367,3,1.4977,106.61,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-09-20,C01,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-09-20,C02,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-09-20,C03,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-09-20,C04,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-09-20,C05,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-09-20,C06,NA,NA,1,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-09-20,C07,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-09-20,C08,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-09-20,C09,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-09-20,C10,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-09-20,C11,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-09-20,C12,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-10-15,C01,0.4425,46.3833,3,1.3275,139.15,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-10-15,C01,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-10-15,C02,0.3947,39.8867,3,1.1842,119.66,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-10-15,C02,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-10-15,C03,0.4799,44.4233,3,1.4398,133.27,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-10-15,C03,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-10-15,C04,0.5387,53.0933,3,1.6161,159.28,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-10-15,C04,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-10-15,C05,0.3299,28.33,3,0.9896,84.99,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-10-15,C05,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-10-15,C06,0.3673,35.7833,3,1.1019,107.35,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-10-15,C06,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-10-15,C07,0.7442,65.3633,3,2.2325,196.09,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-10-15,C07,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-10-15,C08,0.4087,39.3633,3,1.226,118.09,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-10-15,C08,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-10-15,C09,0.5082,48.73,3,1.5247,146.19,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-10-15,C09,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-10-15,C10,0.409,37.1033,3,1.227,111.31,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-10-15,C10,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-10-15,C11,0.6359,58.5267,3,1.9078,175.58,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-10-15,C11,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-10-15,C12,0.4427,40.5633,3,1.328,121.69,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-10-15,C12,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-10-24,C06,37.7,0.37,1,0.37,37.7,NA,sun,water potential,"campany, courtney",dried/ground
+2013-10-24,C06,22.4,0.26,1,0.26,22.4,NA,shade,water potential,"campany, courtney",dried/ground
+2013-10-24,C06,25.27,0.23,1,0.23,25.27,NA,sun,water potential,"campany, courtney",dried/ground
+2013-10-24,C06,29.59,0.32,1,0.32,29.59,NA,shade,water potential,"campany, courtney",dried/ground
+2013-10-24,C07,63.6,0.74,1,0.74,63.6,NA,sun,water potential,"campany, courtney",dried/ground
+2013-10-24,C07,42,0.41,1,0.41,42,NA,shade,water potential,"campany, courtney",dried/ground
+2013-10-24,C07,64,0.72,1,0.72,64,NA,sun,water potential,"campany, courtney",dried/ground
+2013-10-24,C07,59.23,0.63,1,0.63,59.23,NA,shade,water potential,"campany, courtney",dried/ground
+2013-10-24,C09,65.7,0.71,1,0.71,65.7,NA,shade,water potential,"campany, courtney",dried/ground
+2013-10-24,C09,39.4,0.41,1,0.41,39.4,NA,sun,water potential,"campany, courtney",dried/ground
+2013-10-24,C09,32.81,0.32,1,0.32,32.81,NA,shade,water potential,"campany, courtney",dried/ground
+2013-10-24,C09,41.41,0.45,1,0.45,41.41,NA,sun,water potential,"campany, courtney",dried/ground
+2013-10-24,C12,36.2,0.48,1,0.48,36.2,NA,shade,water potential,"campany, courtney",dried/ground
+2013-10-24,C12,46.2,0.46,1,0.46,46.2,NA,sun,water potential,"campany, courtney",dried/ground
+2013-10-24,C12,49.72,0.66,1,0.66,49.72,NA,shade,water potential,"campany, courtney",dried/ground
+2013-10-24,C12,35.03,0.39,1,0.39,35.03,NA,sun,water potential,"campany, courtney",dried/ground
+2013-10-25,C03,45.09,0.46,1,0.46,45.09,NA,sun,water potential,"campany, courtney",dried/ground
+2013-10-25,C03,24.27,0.26,1,0.26,24.27,NA,shade,water potential,"campany, courtney",dried/ground
+2013-10-25,C03,44.07,0.5,1,0.5,44.07,NA,sun,water potential,"campany, courtney",dried/ground
+2013-10-25,C03,38.07,0.43,1,0.43,38.07,NA,shade,water potential,"campany, courtney",dried/ground
+2013-10-25,C04,43.63,0.43,1,0.43,43.63,NA,sun,water potential,"campany, courtney",dried/ground
+2013-10-25,C04,26.18,0.28,1,0.28,26.18,NA,shade,water potential,"campany, courtney",dried/ground
+2013-10-25,C04,55.8,0.61,1,0.61,55.8,NA,sun,water potential,"campany, courtney",dried/ground
+2013-10-25,C04,33.8,0.43,1,0.43,33.8,NA,shade,water potential,"campany, courtney",dried/ground
+2013-10-25,C05,36.27,0.34,1,0.34,36.27,NA,sun,water potential,"campany, courtney",dried/ground
+2013-10-25,C05,28.73,0.44,1,0.44,28.73,NA,shade,water potential,"campany, courtney",dried/ground
+2013-10-25,C05,39.03,0.43,1,0.43,39.03,NA,sun,water potential,"campany, courtney",dried/ground
+2013-10-25,C05,30.6,0.34,1,0.34,30.6,NA,shade,water potential,"campany, courtney",dried/ground
+2013-10-25,C08,41.79,0.37,1,0.37,41.79,NA,sun,water potential,"campany, courtney",dried/ground
+2013-10-25,C08,60.92,0.57,1,0.57,60.92,NA,shade,water potential,"campany, courtney",dried/ground
+2013-10-25,C08,45.01,0.4,1,0.4,45.01,NA,sun,water potential,"campany, courtney",dried/ground
+2013-10-25,C08,78.68,0.85,1,0.85,78.68,NA,shade,water potential,"campany, courtney",dried/ground
+2013-10-26,C01,48.88,0.55,1,0.55,48.88,NA,sun,water potential,"campany, courtney",dried/ground
+2013-10-26,C01,31.72,0.38,1,0.38,31.72,NA,shade,water potential,"campany, courtney",dried/ground
+2013-10-26,C01,34.49,0.36,1,0.36,34.49,NA,shade,water potential,"campany, courtney",dried/ground
+2013-10-26,C01,48.43,0.47,1,0.47,48.43,NA,sun,water potential,"campany, courtney",dried/ground
+2013-10-26,C02,29.81,0.22,1,0.22,29.81,NA,sun,water potential,"campany, courtney",dried/ground
+2013-10-26,C02,30.07,0.29,1,0.29,30.07,NA,shade,water potential,"campany, courtney",dried/ground
+2013-10-26,C02,39.24,0.41,1,0.41,39.24,NA,shade,water potential,"campany, courtney",dried/ground
+2013-10-26,C02,36.29,0.29,1,0.29,36.29,NA,sun,water potential,"campany, courtney",dried/ground
+2013-10-26,C10,36.41,0.4,1,0.4,36.41,NA,sun,water potential,"campany, courtney",dried/ground
+2013-10-26,C10,30.23,0.34,1,0.34,30.23,NA,shade,water potential,"campany, courtney",dried/ground
+2013-10-26,C10,42.44,0.51,1,0.51,42.44,NA,sun,water potential,"campany, courtney",dried/ground
+2013-10-26,C10,35.22,0.32,1,0.32,35.22,NA,shade,water potential,"campany, courtney",dried/ground
+2013-10-26,C11,40.86,0.39,1,0.39,40.86,NA,sun,water potential,"campany, courtney",dried/ground
+2013-10-26,C11,27.24,0.33,1,0.33,27.24,NA,shade,water potential,"campany, courtney",dried/ground
+2013-10-26,C11,29.9,0.47,1,0.47,29.9,NA,shade,water potential,"campany, courtney",dried/ground
+2013-10-26,C11,46.54,0.44,1,0.44,46.54,NA,sun,water potential,"campany, courtney",dried/ground
+2013-11-13,C01,0.4364,45.3486,3,1.3135,137.47,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-11-13,C01,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-11-13,C02,0.2791,36.4,3,0.8373,109.2,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-11-13,C02,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-11-13,C03,0.4373,37.0036,3,1.2747,108.26,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-11-13,C03,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-11-13,C04,0.3339,34.4067,3,1.0017,103.22,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-11-13,C04,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-11-13,C05,0.4055,38.33,3,1.2166,114.99,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-11-13,C05,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-11-13,C06,0.367,37.5267,3,1.1011,112.58,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-11-13,C06,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-11-13,C07,0.8554,57.85,3,2.5662,173.55,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-11-13,C07,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-11-13,C08,0.4819,43.31,3,1.4457,129.93,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-11-13,C08,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-11-13,C09,0.3484,37.2833,3,1.0452,111.85,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-11-13,C09,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-11-13,C10,0.3105,29.33,3,0.9315,87.99,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-11-13,C10,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-11-13,C11,0.6025,50.1133,3,1.8074,150.34,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-11-13,C11,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-11-13,C12,0.2861,28.6533,3,0.8582,85.96,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-11-13,C12,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-11-26,C01,NA,NA,4 to 6,NA,NA,NA,upper canopy,archive,"amiji, burhan",
+2013-11-26,C02,NA,NA,4 to 6,NA,NA,NA,upper canopy,archive,"amiji, burhan",
+2013-11-26,C03,NA,NA,4 to 6,NA,NA,NA,upper canopy,archive,"amiji, burhan",
+2013-11-26,C04,NA,NA,4 to 6,NA,NA,NA,upper canopy,archive,"amiji, burhan",
+2013-11-26,C05,NA,NA,4 to 6,NA,NA,NA,upper canopy,archive,"amiji, burhan",
+2013-11-26,C06,NA,NA,4 to 6,NA,NA,NA,upper canopy,archive,"amiji, burhan",
+2013-11-26,C07,NA,NA,4 to 6,NA,NA,NA,upper canopy,archive,"amiji, burhan",
+2013-11-26,C08,NA,NA,4 to 6,NA,NA,NA,upper canopy,archive,"amiji, burhan",
+2013-11-26,C09,NA,NA,4 to 6,NA,NA,NA,upper canopy,archive,"amiji, burhan",
+2013-11-26,C10,NA,NA,4 to 6,NA,NA,NA,upper canopy,archive,"amiji, burhan",
+2013-11-26,C11,NA,NA,4 to 6,NA,NA,NA,upper canopy,archive,"amiji, burhan",
+2013-11-26,C12,NA,NA,4 to 6,NA,NA,NA,upper canopy,archive,"amiji, burhan",
+2013-12-02,C01,0.5537,56.2967,3,1.6612,168.89,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-12-02,C01,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-12-02,C02,0.3585,46.1467,3,1.0756,138.44,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-12-02,C02,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-12-02,C03,0.5495,55.0733,3,1.6486,165.22,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-12-02,C03,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-12-02,C04,0.4918,41.65,3,1.4753,124.95,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-12-02,C04,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-12-02,C05,0.2907,27.36,3,0.8721,82.08,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-12-02,C05,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-12-02,C06,0.1932,26.2867,3,0.5795,78.86,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-12-02,C06,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-12-02,C07,0.5718,45.5533,3,1.7154,136.66,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-12-02,C07,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-12-02,C08,0.3993,41.7133,3,1.1978,125.14,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-12-02,C08,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-12-02,C09,0.379,38.8633,3,1.1369,116.59,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-12-02,C09,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-12-02,C10,0.3953,33.3033,3,1.1859,99.91,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-12-02,C10,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-12-02,C11,0.636,45.4867,3,1.9079,136.46,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-12-02,C11,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-12-02,C12,0.4274,32.9867,3,1.2822,98.96,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2013-12-02,C12,NA,NA,5,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2013-12-10,C04,40.26,0.54,1,0.54,40.26,NA,sun,water potential,"campany, courtney",dried/ground
+2013-12-10,C04,56.5,0.7,1,0.7,56.5,NA,shade,water potential,"campany, courtney",dried/ground
+2013-12-10,C04,45.88,0.52,1,0.52,45.88,NA,sun,water potential,"campany, courtney",dried/ground
+2013-12-10,C04,55.76,0.77,1,0.77,55.76,NA,shade,water potential,"campany, courtney",dried/ground
+2013-12-10,C05,41.27,0.65,1,0.65,41.27,NA,sun,water potential,"campany, courtney",dried/ground
+2013-12-10,C05,46.77,0.59,1,0.59,46.77,NA,shade,water potential,"campany, courtney",dried/ground
+2013-12-10,C05,57.52,0.75,1,0.75,57.52,NA,sun,water potential,"campany, courtney",dried/ground
+2013-12-10,C05,56.23,0.6,1,0.6,56.23,NA,shade,water potential,"campany, courtney",dried/ground
+2013-12-10,C06,40.36,0.4,1,0.4,40.36,NA,sun,water potential,"campany, courtney",dried/ground
+2013-12-10,C06,32.82,0.38,1,0.38,32.82,NA,shade,water potential,"campany, courtney",dried/ground
+2013-12-10,C06,34.16,0.34,1,0.34,34.16,NA,sun,water potential,"campany, courtney",dried/ground
+2013-12-10,C06,36.66,0.37,1,0.37,36.66,NA,shade,water potential,"campany, courtney",dried/ground
+2013-12-10,C07,56.28,0.73,1,0.73,56.28,NA,sun,water potential,"campany, courtney",dried/ground
+2013-12-10,C07,60.04,0.72,1,0.72,60.04,NA,shade,water potential,"campany, courtney",dried/ground
+2013-12-10,C07,53.95,0.56,1,0.56,53.95,NA,sun,water potential,"campany, courtney",dried/ground
+2013-12-10,C07,54.04,0.58,1,0.58,54.04,NA,shade,water potential,"campany, courtney",dried/ground
+2013-12-11,C02,57.68,0.42,1,0.42,57.68,NA,sun,water potential,"campany, courtney",dried/ground
+2013-12-11,C02,38.85,0.4,1,0.4,38.85,NA,shade,water potential,"campany, courtney",dried/ground
+2013-12-11,C02,50.89,0.39,1,0.39,50.89,NA,sun,water potential,"campany, courtney",dried/ground
+2013-12-11,C02,39.44,0.4,1,0.4,39.44,NA,shade,water potential,"campany, courtney",dried/ground
+2013-12-11,C03,57.26,0.61,1,0.61,57.26,NA,sun,water potential,"campany, courtney",dried/ground
+2013-12-11,C03,64.2,0.69,1,0.69,64.2,NA,shade,water potential,"campany, courtney",dried/ground
+2013-12-11,C03,48.21,0.52,1,0.52,48.21,NA,sun,water potential,"campany, courtney",dried/ground
+2013-12-11,C03,41,0.39,1,0.39,41,NA,shade,water potential,"campany, courtney",dried/ground
+2013-12-11,C08,64.48,0.56,1,0.56,64.48,NA,sun,water potential,"campany, courtney",dried/ground
+2013-12-11,C08,62.14,0.78,1,0.78,62.14,NA,shade,water potential,"campany, courtney",dried/ground
+2013-12-11,C08,54.69,0.74,1,0.74,54.69,NA,sun,water potential,"campany, courtney",dried/ground
+2013-12-11,C08,52.05,0.85,1,0.85,52.05,NA,shade,water potential,"campany, courtney",dried/ground
+2013-12-11,C09,66.52,0.53,1,0.53,66.52,NA,sun,water potential,"campany, courtney",dried/ground
+2013-12-11,C09,59.13,0.61,1,0.61,59.13,NA,shade,water potential,"campany, courtney",dried/ground
+2013-12-11,C09,57.26,0.74,1,0.74,57.26,NA,sun,water potential,"campany, courtney",dried/ground
+2013-12-11,C09,32.36,0.31,1,0.31,32.36,NA,shade,water potential,"campany, courtney",dried/ground
+2014-01-16,C01,0.3649,59.5667,3,1.0946,178.7,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2014-01-16,C01,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-01-16,C02,0.3212,41.0367,3,0.9635,123.11,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2014-01-16,C02,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-01-16,C03,0.2836,42.65,3,0.8507,127.95,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2014-01-16,C03,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-01-16,C04,0.3647,33.93,3,1.094,101.79,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2014-01-16,C04,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-01-16,C05,0.3195,34.1833,3,0.9585,102.55,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2014-01-16,C05,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-01-16,C06,0.2828,38.21,3,0.8484,114.63,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2014-01-16,C06,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-01-16,C07,0.6834,55.4233,3,2.0502,166.27,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2014-01-16,C07,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-01-16,C08,0.461,43.6933,3,1.3829,131.08,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2014-01-16,C08,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-01-16,C09,0.4795,47.3067,3,1.4385,141.92,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2014-01-16,C09,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-01-16,C10,0.3395,30.9567,3,1.0185,92.87,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2014-01-16,C10,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-01-16,C11,0.5571,48.71,3,1.6712,146.13,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2014-01-16,C11,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-01-16,C12,0.4978,45.73,3,1.4934,137.19,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2014-01-16,C12,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-01-28,C01,43.34,0.32,1,0.32,43.34,NA,sun,water potential,"campany, courtney",dried/ground
+2014-01-28,C01,72.18,0.75,1,0.75,72.18,NA,shade,water potential,"campany, courtney",dried/ground
+2014-01-28,C01,49.32,0.36,1,0.36,49.32,NA,sun,water potential,"campany, courtney",dried/ground
+2014-01-28,C01,58.56,0.58,1,0.58,58.56,NA,shade,water potential,"campany, courtney",dried/ground
+2014-01-28,C05,36.24,0.41,1,0.41,36.24,NA,sun,water potential,"campany, courtney",dried/ground
+2014-01-28,C05,45.65,0.59,1,0.59,45.65,NA,shade,water potential,"campany, courtney",dried/ground
+2014-01-28,C05,46.31,0.52,1,0.52,46.31,NA,sun,water potential,"campany, courtney",dried/ground
+2014-01-28,C05,44.61,0.56,1,0.56,44.61,NA,shade,water potential,"campany, courtney",dried/ground
+2014-01-28,C06,44.32,0.5,1,0.5,44.32,NA,sun,water potential,"campany, courtney",dried/ground
+2014-01-28,C06,26.01,0.27,1,0.27,26.01,NA,shade,water potential,"campany, courtney",dried/ground
+2014-01-28,C06,40.32,0.34,1,0.34,40.32,NA,sun,water potential,"campany, courtney",dried/ground
+2014-01-28,C06,34.71,0.38,1,0.38,34.71,NA,shade,water potential,"campany, courtney",dried/ground
+2014-01-28,C10,31.48,0.22,1,0.22,31.48,NA,sun,water potential,"campany, courtney",dried/ground
+2014-01-28,C10,41.47,0.57,1,0.57,41.47,NA,shade,water potential,"campany, courtney",dried/ground
+2014-01-28,C10,29.05,0.31,1,0.31,29.05,NA,sun,water potential,"campany, courtney",dried/ground
+2014-01-28,C10,32.73,0.42,1,0.42,32.73,NA,shade,water potential,"campany, courtney",dried/ground
+2014-01-28,C11,39.48,0.4,1,0.4,39.48,NA,sun,water potential,"campany, courtney",dried/ground
+2014-01-28,C11,38.26,0.47,1,0.47,38.26,NA,shade,water potential,"campany, courtney",dried/ground
+2014-01-28,C11,39.7,0.47,1,0.47,39.7,NA,sun,water potential,"campany, courtney",dried/ground
+2014-01-28,C11,43.71,0.56,1,0.56,43.71,NA,shade,water potential,"campany, courtney",dried/ground
+2014-01-28,C12,36.29,0.33,1,0.33,36.29,NA,sun,water potential,"campany, courtney",dried/ground
+2014-01-28,C12,39.21,0.66,1,0.66,39.21,NA,shade,water potential,"campany, courtney",dried/ground
+2014-01-28,C12,46.07,0.37,1,0.37,46.07,NA,sun,water potential,"campany, courtney",dried/ground
+2014-01-28,C12,44.52,0.59,1,0.59,44.52,NA,shade,water potential,"campany, courtney",dried/ground
+2014-01-29,C01,NA,NA,1,NA,NA,NA,upper canopy,rlight campaign,"way, danielle",
+2014-01-29,C02,0.3631,37.19,1,0.3631,37.19,NA,upper canopy,rlight campaign,"way, danielle",
+2014-01-29,C02,33.41,0.33,1,0.33,33.41,NA,sun,water potential,"campany, courtney",dried/ground
+2014-01-29,C02,49.46,0.52,1,0.52,49.46,NA,shade,water potential,"campany, courtney",dried/ground
+2014-01-29,C02,35.38,0.36,1,0.36,35.38,NA,sun,water potential,"campany, courtney",dried/ground
+2014-01-29,C02,40.36,0.45,1,0.45,40.36,NA,shade,water potential,"campany, courtney",dried/ground
+2014-01-29,C03,0.2547,28.82,1,0.2547,28.82,NA,upper canopy,rlight campaign,"way, danielle",
+2014-01-29,C04,0.6015,55.46,1,0.6015,55.46,NA,upper canopy,rlight campaign,"way, danielle",
+2014-01-29,C05,0.4066,37.78,1,0.4066,37.78,NA,upper canopy,rlight campaign,"way, danielle",
+2014-01-29,C06,0.3118,39.82,1,0.3118,39.82,NA,upper canopy,rlight campaign,"way, danielle",
+2014-01-29,C07,0.5051,44.21,1,0.5051,44.21,NA,upper canopy,rlight campaign,"way, danielle",
+2014-01-29,C07,53.43,0.53,1,0.53,53.43,NA,sun,water potential,"campany, courtney",dried/ground
+2014-01-29,C07,62.21,0.94,1,0.94,62.21,NA,shade,water potential,"campany, courtney",dried/ground
+2014-01-29,C07,64.25,0.69,1,0.69,64.25,NA,sun,water potential,"campany, courtney",dried/ground
+2014-01-29,C07,65.88,1,1,1,65.88,NA,shade,water potential,"campany, courtney",dried/ground
+2014-01-29,C08,0.7447,61.92,1,0.7447,61.92,NA,upper canopy,rlight campaign,"way, danielle",
+2014-01-29,C08,45.81,0.54,1,0.54,45.81,NA,sun,water potential,"campany, courtney",dried/ground
+2014-01-29,C08,66.37,0.83,1,0.83,66.37,NA,shade,water potential,"campany, courtney",dried/ground
+2014-01-29,C08,44.04,0.54,1,0.54,44.04,NA,sun,water potential,"campany, courtney",dried/ground
+2014-01-29,C08,56.49,0.71,1,0.71,56.49,NA,shade,water potential,"campany, courtney",dried/ground
+2014-01-29,C09,0.4145,46.625,1,0.4145,46.625,NA,upper canopy,rlight campaign,"way, danielle",
+2014-01-29,C09,49.92,0.48,1,0.48,49.92,NA,sun,water potential,"campany, courtney",dried/ground
+2014-01-29,C09,44.44,0.59,1,0.59,44.44,NA,shade,water potential,"campany, courtney",dried/ground
+2014-01-29,C09,58.25,0.45,1,0.45,58.25,NA,sun,water potential,"campany, courtney",dried/ground
+2014-01-29,C09,35.42,0.61,1,0.61,35.42,NA,shade,water potential,"campany, courtney",dried/ground
+2014-01-29,C10,0.2171,32.12,1,0.2171,32.12,NA,upper canopy,rlight campaign,"way, danielle",
+2014-01-29,C11,0.4348,36.29,1,0.4348,36.29,NA,upper canopy,rlight campaign,"way, danielle",
+2014-01-29,C12,0.3553,26.85,1,0.3553,26.85,NA,upper canopy,rlight campaign,"way, danielle",
+2014-01-30,C03,49.89,0.45,1,0.45,49.89,NA,sun,water potential,"campany, courtney",dried/ground
+2014-01-30,C03,57.56,0.74,1,0.74,57.56,NA,shade,water potential,"campany, courtney",dried/ground
+2014-01-30,C03,48.37,0.42,1,0.42,48.37,NA,sun,water potential,"campany, courtney",dried/ground
+2014-01-30,C03,52.71,0.61,1,0.61,52.71,NA,shade,water potential,"campany, courtney",dried/ground
+2014-01-30,C04,44.5,0.59,1,0.59,44.5,NA,sun,water potential,"campany, courtney",dried/ground
+2014-01-30,C04,42.83,0.39,1,0.39,42.83,NA,shade,water potential,"campany, courtney",dried/ground
+2014-01-30,C04,48.7,0.51,1,0.51,48.7,NA,sun,water potential,"campany, courtney",dried/ground
+2014-01-30,C04,53.61,0.55,1,0.55,53.61,NA,shade,water potential,"campany, courtney",dried/ground
+2014-02-09,C01,NA,50.9329,16,NA,814.927,NA,randomly collected,herbivory experiment,"barnett, kirk",some leaves stored in -80 freezer
+2014-02-09,C02,NA,39.5823,16,NA,633.317,NA,randomly collected,herbivory experiment,"barnett, kirk",some leaves stored in -80 freezer
+2014-02-09,C03,NA,45.8519,16,NA,733.631,NA,randomly collected,herbivory experiment,"barnett, kirk",some leaves stored in -80 freezer
+2014-02-09,C04,NA,39.7541,16,NA,636.066,NA,randomly collected,herbivory experiment,"barnett, kirk",some leaves stored in -80 freezer
+2014-02-09,C05,NA,40.5294,16,NA,648.471,NA,randomly collected,herbivory experiment,"barnett, kirk",some leaves stored in -80 freezer
+2014-02-09,C06,NA,39.2412,16,NA,627.859,NA,randomly collected,herbivory experiment,"barnett, kirk",some leaves stored in -80 freezer
+2014-02-09,C07,NA,59.6356,16,NA,954.169,NA,randomly collected,herbivory experiment,"barnett, kirk",some leaves stored in -80 freezer
+2014-02-09,C08,NA,48.8508,16,NA,781.612,NA,randomly collected,herbivory experiment,"barnett, kirk",some leaves stored in -80 freezer
+2014-02-09,C09,NA,73.8979,16,NA,1182.366,NA,randomly collected,herbivory experiment,"barnett, kirk",some leaves stored in -80 freezer
+2014-02-09,C10,NA,31.8916,16,NA,510.265,NA,randomly collected,herbivory experiment,"barnett, kirk",some leaves stored in -80 freezer
+2014-02-09,C11,NA,73.7994,16,NA,1180.791,NA,randomly collected,herbivory experiment,"barnett, kirk",some leaves stored in -80 freezer
+2014-02-09,C12,NA,45.5753,16,NA,729.205,NA,randomly collected,herbivory experiment,"barnett, kirk",some leaves stored in -80 freezer
+2014-02-17,C01,0.3835,46.8233,3,1.1505,140.47,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2014-02-17,C01,NA,NA,2,NA,NA,NA,upper canopy,"tissue chemistry (metabolites, proteins, rubisco, carbs, RNA)","aspinwall, mike","building s8, -80 freezer, microfuge tubes & envelopes"
+2014-02-17,C01,NA,NA,7,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-02-17,C02,0.3437,37.3567,3,1.0312,112.07,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2014-02-17,C02,NA,NA,2,NA,NA,NA,upper canopy,"tissue chemistry (metabolites, proteins, rubisco, carbs, RNA)","aspinwall, mike","building s8, -80 freezer, microfuge tubes & envelopes"
+2014-02-17,C02,NA,NA,7,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-02-17,C03,0.3488,38.4633,3,1.0463,115.39,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2014-02-17,C03,NA,NA,2,NA,NA,NA,upper canopy,"tissue chemistry (metabolites, proteins, rubisco, carbs, RNA)","aspinwall, mike","building s8, -80 freezer, microfuge tubes & envelopes"
+2014-02-17,C03,NA,NA,7,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-02-17,C04,0.4268,38.39,3,1.2805,115.17,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2014-02-17,C04,NA,NA,2,NA,NA,NA,upper canopy,"tissue chemistry (metabolites, proteins, rubisco, carbs, RNA)","aspinwall, mike","building s8, -80 freezer, microfuge tubes & envelopes"
+2014-02-17,C04,NA,NA,7,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-02-17,C05,0.407,41.4867,3,1.2209,124.46,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2014-02-17,C05,NA,NA,2,NA,NA,NA,upper canopy,"tissue chemistry (metabolites, proteins, rubisco, carbs, RNA)","aspinwall, mike","building s8, -80 freezer, microfuge tubes & envelopes"
+2014-02-17,C05,NA,NA,7,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-02-17,C06,0.3252,39.3033,3,0.9756,117.91,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2014-02-17,C06,NA,NA,2,NA,NA,NA,upper canopy,"tissue chemistry (metabolites, proteins, rubisco, carbs, RNA)","aspinwall, mike","building s8, -80 freezer, microfuge tubes & envelopes"
+2014-02-17,C06,NA,NA,7,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-02-17,C07,0.6568,54.2867,3,1.9705,162.86,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2014-02-17,C07,NA,NA,2,NA,NA,NA,upper canopy,"tissue chemistry (metabolites, proteins, rubisco, carbs, RNA)","aspinwall, mike","building s8, -80 freezer, microfuge tubes & envelopes"
+2014-02-17,C07,NA,NA,7,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-02-17,C08,0.3952,40.0333,3,1.1855,120.1,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2014-02-17,C08,NA,NA,2,NA,NA,NA,upper canopy,"tissue chemistry (metabolites, proteins, rubisco, carbs, RNA)","aspinwall, mike","building s8, -80 freezer, microfuge tubes & envelopes"
+2014-02-17,C08,NA,NA,7,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-02-17,C09,0.4109,50.4167,3,1.2326,151.25,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2014-02-17,C09,NA,NA,2,NA,NA,NA,upper canopy,"tissue chemistry (metabolites, proteins, rubisco, carbs, RNA)","aspinwall, mike","building s8, -80 freezer, microfuge tubes & envelopes"
+2014-02-17,C09,NA,NA,7,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-02-17,C10,0.3287,43.3433,3,0.9862,130.03,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2014-02-17,C10,NA,NA,2,NA,NA,NA,upper canopy,"tissue chemistry (metabolites, proteins, rubisco, carbs, RNA)","aspinwall, mike","building s8, -80 freezer, microfuge tubes & envelopes"
+2014-02-17,C10,NA,NA,7,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-02-17,C11,0.5827,50.4133,3,1.7482,151.24,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2014-02-17,C11,NA,NA,2,NA,NA,NA,upper canopy,"tissue chemistry (metabolites, proteins, rubisco, carbs, RNA)","aspinwall, mike","building s8, -80 freezer, microfuge tubes & envelopes"
+2014-02-17,C11,NA,NA,7,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-02-17,C12,0.4141,40.4167,3,1.2424,121.25,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2014-02-17,C12,NA,NA,2,NA,NA,NA,upper canopy,"tissue chemistry (metabolites, proteins, rubisco, carbs, RNA)","aspinwall, mike","building s8, -80 freezer, microfuge tubes & envelopes"
+2014-02-17,C12,NA,NA,7,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-02-20,C01,NA,NA,32,NA,NA,NA,"2 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","1 leaf stored in -80 freezer for carbs, buidling s8"
+2014-02-20,C01,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-02-20,C02,NA,NA,32,NA,NA,NA,"3 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","2 leaf stored in -80 freezer for carbs, buidling s8"
+2014-02-20,C02,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-02-20,C03,NA,NA,32,NA,NA,NA,"4 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","3 leaf stored in -80 freezer for carbs, buidling s8"
+2014-02-20,C03,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-02-20,C04,NA,NA,32,NA,NA,NA,"5 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","4 leaf stored in -80 freezer for carbs, buidling s8"
+2014-02-20,C04,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-02-20,C05,NA,NA,32,NA,NA,NA,"6 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","5 leaf stored in -80 freezer for carbs, buidling s8"
+2014-02-20,C05,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-02-20,C06,NA,NA,32,NA,NA,NA,"7 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","6 leaf stored in -80 freezer for carbs, buidling s8"
+2014-02-20,C06,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-02-20,C07,NA,NA,32,NA,NA,NA,"8 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","7 leaf stored in -80 freezer for carbs, buidling s8"
+2014-02-20,C07,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-02-20,C08,NA,NA,32,NA,NA,NA,"9 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","8 leaf stored in -80 freezer for carbs, buidling s8"
+2014-02-20,C08,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-02-20,C09,NA,NA,32,NA,NA,NA,"10 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","9 leaf stored in -80 freezer for carbs, buidling s8"
+2014-02-20,C09,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-02-20,C10,NA,NA,32,NA,NA,NA,"11 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","10 leaf stored in -80 freezer for carbs, buidling s8"
+2014-02-20,C10,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-02-20,C11,NA,NA,32,NA,NA,NA,"12 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","11 leaf stored in -80 freezer for carbs, buidling s8"
+2014-02-20,C11,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-02-20,C12,NA,NA,32,NA,NA,NA,"13 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","12 leaf stored in -80 freezer for carbs, buidling s8"
+2014-02-20,C12,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-02-24,C01,41.94,0.3,1,0.3,41.94,NA,sun,water potential,"campany, courtney",dried/ground
+2014-02-24,C01,56.98,0.52,1,0.52,56.98,NA,shade,water potential,"campany, courtney",dried/ground
+2014-02-24,C01,48.88,0.43,1,0.43,48.88,NA,sun,water potential,"campany, courtney",dried/ground
+2014-02-24,C01,80.1,0.59,1,0.59,80.1,NA,shade,water potential,"campany, courtney",dried/ground
+2014-02-24,C02,34.25,0.25,1,0.25,34.25,NA,sun,water potential,"campany, courtney",dried/ground
+2014-02-24,C02,45.9,0.48,1,0.48,45.9,NA,shade,water potential,"campany, courtney",dried/ground
+2014-02-24,C02,54.33,0.55,1,0.55,54.33,NA,sun,water potential,"campany, courtney",dried/ground
+2014-02-24,C02,37.33,0.33,1,0.33,37.33,NA,shade,water potential,"campany, courtney",dried/ground
+2014-02-24,C03,36.32,0.29,1,0.29,36.32,NA,sun,water potential,"campany, courtney",dried/ground
+2014-02-24,C03,44.15,0.45,1,0.45,44.15,NA,shade,water potential,"campany, courtney",dried/ground
+2014-02-24,C03,40.22,0.36,1,0.36,40.22,NA,sun,water potential,"campany, courtney",dried/ground
+2014-02-24,C03,43.45,0.45,1,0.45,43.45,NA,shade,water potential,"campany, courtney",dried/ground
+2014-02-24,C04,32.79,0.29,1,0.29,32.79,NA,sun,water potential,"campany, courtney",dried/ground
+2014-02-24,C04,33.89,0.43,1,0.43,33.89,NA,shade,water potential,"campany, courtney",dried/ground
+2014-02-24,C04,43.45,0.83,1,0.83,43.45,NA,sun,water potential,"campany, courtney",dried/ground
+2014-02-24,C04,55.98,0.36,1,0.36,55.98,NA,shade,water potential,"campany, courtney",dried/ground
+2014-02-24,C05,40.08,0.5,1,0.5,40.08,NA,sun,water potential,"campany, courtney",dried/ground
+2014-02-24,C05,37.76,0.44,1,0.44,37.76,NA,shade,water potential,"campany, courtney",dried/ground
+2014-02-24,C05,36.25,0.36,1,0.36,36.25,NA,sun,water potential,"campany, courtney",dried/ground
+2014-02-24,C05,40.68,0.58,1,0.58,40.68,NA,shade,water potential,"campany, courtney",dried/ground
+2014-02-24,C06,39.9,0.33,1,0.33,39.9,NA,sun,water potential,"campany, courtney",dried/ground
+2014-02-24,C06,29.17,0.25,1,0.25,29.17,NA,shade,water potential,"campany, courtney",dried/ground
+2014-02-24,C06,45.16,0.38,1,0.38,45.16,NA,sun,water potential,"campany, courtney",dried/ground
+2014-02-24,C06,24.67,0.21,1,0.21,24.67,NA,shade,water potential,"campany, courtney",dried/ground
+2014-02-24,C07,55.49,0.69,1,0.69,55.49,NA,sun,water potential,"campany, courtney",dried/ground
+2014-02-24,C07,58.61,0.7,1,0.7,58.61,NA,shade,water potential,"campany, courtney",dried/ground
+2014-02-24,C07,45.99,0.49,1,0.49,45.99,NA,sun,water potential,"campany, courtney",dried/ground
+2014-02-24,C07,49.04,0.68,1,0.68,49.04,NA,shade,water potential,"campany, courtney",dried/ground
+2014-02-24,C08,63.55,0.63,1,0.63,63.55,NA,sun,water potential,"campany, courtney",dried/ground
+2014-02-24,C08,50.12,0.5,1,0.5,50.12,NA,shade,water potential,"campany, courtney",dried/ground
+2014-02-24,C08,45.07,0.38,1,0.38,45.07,NA,sun,water potential,"campany, courtney",dried/ground
+2014-02-24,C08,50.23,0.66,1,0.66,50.23,NA,shade,water potential,"campany, courtney",dried/ground
+2014-02-24,C09,37.12,0.43,1,0.43,37.12,NA,sun,water potential,"campany, courtney",dried/ground
+2014-02-24,C09,60.99,0.55,1,0.55,60.99,NA,shade,water potential,"campany, courtney",dried/ground
+2014-02-24,C09,55.22,0.61,1,0.61,55.22,NA,sun,water potential,"campany, courtney",dried/ground
+2014-02-24,C09,52.56,0.54,1,0.54,52.56,NA,shade,water potential,"campany, courtney",dried/ground
+2014-02-24,C10,29.77,0.26,1,0.26,29.77,NA,sun,water potential,"campany, courtney",dried/ground
+2014-02-24,C10,25.38,0.31,1,0.31,25.38,NA,shade,water potential,"campany, courtney",dried/ground
+2014-02-24,C10,45.76,0.41,1,0.41,45.76,NA,sun,water potential,"campany, courtney",dried/ground
+2014-02-24,C10,33.84,0.36,1,0.36,33.84,NA,shade,water potential,"campany, courtney",dried/ground
+2014-02-24,C11,38.97,0.42,1,0.42,38.97,NA,sun,water potential,"campany, courtney",dried/ground
+2014-02-24,C11,29.39,0.34,1,0.34,29.39,NA,shade,water potential,"campany, courtney",dried/ground
+2014-02-24,C11,40.25,0.61,1,0.61,40.25,NA,sun,water potential,"campany, courtney",dried/ground
+2014-02-24,C11,45.82,0.54,1,0.54,45.82,NA,shade,water potential,"campany, courtney",dried/ground
+2014-02-24,C12,50.22,0.48,1,0.48,50.22,NA,sun,water potential,"campany, courtney",dried/ground
+2014-02-24,C12,35.09,0.38,1,0.38,35.09,NA,shade,water potential,"campany, courtney",dried/ground
+2014-02-24,C12,53.67,0.64,1,0.64,53.67,NA,sun,water potential,"campany, courtney",dried/ground
+2014-02-24,C12,41.36,0.48,1,0.48,41.36,NA,shade,water potential,"campany, courtney",dried/ground
+2014-02-25,C01,NA,NA,2,NA,NA,NA,upper canopy,"tissue chemistry (metabolites, proteins, rubisco, carbs, RNA)","aspinwall, mike","building s8, -80 freezer, microfuge tubes & envelopes"
+2014-02-25,C01,NA,NA,5,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-02-25,C02,NA,NA,2,NA,NA,NA,upper canopy,"tissue chemistry (metabolites, proteins, rubisco, carbs, RNA)","aspinwall, mike","building s8, -80 freezer, microfuge tubes & envelopes"
+2014-02-25,C02,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-02-25,C03,NA,NA,2,NA,NA,NA,upper canopy,"tissue chemistry (metabolites, proteins, rubisco, carbs, RNA)","aspinwall, mike","building s8, -80 freezer, microfuge tubes & envelopes"
+2014-02-25,C03,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-02-25,C04,NA,NA,2,NA,NA,NA,upper canopy,"tissue chemistry (metabolites, proteins, rubisco, carbs, RNA)","aspinwall, mike","building s8, -80 freezer, microfuge tubes & envelopes"
+2014-02-25,C04,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-02-25,C05,NA,NA,2,NA,NA,NA,upper canopy,"tissue chemistry (metabolites, proteins, rubisco, carbs, RNA)","aspinwall, mike","building s8, -80 freezer, microfuge tubes & envelopes"
+2014-02-25,C05,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-02-25,C06,NA,NA,2,NA,NA,NA,upper canopy,"tissue chemistry (metabolites, proteins, rubisco, carbs, RNA)","aspinwall, mike","building s8, -80 freezer, microfuge tubes & envelopes"
+2014-02-25,C06,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-02-25,C07,NA,NA,2,NA,NA,NA,upper canopy,"tissue chemistry (metabolites, proteins, rubisco, carbs, RNA)","aspinwall, mike","building s8, -80 freezer, microfuge tubes & envelopes"
+2014-02-25,C07,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-02-25,C08,NA,NA,2,NA,NA,NA,upper canopy,"tissue chemistry (metabolites, proteins, rubisco, carbs, RNA)","aspinwall, mike","building s8, -80 freezer, microfuge tubes & envelopes"
+2014-02-25,C08,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-02-25,C09,NA,NA,2,NA,NA,NA,upper canopy,"tissue chemistry (metabolites, proteins, rubisco, carbs, RNA)","aspinwall, mike","building s8, -80 freezer, microfuge tubes & envelopes"
+2014-02-25,C09,NA,NA,5,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-02-25,C10,NA,NA,2,NA,NA,NA,upper canopy,"tissue chemistry (metabolites, proteins, rubisco, carbs, RNA)","aspinwall, mike","building s8, -80 freezer, microfuge tubes & envelopes"
+2014-02-25,C10,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-02-25,C11,NA,NA,2,NA,NA,NA,upper canopy,"tissue chemistry (metabolites, proteins, rubisco, carbs, RNA)","aspinwall, mike","building s8, -80 freezer, microfuge tubes & envelopes"
+2014-02-25,C11,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-02-25,C12,NA,NA,2,NA,NA,NA,upper canopy,"tissue chemistry (metabolites, proteins, rubisco, carbs, RNA)","aspinwall, mike","building s8, -80 freezer, microfuge tubes & envelopes"
+2014-02-25,C12,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-03-04,C01,NA,NA,2,NA,NA,NA,upper canopy,"tissue chemistry (metabolites, proteins, rubisco, carbs, RNA)","aspinwall, mike","building s8, -80 freezer, microfuge tubes & envelopes"
+2014-03-04,C01,NA,NA,32,NA,NA,NA,"14 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","13 leaf stored in -80 freezer for carbs, buidling s8"
+2014-03-04,C01,NA,NA,4,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-03-04,C02,NA,NA,2,NA,NA,NA,upper canopy,"tissue chemistry (metabolites, proteins, rubisco, carbs, RNA)","aspinwall, mike","building s8, -80 freezer, microfuge tubes & envelopes"
+2014-03-04,C02,NA,NA,32,NA,NA,NA,"15 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","14 leaf stored in -80 freezer for carbs, buidling s8"
+2014-03-04,C02,NA,NA,5,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-03-04,C03,NA,NA,2,NA,NA,NA,upper canopy,"tissue chemistry (metabolites, proteins, rubisco, carbs, RNA)","aspinwall, mike","building s8, -80 freezer, microfuge tubes & envelopes"
+2014-03-04,C03,NA,NA,32,NA,NA,NA,"16 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","15 leaf stored in -80 freezer for carbs, buidling s8"
+2014-03-04,C03,NA,NA,4,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-03-04,C04,NA,NA,2,NA,NA,NA,upper canopy,"tissue chemistry (metabolites, proteins, rubisco, carbs, RNA)","aspinwall, mike","building s8, -80 freezer, microfuge tubes & envelopes"
+2014-03-04,C04,NA,NA,32,NA,NA,NA,"17 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","16 leaf stored in -80 freezer for carbs, buidling s8"
+2014-03-04,C04,NA,NA,4,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-03-04,C05,NA,NA,2,NA,NA,NA,upper canopy,"tissue chemistry (metabolites, proteins, rubisco, carbs, RNA)","aspinwall, mike","building s8, -80 freezer, microfuge tubes & envelopes"
+2014-03-04,C05,NA,NA,32,NA,NA,NA,"18 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","17 leaf stored in -80 freezer for carbs, buidling s8"
+2014-03-04,C05,NA,NA,5,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-03-04,C06,NA,NA,2,NA,NA,NA,upper canopy,"tissue chemistry (metabolites, proteins, rubisco, carbs, RNA)","aspinwall, mike","building s8, -80 freezer, microfuge tubes & envelopes"
+2014-03-04,C06,NA,NA,32,NA,NA,NA,"19 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","18 leaf stored in -80 freezer for carbs, buidling s8"
+2014-03-04,C06,NA,NA,4,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-03-04,C07,NA,NA,2,NA,NA,NA,upper canopy,"tissue chemistry (metabolites, proteins, rubisco, carbs, RNA)","aspinwall, mike","building s8, -80 freezer, microfuge tubes & envelopes"
+2014-03-04,C07,NA,NA,32,NA,NA,NA,"20 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","19 leaf stored in -80 freezer for carbs, buidling s8"
+2014-03-04,C07,NA,NA,5,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-03-04,C08,NA,NA,2,NA,NA,NA,upper canopy,"tissue chemistry (metabolites, proteins, rubisco, carbs, RNA)","aspinwall, mike","building s8, -80 freezer, microfuge tubes & envelopes"
+2014-03-04,C08,NA,NA,32,NA,NA,NA,"21 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","20 leaf stored in -80 freezer for carbs, buidling s8"
+2014-03-04,C08,NA,NA,4,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-03-04,C09,NA,NA,2,NA,NA,NA,upper canopy,"tissue chemistry (metabolites, proteins, rubisco, carbs, RNA)","aspinwall, mike","building s8, -80 freezer, microfuge tubes & envelopes"
+2014-03-04,C09,NA,NA,32,NA,NA,NA,"22 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","21 leaf stored in -80 freezer for carbs, buidling s8"
+2014-03-04,C09,NA,NA,5,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-03-04,C10,NA,NA,2,NA,NA,NA,upper canopy,"tissue chemistry (metabolites, proteins, rubisco, carbs, RNA)","aspinwall, mike","building s8, -80 freezer, microfuge tubes & envelopes"
+2014-03-04,C10,NA,NA,32,NA,NA,NA,"23 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","22 leaf stored in -80 freezer for carbs, buidling s8"
+2014-03-04,C10,NA,NA,5,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-03-04,C11,NA,NA,2,NA,NA,NA,upper canopy,"tissue chemistry (metabolites, proteins, rubisco, carbs, RNA)","aspinwall, mike","building s8, -80 freezer, microfuge tubes & envelopes"
+2014-03-04,C11,NA,NA,32,NA,NA,NA,"24 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","23 leaf stored in -80 freezer for carbs, buidling s8"
+2014-03-04,C11,NA,NA,4,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-03-04,C12,NA,NA,2,NA,NA,NA,upper canopy,"tissue chemistry (metabolites, proteins, rubisco, carbs, RNA)","aspinwall, mike","building s8, -80 freezer, microfuge tubes & envelopes"
+2014-03-04,C12,NA,NA,32,NA,NA,NA,"25 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","24 leaf stored in -80 freezer for carbs, buidling s8"
+2014-03-04,C12,NA,NA,4,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-03-12,C01,NA,NA,4,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-03-12,C02,NA,NA,4,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-03-12,C03,NA,NA,4,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-03-12,C04,NA,NA,4,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-03-12,C05,NA,NA,4,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-03-12,C06,NA,NA,4,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-03-12,C07,NA,NA,3,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-03-12,C08,NA,NA,3,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-03-12,C09,NA,NA,3,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-03-12,C10,NA,NA,4,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-03-12,C11,NA,NA,4,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-03-12,C12,NA,NA,4,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-03-18,C01,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-03-18,C02,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-03-18,C03,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-03-18,C04,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-03-18,C05,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-03-18,C06,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-03-18,C07,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-03-18,C08,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-03-18,C09,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-03-18,C10,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-03-18,C11,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-03-18,C12,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-03-24,C01,NA,NA,32,NA,NA,NA,"26 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","25 leaf stored in -80 freezer for carbs, buidling s8"
+2014-03-24,C01,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-03-24,C02,NA,NA,32,NA,NA,NA,"27 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","26 leaf stored in -80 freezer for carbs, buidling s8"
+2014-03-24,C02,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-03-24,C03,NA,NA,32,NA,NA,NA,"28 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","27 leaf stored in -80 freezer for carbs, buidling s8"
+2014-03-24,C03,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-03-24,C04,NA,NA,32,NA,NA,NA,"29 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","28 leaf stored in -80 freezer for carbs, buidling s8"
+2014-03-24,C04,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-03-24,C05,NA,NA,32,NA,NA,NA,"30 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","29 leaf stored in -80 freezer for carbs, buidling s8"
+2014-03-24,C05,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-03-24,C06,NA,NA,32,NA,NA,NA,"31 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","30 leaf stored in -80 freezer for carbs, buidling s8"
+2014-03-24,C06,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-03-24,C07,NA,NA,32,NA,NA,NA,"32 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","31 leaf stored in -80 freezer for carbs, buidling s8"
+2014-03-24,C07,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-03-24,C08,NA,NA,32,NA,NA,NA,"33 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","32 leaf stored in -80 freezer for carbs, buidling s8"
+2014-03-24,C08,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-03-24,C09,NA,NA,32,NA,NA,NA,"34 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","33 leaf stored in -80 freezer for carbs, buidling s8"
+2014-03-24,C09,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-03-24,C10,NA,NA,32,NA,NA,NA,"35 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","34 leaf stored in -80 freezer for carbs, buidling s8"
+2014-03-24,C10,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-03-24,C11,NA,NA,32,NA,NA,NA,"36 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","35 leaf stored in -80 freezer for carbs, buidling s8"
+2014-03-24,C11,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-03-24,C12,NA,NA,32,NA,NA,NA,"37 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","36 leaf stored in -80 freezer for carbs, buidling s8"
+2014-03-24,C12,NA,NA,2,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-03-26,C01,NA,NA,2,NA,NA,NA,upper canopy,Kleaf,blackman,
+2014-03-26,C02,NA,NA,2,NA,NA,NA,upper canopy,Kleaf,blackman,
+2014-03-26,C03,NA,NA,2,NA,NA,NA,upper canopy,Kleaf,blackman,
+2014-03-26,C04,NA,NA,2,NA,NA,NA,upper canopy,Kleaf,blackman,
+2014-03-26,C05,NA,NA,2,NA,NA,NA,upper canopy,Kleaf,blackman,
+2014-03-26,C06,NA,NA,2,NA,NA,NA,upper canopy,Kleaf,blackman,
+2014-03-26,C07,NA,NA,2,NA,NA,NA,upper canopy,Kleaf,blackman,
+2014-03-26,C08,NA,NA,2,NA,NA,NA,upper canopy,Kleaf,blackman,
+2014-03-26,C09,NA,NA,2,NA,NA,NA,upper canopy,Kleaf,blackman,
+2014-03-26,C10,NA,NA,2,NA,NA,NA,upper canopy,Kleaf,blackman,
+2014-03-26,C11,NA,NA,2,NA,NA,NA,upper canopy,Kleaf,blackman,
+2014-03-26,C12,NA,NA,2,NA,NA,NA,upper canopy,Kleaf,blackman,
+2014-03-30,C01,53.73,0.43,1,0.43,53.73,NA,sun,water potential,"campany, courtney",dried/ground
+2014-03-30,C01,46.62,0.42,1,0.42,46.62,NA,shade,water potential,"campany, courtney",dried/ground
+2014-03-30,C01,31.99,0.28,1,0.28,31.99,NA,sun,water potential,"campany, courtney",dried/ground
+2014-03-30,C01,59.16,0.52,1,0.52,59.16,NA,shade,water potential,"campany, courtney",dried/ground
+2014-03-30,C02,49.62,0.52,1,0.52,49.62,NA,sun,water potential,"campany, courtney",dried/ground
+2014-03-30,C02,38.94,0.39,1,0.39,38.94,NA,shade,water potential,"campany, courtney",dried/ground
+2014-03-30,C02,37.65,0.43,1,0.43,37.65,NA,sun,water potential,"campany, courtney",dried/ground
+2014-03-30,C02,32.74,0.24,1,0.24,32.74,NA,shade,water potential,"campany, courtney",dried/ground
+2014-03-30,C03,52.34,0.48,1,0.48,52.34,NA,sun,water potential,"campany, courtney",dried/ground
+2014-03-30,C03,43.07,0.38,1,0.38,43.07,NA,shade,water potential,"campany, courtney",dried/ground
+2014-03-30,C03,46.24,0.4,1,0.4,46.24,NA,sun,water potential,"campany, courtney",dried/ground
+2014-03-30,C03,47.67,0.48,1,0.48,47.67,NA,shade,water potential,"campany, courtney",dried/ground
+2014-03-30,C04,35.46,0.4,1,0.4,35.46,NA,sun,water potential,"campany, courtney",dried/ground
+2014-03-30,C04,50.72,0.51,1,0.51,50.72,NA,shade,water potential,"campany, courtney",dried/ground
+2014-03-30,C04,38.21,0.44,1,0.44,38.21,NA,sun,water potential,"campany, courtney",dried/ground
+2014-03-30,C04,52.8,0.58,1,0.58,52.8,NA,shade,water potential,"campany, courtney",dried/ground
+2014-03-30,C05,46.58,0.63,1,0.63,46.58,NA,sun,water potential,"campany, courtney",dried/ground
+2014-03-30,C05,39.63,0.42,1,0.42,39.63,NA,shade,water potential,"campany, courtney",dried/ground
+2014-03-30,C05,44.75,0.67,1,0.67,44.75,NA,sun,water potential,"campany, courtney",dried/ground
+2014-03-30,C05,49.66,0.64,1,0.64,49.66,NA,shade,water potential,"campany, courtney",dried/ground
+2014-03-30,C06,29.53,0.27,1,0.27,29.53,NA,sun,water potential,"campany, courtney",dried/ground
+2014-03-30,C06,44.18,0.38,1,0.38,44.18,NA,shade,water potential,"campany, courtney",dried/ground
+2014-03-30,C06,44.1,0.41,1,0.41,44.1,NA,sun,water potential,"campany, courtney",dried/ground
+2014-03-30,C06,33.58,0.3,1,0.3,33.58,NA,shade,water potential,"campany, courtney",dried/ground
+2014-03-30,C07,46.69,0.62,1,0.62,46.69,NA,sun,water potential,"campany, courtney",dried/ground
+2014-03-30,C07,53.24,0.64,1,0.64,53.24,NA,shade,water potential,"campany, courtney",dried/ground
+2014-03-30,C07,53.63,0.63,1,0.63,53.63,NA,sun,water potential,"campany, courtney",dried/ground
+2014-03-30,C07,55.38,0.79,1,0.79,55.38,NA,shade,water potential,"campany, courtney",dried/ground
+2014-03-30,C08,45,0.5,1,0.5,45,NA,sun,water potential,"campany, courtney",dried/ground
+2014-03-30,C08,52.81,0.55,1,0.55,52.81,NA,shade,water potential,"campany, courtney",dried/ground
+2014-03-30,C08,58.81,0.61,1,0.61,58.81,NA,sun,water potential,"campany, courtney",dried/ground
+2014-03-30,C08,56.77,0.7,1,0.7,56.77,NA,shade,water potential,"campany, courtney",dried/ground
+2014-03-30,C09,52.02,0.49,1,0.49,52.02,NA,sun,water potential,"campany, courtney",dried/ground
+2014-03-30,C09,47.78,0.54,1,0.54,47.78,NA,shade,water potential,"campany, courtney",dried/ground
+2014-03-30,C09,49.89,0.46,1,0.46,49.89,NA,sun,water potential,"campany, courtney",dried/ground
+2014-03-30,C09,52.15,0.51,1,0.51,52.15,NA,shade,water potential,"campany, courtney",dried/ground
+2014-03-30,C10,49.75,0.41,1,0.41,49.75,NA,sun,water potential,"campany, courtney",dried/ground
+2014-03-30,C10,29.07,0.4,1,0.4,29.07,NA,shade,water potential,"campany, courtney",dried/ground
+2014-03-30,C10,51.82,0.52,1,0.52,51.82,NA,sun,water potential,"campany, courtney",dried/ground
+2014-03-30,C10,28.12,0.3,1,0.3,28.12,NA,shade,water potential,"campany, courtney",dried/ground
+2014-03-30,C11,45.25,0.57,1,0.57,45.25,NA,sun,water potential,"campany, courtney",dried/ground
+2014-03-30,C11,57.67,0.66,1,0.66,57.67,NA,shade,water potential,"campany, courtney",dried/ground
+2014-03-30,C11,42.68,0.57,1,0.57,42.68,NA,sun,water potential,"campany, courtney",dried/ground
+2014-03-30,C11,50.69,0.64,1,0.64,50.69,NA,shade,water potential,"campany, courtney",dried/ground
+2014-03-30,C12,31.46,0.44,1,0.44,31.46,NA,sun,water potential,"campany, courtney",dried/ground
+2014-03-30,C12,51.62,0.58,1,0.58,51.62,NA,shade,water potential,"campany, courtney",dried/ground
+2014-03-30,C12,43.99,0.68,1,0.68,43.99,NA,sun,water potential,"campany, courtney",dried/ground
+2014-03-30,C12,51.44,0.56,1,0.56,51.44,NA,shade,water potential,"campany, courtney",dried/ground
+2014-04-02,C01,0.5605,58.1367,3,1.6814,174.41,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2014-04-02,C01,NA,NA,2,NA,NA,NA,upper canopy,"tissue chemistry (metabolites, proteins, rubisco, carbs, RNA)","aspinwall, mike","building s8, -80 freezer, microfuge tubes & envelopes"
+2014-04-02,C01,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-04-02,C02,0.4503,43.8033,3,1.351,131.41,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2014-04-02,C02,NA,NA,2,NA,NA,NA,upper canopy,"tissue chemistry (metabolites, proteins, rubisco, carbs, RNA)","aspinwall, mike","building s8, -80 freezer, microfuge tubes & envelopes"
+2014-04-02,C02,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-04-02,C03,0.4168,39.1033,3,1.2504,117.31,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2014-04-02,C03,NA,NA,2,NA,NA,NA,upper canopy,"tissue chemistry (metabolites, proteins, rubisco, carbs, RNA)","aspinwall, mike","building s8, -80 freezer, microfuge tubes & envelopes"
+2014-04-02,C03,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-04-02,C04,0.4351,37.6933,3,1.3053,113.08,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2014-04-02,C04,NA,NA,2,NA,NA,NA,upper canopy,"tissue chemistry (metabolites, proteins, rubisco, carbs, RNA)","aspinwall, mike","building s8, -80 freezer, microfuge tubes & envelopes"
+2014-04-02,C04,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-04-02,C05,0.6532,46.69,3,1.9595,140.07,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2014-04-02,C05,NA,NA,2,NA,NA,NA,upper canopy,"tissue chemistry (metabolites, proteins, rubisco, carbs, RNA)","aspinwall, mike","building s8, -80 freezer, microfuge tubes & envelopes"
+2014-04-02,C05,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-04-02,C06,0.3884,40.9367,3,1.1652,122.81,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2014-04-02,C06,NA,NA,2,NA,NA,NA,upper canopy,"tissue chemistry (metabolites, proteins, rubisco, carbs, RNA)","aspinwall, mike","building s8, -80 freezer, microfuge tubes & envelopes"
+2014-04-02,C06,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-04-02,C07,0.5749,45.17,3,1.7246,135.51,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2014-04-02,C07,NA,NA,2,NA,NA,NA,upper canopy,"tissue chemistry (metabolites, proteins, rubisco, carbs, RNA)","aspinwall, mike","building s8, -80 freezer, microfuge tubes & envelopes"
+2014-04-02,C07,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-04-02,C08,0.473,41.4367,3,1.419,124.31,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2014-04-02,C08,NA,NA,2,NA,NA,NA,upper canopy,"tissue chemistry (metabolites, proteins, rubisco, carbs, RNA)","aspinwall, mike","building s8, -80 freezer, microfuge tubes & envelopes"
+2014-04-02,C08,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-04-02,C09,0.5307,49.4633,3,1.5922,148.39,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2014-04-02,C09,NA,NA,2,NA,NA,NA,upper canopy,"tissue chemistry (metabolites, proteins, rubisco, carbs, RNA)","aspinwall, mike","building s8, -80 freezer, microfuge tubes & envelopes"
+2014-04-02,C09,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-04-02,C10,0.2804,28.2967,3,0.8411,84.89,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2014-04-02,C10,NA,NA,2,NA,NA,NA,upper canopy,"tissue chemistry (metabolites, proteins, rubisco, carbs, RNA)","aspinwall, mike","building s8, -80 freezer, microfuge tubes & envelopes"
+2014-04-02,C10,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-04-02,C11,0.5086,40.5267,3,1.5257,121.58,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2014-04-02,C11,NA,NA,2,NA,NA,NA,upper canopy,"tissue chemistry (metabolites, proteins, rubisco, carbs, RNA)","aspinwall, mike","building s8, -80 freezer, microfuge tubes & envelopes"
+2014-04-02,C11,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-04-02,C12,0.4894,38.2833,3,1.4682,114.85,NA,upper canopy,"monthly asat, amax and rdark","aspinwall, drake","dried, ground for C, N, and carbs"
+2014-04-02,C12,NA,NA,2,NA,NA,NA,upper canopy,"tissue chemistry (metabolites, proteins, rubisco, carbs, RNA)","aspinwall, mike","building s8, -80 freezer, microfuge tubes & envelopes"
+2014-04-02,C12,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-04-17,C01,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-04-17,C02,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-04-17,C03,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-04-17,C04,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-04-17,C05,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-04-17,C06,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-04-17,C07,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-04-17,C08,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-04-17,C09,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-04-17,C10,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-04-17,C11,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-04-17,C12,NA,NA,6,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-04-21,C01,53,0.62,1,0.62,53,NA,sun,water potential,"campany, courtney",dried/ground
+2014-04-21,C01,44.35,0.45,1,0.45,44.35,NA,shade,water potential,"campany, courtney",dried/ground
+2014-04-21,C01,61.21,0.8,1,0.8,61.21,NA,sun,water potential,"campany, courtney",dried/ground
+2014-04-21,C01,51.22,0.51,1,0.51,51.22,NA,shade,water potential,"campany, courtney",dried/ground
+2014-04-21,C02,62.17,0.78,1,0.78,62.17,NA,sun,water potential,"campany, courtney",dried/ground
+2014-04-21,C02,40.26,0.39,1,0.39,40.26,NA,shade,water potential,"campany, courtney",dried/ground
+2014-04-21,C02,37.63,0.44,1,0.44,37.63,NA,sun,water potential,"campany, courtney",dried/ground
+2014-04-21,C02,47.55,0.54,1,0.54,47.55,NA,shade,water potential,"campany, courtney",dried/ground
+2014-04-21,C03,42.35,0.52,1,0.52,42.35,NA,sun,water potential,"campany, courtney",dried/ground
+2014-04-21,C03,34.99,0.39,1,0.39,34.99,NA,shade,water potential,"campany, courtney",dried/ground
+2014-04-21,C03,49.34,0.66,1,0.66,49.34,NA,sun,water potential,"campany, courtney",dried/ground
+2014-04-21,C03,48.84,0.54,1,0.54,48.84,NA,shade,water potential,"campany, courtney",dried/ground
+2014-04-21,C04,40.85,0.55,1,0.55,40.85,NA,sun,water potential,"campany, courtney",dried/ground
+2014-04-21,C04,33.94,0.36,1,0.36,33.94,NA,shade,water potential,"campany, courtney",dried/ground
+2014-04-21,C04,40.88,0.66,1,0.66,40.88,NA,sun,water potential,"campany, courtney",dried/ground
+2014-04-21,C04,48.77,0.58,1,0.58,48.77,NA,shade,water potential,"campany, courtney",dried/ground
+2014-04-21,C05,50.24,0.76,1,0.76,50.24,NA,sun,water potential,"campany, courtney",dried/ground
+2014-04-21,C05,51.16,0.71,1,0.71,51.16,NA,shade,water potential,"campany, courtney",dried/ground
+2014-04-21,C05,46.52,0.75,1,0.75,46.52,NA,sun,water potential,"campany, courtney",dried/ground
+2014-04-21,C05,37.94,0.49,1,0.49,37.94,NA,shade,water potential,"campany, courtney",dried/ground
+2014-04-21,C06,43.76,0.52,1,0.52,43.76,NA,sun,water potential,"campany, courtney",dried/ground
+2014-04-21,C06,40.1,0.38,1,0.38,40.1,NA,shade,water potential,"campany, courtney",dried/ground
+2014-04-21,C06,31.07,0.38,1,0.38,31.07,NA,sun,water potential,"campany, courtney",dried/ground
+2014-04-21,C06,49.21,0.62,1,0.62,49.21,NA,shade,water potential,"campany, courtney",dried/ground
+2014-04-21,C07,48.05,0.74,1,0.74,48.05,NA,sun,water potential,"campany, courtney",dried/ground
+2014-04-21,C07,63.35,0.78,1,0.78,63.35,NA,shade,water potential,"campany, courtney",dried/ground
+2014-04-21,C07,42.93,0.72,1,0.72,42.93,NA,sun,water potential,"campany, courtney",dried/ground
+2014-04-21,C07,56.03,0.98,1,0.98,56.03,NA,shade,water potential,"campany, courtney",dried/ground
+2014-04-21,C08,60.6,0.77,1,0.77,60.6,NA,sun,water potential,"campany, courtney",dried/ground
+2014-04-21,C08,47.6,0.6,1,0.6,47.6,NA,shade,water potential,"campany, courtney",dried/ground
+2014-04-21,C08,37.58,0.45,1,0.45,37.58,NA,sun,water potential,"campany, courtney",dried/ground
+2014-04-21,C08,40.26,0.54,1,0.54,40.26,NA,shade,water potential,"campany, courtney",dried/ground
+2014-04-21,C09,61.99,0.89,1,0.89,61.99,NA,sun,water potential,"campany, courtney",dried/ground
+2014-04-21,C09,50.5,0.52,1,0.52,50.5,NA,shade,water potential,"campany, courtney",dried/ground
+2014-04-21,C09,39.82,0.57,1,0.57,39.82,NA,sun,water potential,"campany, courtney",dried/ground
+2014-04-21,C09,43.23,0.43,1,0.43,43.23,NA,shade,water potential,"campany, courtney",dried/ground
+2014-04-21,C10,47.04,0.43,1,0.43,47.04,NA,sun,water potential,"campany, courtney",dried/ground
+2014-04-21,C10,43.31,0.62,1,0.62,43.31,NA,shade,water potential,"campany, courtney",dried/ground
+2014-04-21,C10,35.5,0.36,1,0.36,35.5,NA,sun,water potential,"campany, courtney",dried/ground
+2014-04-21,C10,38.99,0.52,1,0.52,38.99,NA,shade,water potential,"campany, courtney",dried/ground
+2014-04-21,C11,49.36,0.82,1,0.82,49.36,NA,sun,water potential,"campany, courtney",dried/ground
+2014-04-21,C11,49.4,0.68,1,0.68,49.4,NA,shade,water potential,"campany, courtney",dried/ground
+2014-04-21,C11,43.61,0.74,1,0.74,43.61,NA,sun,water potential,"campany, courtney",dried/ground
+2014-04-21,C11,43.64,0.55,1,0.55,43.64,NA,shade,water potential,"campany, courtney",dried/ground
+2014-04-21,C12,47.72,0.77,1,0.77,47.72,NA,sun,water potential,"campany, courtney",dried/ground
+2014-04-21,C12,44.46,0.58,1,0.58,44.46,NA,shade,water potential,"campany, courtney",dried/ground
+2014-04-21,C12,43.17,0.7,1,0.7,43.17,NA,sun,water potential,"campany, courtney",dried/ground
+2014-04-21,C12,58.77,0.65,1,0.65,58.77,NA,shade,water potential,"campany, courtney",dried/ground
+2014-04-24,C01,NA,NA,28,NA,NA,NA,"38 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","37 leaf stored in -80 freezer for carbs, buidling s8"
+2014-04-24,C01,NA,NA,4,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-04-24,C02,NA,NA,28,NA,NA,NA,"39 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","38 leaf stored in -80 freezer for carbs, buidling s8"
+2014-04-24,C02,NA,NA,4,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-04-24,C03,NA,NA,28,NA,NA,NA,"40 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","39 leaf stored in -80 freezer for carbs, buidling s8"
+2014-04-24,C03,NA,NA,4,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-04-24,C04,NA,NA,28,NA,NA,NA,"41 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","40 leaf stored in -80 freezer for carbs, buidling s8"
+2014-04-24,C04,NA,NA,4,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-04-24,C05,NA,NA,28,NA,NA,NA,"42 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","41 leaf stored in -80 freezer for carbs, buidling s8"
+2014-04-24,C05,NA,NA,4,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-04-24,C06,NA,NA,28,NA,NA,NA,"43 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","42 leaf stored in -80 freezer for carbs, buidling s8"
+2014-04-24,C06,NA,NA,4,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-04-24,C07,NA,NA,28,NA,NA,NA,"44 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","43 leaf stored in -80 freezer for carbs, buidling s8"
+2014-04-24,C07,NA,NA,4,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-04-24,C08,NA,NA,28,NA,NA,NA,"45 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","44 leaf stored in -80 freezer for carbs, buidling s8"
+2014-04-24,C08,NA,NA,4,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-04-24,C09,NA,NA,28,NA,NA,NA,"46 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","45 leaf stored in -80 freezer for carbs, buidling s8"
+2014-04-24,C09,NA,NA,4,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-04-24,C10,NA,NA,28,NA,NA,NA,"47 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","46 leaf stored in -80 freezer for carbs, buidling s8"
+2014-04-24,C10,NA,NA,4,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-04-24,C11,NA,NA,28,NA,NA,NA,"48 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","47 leaf stored in -80 freezer for carbs, buidling s8"
+2014-04-24,C11,NA,NA,4,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-04-24,C12,NA,NA,28,NA,NA,NA,"49 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","48 leaf stored in -80 freezer for carbs, buidling s8"
+2014-04-24,C12,NA,NA,4,NA,NA,NA,upper canopy,leaf water potential,"aspinwall, drake, blackman",
+2014-05-13,C01,0.4477,43.7883,117,51.74040049,5139.288411,24.4173,mid canopy,leaf and branch respiration pre-girdling,drake,
+2014-05-13,C02,0.4211,44.8283,133,55.38128839,5954.297459,19.2843,mid canopy,leaf and branch respiration pre-girdling,drake,
+2014-05-13,C03,0.5223,45.475,77,40.55747246,3500.199208,15.8592,mid canopy,leaf and branch respiration pre-girdling,drake,
+2014-05-13,C04,0.5718,42.3717,45,26.05625395,1919.692004,8.9375,mid canopy,leaf and branch respiration pre-girdling,drake,
+2014-05-13,C05,0.5889,42.9567,199,121.8575129,8533.62361,43.0418,mid canopy,leaf and branch respiration pre-girdling,drake,
+2014-05-13,C06,0.3598,32.8433,89,30.64831649,2933.957632,14.5557,mid canopy,leaf and branch respiration pre-girdling,drake,
+2014-05-13,C07,0.8148,55.5983,48,39.27765659,2677.581862,10.5284,mid canopy,leaf and branch respiration pre-girdling,drake,
+2014-05-13,C08,0.5349,42.6967,110,59.84648934,4710.797455,20.6044,mid canopy,leaf and branch respiration pre-girdling,drake,
+2014-05-13,C09,0.7198,60.01,35,25.79364328,2092.880666,9.7536,mid canopy,leaf and branch respiration pre-girdling,drake,
+2014-05-13,C10,0.4103,29.1167,121,47.51106047,3532.565377,25.8422,mid canopy,leaf and branch respiration pre-girdling,drake,
+2014-05-13,C11,0.5842,43.5267,136,81.73701669,5930.565195,31.2203,mid canopy,leaf and branch respiration pre-girdling,drake,
+2014-05-13,C12,0.556,39.5583,187,103.8064847,7385.291483,40.0979,mid canopy,leaf and branch respiration pre-girdling,drake,
+2014-05-14,C01,NA,NA,28,NA,NA,NA,"50 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","49 leaf stored in -80 freezer for carbs, buidling s8"
+2014-05-14,C02,NA,NA,28,NA,NA,NA,"51 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","50 leaf stored in -80 freezer for carbs, buidling s8"
+2014-05-14,C03,NA,NA,28,NA,NA,NA,"52 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","51 leaf stored in -80 freezer for carbs, buidling s8"
+2014-05-14,C04,NA,NA,28,NA,NA,NA,"53 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","52 leaf stored in -80 freezer for carbs, buidling s8"
+2014-05-14,C05,NA,NA,28,NA,NA,NA,"54 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","53 leaf stored in -80 freezer for carbs, buidling s8"
+2014-05-14,C06,NA,NA,28,NA,NA,NA,"55 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","54 leaf stored in -80 freezer for carbs, buidling s8"
+2014-05-14,C07,NA,NA,28,NA,NA,NA,"56 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","55 leaf stored in -80 freezer for carbs, buidling s8"
+2014-05-14,C08,NA,NA,28,NA,NA,NA,"57 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","56 leaf stored in -80 freezer for carbs, buidling s8"
+2014-05-14,C09,NA,NA,28,NA,NA,NA,"58 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","57 leaf stored in -80 freezer for carbs, buidling s8"
+2014-05-14,C10,NA,NA,28,NA,NA,NA,"59 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","58 leaf stored in -80 freezer for carbs, buidling s8"
+2014-05-14,C11,NA,NA,28,NA,NA,NA,"60 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","59 leaf stored in -80 freezer for carbs, buidling s8"
+2014-05-14,C12,NA,NA,28,NA,NA,NA,"61 upper, 2 lower, 8 time points",diurnal carbohydrate patterns,"pfautsch, sebastian","60 leaf stored in -80 freezer for carbs, buidling s8"
+2014-05-16,C01,0.511,44.0734,61,31.17,2688.48,NA,"20 lower, 20 mid, 20 upper, pre-girdling","pre-girdling sla, carbs",aspinwall et al.,"samples dried, weighed, stored"
+2014-05-16,C02,0.404,37.748,60,24.24,2264.88,NA,"20 lower, 20 mid, 20 upper, pre-girdling","pre-girdling sla, carbs",aspinwall et al.,"samples dried, weighed, stored"
+2014-05-16,C03,0.5337,41.9617,59,31.49,2475.74,NA,"20 lower, 20 mid, 20 upper, pre-girdling","pre-girdling sla, carbs",aspinwall et al.,"samples dried, weighed, stored"
+2014-05-16,C04,0.4819,34.8271,59,28.43,2054.8,NA,"20 lower, 20 mid, 20 upper, pre-girdling","pre-girdling sla, carbs",aspinwall et al.,"samples dried, weighed, stored"
+2014-05-16,C05,0.4842,34.7335,60,29.05,2084.01,NA,"20 lower, 20 mid, 20 upper, pre-girdling","pre-girdling sla, carbs",aspinwall et al.,"samples dried, weighed, stored"
+2014-05-16,C06,0.4478,34.234,60,26.87,2054.04,NA,"20 lower, 20 mid, 20 upper, pre-girdling","pre-girdling sla, carbs",aspinwall et al.,"samples dried, weighed, stored"
+2014-05-16,C07,0.8127,52.6689,56,45.51,2949.46,NA,"20 lower, 20 mid, 20 upper, pre-girdling","pre-girdling sla, carbs",aspinwall et al.,"samples dried, weighed, stored"
+2014-05-16,C08,0.642,46.1388,60,38.52,2768.33,NA,"20 lower, 20 mid, 20 upper, pre-girdling","pre-girdling sla, carbs",aspinwall et al.,"samples dried, weighed, stored"
+2014-05-16,C09,0.5608,44.5927,59,33.09,2630.97,NA,"20 lower, 20 mid, 20 upper, pre-girdling","pre-girdling sla, carbs",aspinwall et al.,"samples dried, weighed, stored"
+2014-05-16,C10,0.3982,32.1644,61,24.29,1962.03,NA,"20 lower, 20 mid, 20 upper, pre-girdling","pre-girdling sla, carbs",aspinwall et al.,"samples dried, weighed, stored"
+2014-05-16,C11,0.5718,35.3248,61,34.88,2154.81,NA,"20 lower, 20 mid, 20 upper, pre-girdling","pre-girdling sla, carbs",aspinwall et al.,"samples dried, weighed, stored"
+2014-05-16,C12,0.5813,36.1187,60,34.88,2167.12,NA,"20 lower, 20 mid, 20 upper, pre-girdling","pre-girdling sla, carbs",aspinwall et al.,"samples dried, weighed, stored"
+2014-05-16,C01,NA,NA,9,NA,NA,NA,"3 upper, 3 mid, 3 lower","sample archiving for carbs, sla pre-girdling",aspinwall,
+2014-05-16,C02,NA,NA,9,NA,NA,NA,"3 upper, 3 mid, 3 lower","sample archiving for carbs, sla pre-girdling",aspinwall,
+2014-05-16,C03,NA,NA,9,NA,NA,NA,"3 upper, 3 mid, 3 lower","sample archiving for carbs, sla pre-girdling",aspinwall,
+2014-05-16,C04,NA,NA,9,NA,NA,NA,"3 upper, 3 mid, 3 lower","sample archiving for carbs, sla pre-girdling",aspinwall,
+2014-05-16,C05,NA,NA,9,NA,NA,NA,"3 upper, 3 mid, 3 lower","sample archiving for carbs, sla pre-girdling",aspinwall,
+2014-05-16,C06,NA,NA,9,NA,NA,NA,"3 upper, 3 mid, 3 lower","sample archiving for carbs, sla pre-girdling",aspinwall,
+2014-05-16,C07,NA,NA,9,NA,NA,NA,"3 upper, 3 mid, 3 lower","sample archiving for carbs, sla pre-girdling",aspinwall,
+2014-05-16,C08,NA,NA,9,NA,NA,NA,"3 upper, 3 mid, 3 lower","sample archiving for carbs, sla pre-girdling",aspinwall,
+2014-05-16,C09,NA,NA,9,NA,NA,NA,"3 upper, 3 mid, 3 lower","sample archiving for carbs, sla pre-girdling",aspinwall,
+2014-05-16,C10,NA,NA,9,NA,NA,NA,"3 upper, 3 mid, 3 lower","sample archiving for carbs, sla pre-girdling",aspinwall,
+2014-05-16,C11,NA,NA,9,NA,NA,NA,"3 upper, 3 mid, 3 lower","sample archiving for carbs, sla pre-girdling",aspinwall,
+2014-05-16,C12,NA,NA,9,NA,NA,NA,"3 upper, 3 mid, 3 lower","sample archiving for carbs, sla pre-girdling",aspinwall,
+2014-05-22,C01,0.545,50.8717,194,106.7504912,9847.809207,38.5886,mid canopy,leaf and branch respiration post-girdling,drake,
+2014-05-22,C02,0.3382,34.4867,141,49.16618494,4858.121647,15.8146,mid canopy,leaf and branch respiration post-girdling,drake,
+2014-05-22,C03,0.5416,46.8217,50,27.67295862,2344.679538,11.9219,mid canopy,leaf and branch respiration post-girdling,drake,
+2014-05-22,C04,0.6193,45.0467,71,42.16713448,3182.122515,13.6773,mid canopy,leaf and branch respiration post-girdling,drake,
+2014-05-22,C05,0.6898,44.565,144,94.4112248,6403.886668,26.4429,mid canopy,leaf and branch respiration post-girdling,drake,
+2014-05-22,C06,0.4889,42.4117,80,41.52821303,3379.366663,20.1353,mid canopy,leaf and branch respiration post-girdling,drake,
+2014-05-22,C07,0.9103,57.0133,56,50.32935795,3200.510658,18.5288,mid canopy,leaf and branch respiration post-girdling,drake,
+2014-05-22,C08,0.8016,53.2767,102,78.05356181,5444.057202,22.9587,mid canopy,leaf and branch respiration post-girdling,drake,
+2014-05-22,C09,0.5477,50.1617,85,45.16003803,4246.03162,14.9887,mid canopy,leaf and branch respiration post-girdling,drake,
+2014-05-22,C10,0.3223,30.135,80,25.23748687,2403.827607,11.4292,mid canopy,leaf and branch respiration post-girdling,drake,
+2014-05-22,C11,0.6042,40.6733,80,48.35417115,3272.677987,19.5614,mid canopy,leaf and branch respiration post-girdling,drake,
+2014-05-22,C12,0.6749,49.7,141,95.49562116,7029.527124,32.7925,mid canopy,leaf and branch respiration post-girdling,drake,
+2014-05-26,C01,NA,NA,9,NA,NA,NA,"3 upper, 3 mid, 3 lower","sample archiving for carbs, sla post-girdling",aspinwall,
+2014-05-26,C02,NA,NA,9,NA,NA,NA,"3 upper, 3 mid, 3 lower","sample archiving for carbs, sla post-girdling",aspinwall,
+2014-05-26,C03,NA,NA,9,NA,NA,NA,"3 upper, 3 mid, 3 lower","sample archiving for carbs, sla post-girdling",aspinwall,
+2014-05-26,C04,NA,NA,9,NA,NA,NA,"3 upper, 3 mid, 3 lower","sample archiving for carbs, sla post-girdling",aspinwall,
+2014-05-26,C05,NA,NA,9,NA,NA,NA,"3 upper, 3 mid, 3 lower","sample archiving for carbs, sla post-girdling",aspinwall,
+2014-05-26,C06,NA,NA,9,NA,NA,NA,"3 upper, 3 mid, 3 lower","sample archiving for carbs, sla post-girdling",aspinwall,
+2014-05-26,C07,NA,NA,9,NA,NA,NA,"3 upper, 3 mid, 3 lower","sample archiving for carbs, sla post-girdling",aspinwall,
+2014-05-26,C08,NA,NA,9,NA,NA,NA,"3 upper, 3 mid, 3 lower","sample archiving for carbs, sla post-girdling",aspinwall,
+2014-05-26,C09,NA,NA,9,NA,NA,NA,"3 upper, 3 mid, 3 lower","sample archiving for carbs, sla post-girdling",aspinwall,
+2014-05-26,C10,NA,NA,9,NA,NA,NA,"3 upper, 3 mid, 3 lower","sample archiving for carbs, sla post-girdling",aspinwall,
+2014-05-26,C11,NA,NA,9,NA,NA,NA,"3 upper, 3 mid, 3 lower","sample archiving for carbs, sla post-girdling",aspinwall,
+2014-05-26,C12,NA,NA,9,NA,NA,NA,"3 upper, 3 mid, 3 lower","sample archiving for carbs, sla post-girdling",aspinwall,
