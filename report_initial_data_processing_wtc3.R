@@ -343,6 +343,13 @@ write.csv(data.all, "processed_data/data_all.csv", row.names=FALSE) # unit of re
 #' 	
 #' <!-- #---------------------------------------------------------------------------------------------------------------- -->	
 #' <!-- #---------------------------------------------------------------------------------------------------------------- -->	
+#' #### Step 11: Read and process the leaf count and leaf size dataset, return a dataframe of gapfilled LA data before the flux measurement starts
+calculate.LA()
+write.csv(data.all, "processed_data/data_all.csv", row.names=FALSE) # unit of respiration rates: gC per gC plant per day	
+#' 
+#' <!-- #---------------------------------------------------------------------------------------------------------------- -->	
+#' <!-- #---------------------------------------------------------------------------------------------------------------- -->	
+
 #' #### Step 11: Apply Data Assimilation (DA) with the estimates of WTC-3 carbon pools and fluxes to predict all seven parameters (*k*, *Y*, *a~f~*, *a~w~*, *a~r~*, *s~f~*, *s~r~*), with the aim to quantify the main C balance processes (respiration, carbohydrate utilisation, allocation and turnover) in response to elevated temperature and drought on Eucalyptus tereticornis trees grown in WTCs.     	
 #' 	
 #' Hypothesis 1: NSC vs. Temperature	

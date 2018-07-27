@@ -11,8 +11,8 @@ height.dia = data.frame(chamber = rep(chambers, each = length(unique(height.dia.
                         # W_treatment = character(length(chambers) * length(unique(height.dia.raw$DateTime))),
                         diameter = numeric(length(chambers) * length(unique(height.dia.raw$DateTime))),
                         height = numeric(length(chambers) * length(unique(height.dia.raw$DateTime))), stringsAsFactors=FALSE)
-height.dia = subset(height.dia, Date >= as.Date("2013-09-17") & Date <= as.Date("2014-05-27"))
-# height.dia = subset(height.dia, Date >= as.Date("2013-09-17") & Date <= as.Date("2014-02-12"))
+# height.dia = subset(height.dia, Date >= as.Date("2013-09-17") & Date <= as.Date("2014-05-27"))
+height.dia = subset(height.dia, Date >= as.Date("2012-11-29") & Date <= as.Date("2014-05-27"))
 
 for(i in 1:length(chambers)) {
   height.dia.sub = subset(height.dia.raw, chamber %in% as.factor(chambers[i]))
@@ -32,16 +32,16 @@ for(i in 1:length(chambers)) {
   # summary(D.15)
   eq.D = function(x){coefficients(D.15)[1] + coefficients(D.15)[2] * x }
   
-  height.dia.sub$X15 = eq.D(height.dia.sub$X65)
-  height.dia.sub = subset(height.dia.sub, DateTime >= as.Date("2013-09-14") & DateTime <= as.Date("2014-05-27"))
-  height.dia.sub = height.dia.sub[!is.na(height.dia.sub$X65),]
-  # keeps <- c("chamber", "DateTime", "T_treatment", "Water_treatment", "X15", "Plant_height")
+  index = complete.cases(height.dia.sub$X15)
+  height.dia.sub$X15[!index] = eq.D(height.dia.sub$X65[!index])
+  
+  # height.dia.sub$X15 = eq.D(height.dia.sub$X65)
+  # height.dia.sub = subset(height.dia.sub, DateTime >= as.Date("2013-09-14") & DateTime <= as.Date("2014-05-27"))
+  # height.dia.sub = height.dia.sub[!is.na(height.dia.sub$X65),]
   keeps <- c("chamber", "DateTime", "T_treatment", "X15", "Plant_height")
   height.dia.sub = height.dia.sub[ , keeps, drop = FALSE]
-  # names(height.dia.sub) <- c("chamber","Date","T_treatment","W_treatment","diameter","height")
   names(height.dia.sub) <- c("chamber","Date","T_treatment","diameter","height")
   height.dia.sub$T_treatment = as.character(height.dia.sub$T_treatment)
-  # height.dia.sub$W_treatment = as.character(height.dia.sub$W_treatment)
   
   # height.dia[(1+(i-1)*length(unique(height.dia$Date))) : (i*length(unique(height.dia$Date))), 
   #            c("T_treatment","W_treatment","diameter","height")] = height.dia.sub[,c("T_treatment","W_treatment","diameter","height")]
@@ -59,6 +59,7 @@ height.dia$T_treatment = as.factor(height.dia$T_treatment)
 # names(height.dia.final)[4:7] = c("height", "diameter", "height_SE", "diameter_SE")
 height.dia.final <- summaryBy(height+diameter ~ Date+T_treatment, data=height.dia, FUN=c(mean,standard.error))
 names(height.dia.final)[3:6] = c("height", "diameter", "height_SE", "diameter_SE")
+height.dia.final = subset(height.dia.final, Date >= as.Date("2012-12-12") & Date <= as.Date("2014-05-27"))
 
 #----------------------------------------------------------------------------------------------------------------
 #----------------------------------------------------------------------------------------------------------------

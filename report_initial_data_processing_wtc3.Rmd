@@ -127,18 +127,34 @@ write.csv(tnc.partitioning, file = "processed_data/tnc_partitioning_data.csv", r
 <!-- #---------------------------------------------------------------------------------------------------------------- -->
 <!-- #---------------------------------------------------------------------------------------------------------------- -->
    
-#### Step 3: Read and process GPP and R~above~ (aboveground respiration) data   
+#### Step 3: Read the modeled GPP data   
 
-##### Partitioning CO~2~ fluxes into GPP and R~above~
-Partitioning of the hourly net CO~2~ fluxes into the components of GPP and R~above~ were done using a technique common to eddy-covariance research (Reichstein et al. 2005); described thoroughly in Drake et al. (2016, 2017-in preparation). We assumed GPP to be zero at night when PPFD = 0, indicating the measured net C flux in such conditions was used as the measure of R~above~. We utilized the direct measurements of whole-canopy R~above~ and its temperature dependence at night to predict R~above~ for each hourly measurement as a function of air temperature. We then calculated GPP as the sum of the measured net CO~2~ flux and the predicted R~above~, given the measured air temperature.    
+##### Model canopy scale GPP from the leaf scale measurements of photosynthetic parameters using MAESPA
 
 ##### Data used: 
-1. [WTC_TEMP_CM_WTCFLUX_20130914-20140526_L2_V2.csv](https://hiev.uws.edu.au/data_files/115778)   
+1. Modelled daily C gain (GPP) from Dushan's analysis    
 
-**Figure 3**: Daily GPP and aboveground respiration (R~above~) of Eucalyptus tereticornis trees for all 4 treatments. The grey bars represent standard errors for sample size, n=3.    
+**Figure 3**: Daily GPP of Eucalyptus tereticornis trees for both temperature treatments. The grey bars represent standard errors for sample size, n=3.    
 
-```{r GPP_Ra_LA_data, eval=TRUE, echo=FALSE, results="asis", message=FALSE, warning = FALSE, fig.path = "Figures/", fig.width = 9, fig.height = 6}
-source('R/GPP_Ra_LA_data.R')
+```{r GPP_data_total, eval=TRUE, echo=FALSE, results="asis", message=FALSE, warning = FALSE, fig.path = "Figures/", fig.width = 9, fig.height = 6}
+source('R/GPP_data_total.R')
+```
+
+
+<!-- #---------------------------------------------------------------------------------------------------------------- -->	
+<!-- #---------------------------------------------------------------------------------------------------------------- -->	
+#### Step 4: Read and process the leaf count and leaf size dataset, return a dataframe of gapfilled LA data before the flux measurement starts
+```{r calculate.LA, eval=TRUE, echo=FALSE, results="asis", message=FALSE, warning = FALSE}
+source('R/la_estimates.R')
+```
+
+
+<!-- #---------------------------------------------------------------------------------------------------------------- -->	
+<!-- #---------------------------------------------------------------------------------------------------------------- -->	
+#### Step 5: Process the met data from the start of the experiment (Dec 2012) to start of flux measurement (Sept 2013)   
+
+```{r process.met.data, eval=TRUE, echo=FALSE, results="asis", message=FALSE, warning = FALSE}
+source('R/process.met.data.R')
 ```
 
 
@@ -196,7 +212,6 @@ source('R/plot_biomass_data.R')
 ```
 
 
-
 <!-- #---------------------------------------------------------------------------------------------------------------- -->
 <!-- #---------------------------------------------------------------------------------------------------------------- -->
 #### Step 5: Process the leaf litter data   
@@ -216,7 +231,6 @@ source('R/leaf_litter_data.R')
 ```{r plot_leaf_litter_data, eval=TRUE, echo=FALSE, results="asis", message=FALSE, warning = FALSE, fig.path = "Figures/", fig.width = 9, fig.height = 3}
 source('R/plot_leaf_litter_data.R')
 ```
-
 
 
 <!-- #---------------------------------------------------------------------------------------------------------------- -->
@@ -246,7 +260,7 @@ source('R/plot_leaf_tnc_data.R')
 
 <!-- write the file of Daily GPP, Ra, LA and all mass pools (rootmass, woodmass, foliagemass, litterfall, tnc) data  -->
 ```{r save_data, eval=TRUE, echo=FALSE, results="asis", message=FALSE, warning = FALSE}
-write.csv(data.GPP.Ra.LA.mass, file = "processed_data/GPP_Ra_LA_mass.csv", row.names = FALSE)
+write.csv(data.GPP.LA.mass, file = "processed_data/GPP_LA_mass.csv", row.names = FALSE)
 ```
 
 
@@ -338,14 +352,17 @@ source('R/leafscaleR_vs_Tair_regression.R')
 source('R/daily_R_rates.R')
 ```
 
+
 <!-- write csv file of all daily data (with woodmass and rootmass partitioning, respiration rates for roots, wood and foliage -->
 ```{r save_all_data, eval=TRUE, echo=FALSE, results="asis", message=FALSE, warning = FALSE}
 write.csv(data.all, "processed_data/data_all.csv", row.names=FALSE) # unit of respiration rates: gC per gC plant per day
 ```
 
+
+
 <!-- #---------------------------------------------------------------------------------------------------------------- -->
 <!-- #---------------------------------------------------------------------------------------------------------------- -->
-#### Step 11: Apply Data Assimilation (DA) with the estimates of WTC-3 carbon pools and fluxes to predict all seven parameters (*k*, *Y*, *a~f~*, *a~w~*, *a~r~*, *s~f~*, *s~r~*), with the aim to quantify the main C balance processes (respiration, carbohydrate utilisation, allocation and turnover) in response to elevated temperature and drought on Eucalyptus tereticornis trees grown in WTCs.     
+#### Step 13: Apply Data Assimilation (DA) with the estimates of WTC-3 carbon pools and fluxes to predict all seven parameters (*k*, *Y*, *a~f~*, *a~w~*, *a~r~*, *s~f~*, *s~r~*), with the aim to quantify the main C balance processes (respiration, carbohydrate utilisation, allocation and turnover) in response to elevated temperature and drought on Eucalyptus tereticornis trees grown in WTCs.     
 
 Hypothesis 1: NSC vs. Temperature
   - As *Paul, Driscoll & Lawlor (1991)* have shown, low T generally results in accumulation of carbohydrates, indicating that growth or storage are limiting. Conversely, at high temperatures, sink demand is large and assimilate is depleted so there should be a marked higher utilization rate (*k*).    

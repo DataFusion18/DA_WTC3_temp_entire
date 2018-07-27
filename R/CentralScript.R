@@ -106,7 +106,7 @@ bic.cluster = list()
 
 start <- proc.time() # Start clock
 result <- clusterMap(cluster, CBM.wtc3, treat.group=c(list(list(1,2))),
-                     MoreArgs=list(chainLength=1000, no.param.par.var=2, with.storage=T, model.comparison=F, model.optimization=F))
+                     MoreArgs=list(chainLength=500, no.param.par.var=2, with.storage=T, model.comparison=F, model.optimization=F))
 
 # # Test whether parameters need to be seperate for both ambient and warmed treatments
 # result <- clusterMap(cluster, CBM.wtc3, treat.group=c(list(list(1,2,c(1,2)))),

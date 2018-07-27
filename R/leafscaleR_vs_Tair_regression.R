@@ -32,11 +32,13 @@ plots[[1]] = ggplot(resp.fol, aes(x=Date, y=Rmass.mean, group = T_treatment, col
 
 #----------------------------------------------------------------------------------------------------------------
 # import site weather data, take only Tair, format date stuff
-files <- list.files(path = "raw_data/WTC_TEMP_CM_WTCMET", pattern = ".csv", full.names = TRUE)
-temp <- lapply(files, fread, sep=",")
-Tair <- rbindlist( temp )
+# files <- list.files(path = "raw_data/WTC_TEMP_CM_WTCMET", pattern = ".csv", full.names = TRUE)
+# temp <- lapply(files, fread, sep=",")
+# Tair <- rbindlist( temp )
 
-Tair <- Tair[ , c("chamber","DateTime","Tair_al")]
+Tair <- read.csv("processed_data/met.la.data.all.04-10-2012.csv", header=T)
+
+Tair <- Tair[ , c("chamber","Date","DateTime","T_treatment","Tair_al")]
 Tair$Date <- as.Date(Tair$DateTime)
 
 # need to turn the datetime into hms
@@ -47,14 +49,14 @@ Tair$time <- format(Tair$DateTime, format='%H:%M:%S')
 
 # subset by Date range of experiment
 # Tair <- subset(Tair[, c("chamber","Date","time","Tair_al")], Date  >= "2013-09-17" & Date  <= "2014-05-26")
-Tair$chamber = as.factor(Tair$chamber)
-Tair = merge(Tair, unique(height.dia[,c("chamber","T_treatment")]), by="chamber")
+# Tair$chamber = as.factor(Tair$chamber)
+# Tair = merge(Tair, unique(height.dia[,c("chamber","T_treatment")]), by="chamber")
 
 ###----------------------------------------------------------------------------------------------------------------
 ###----------------------------------------------------------------------------------------------------------------
 # Temperature dependant parameter variability
 # Find the previous 3-day mean daily Tair
-Tair.sub = subset(Tair[, c("chamber","T_treatment","Date","time","Tair_al")], Date  >= "2013-09-14" & Date  <= "2014-05-26")
+Tair.sub = subset(Tair[, c("chamber","T_treatment","Date","time","Tair_al")], Date  >= "2012-12-09" & Date  <= "2014-05-26")
 
 prec.day.no = 3
 day = data.frame(Date = as.Date(1:(prec.day.no*(length(unique(Tair.sub$Date))-3)), origin=Sys.Date()), iter=numeric(prec.day.no*(length(unique(Tair.sub$Date))-3)),
@@ -75,7 +77,8 @@ write.csv(Tair.sum, file = "processed_data/Tair.csv", row.names = FALSE)
 
 # Merge Tair with other data set
 data.all = merge(data.all, Tair.sum, by=c("Date","T_treatment"), all=TRUE)
-
+# drops <- c("Tair")
+# data.all = data.all[ , !(names(data.all) %in% drops)]
 ###----------------------------------------------------------------------------------------------------------------
 ###----------------------------------------------------------------------------------------------------------------
 
@@ -217,17 +220,17 @@ do.call(grid.arrange,  plots)
 
 #----------------------------------------------------------------------------------------------------------------
 prec.day.no = 3
-day = data.frame(Date = as.Date(rep(as.Date("2013-09-17"):as.Date("2014-05-26"),prec.day.no)), iter=numeric(252*prec.day.no),
-                 Date.resp = as.Date(rep(as.Date("2013-09-17"):as.Date("2014-05-26"),prec.day.no)))
+day = data.frame(Date = as.Date(rep(as.Date("2012-12-12"):as.Date("2014-05-26"),prec.day.no)), iter=numeric(531*prec.day.no),
+                 Date.resp = as.Date(rep(as.Date("2012-12-12"):as.Date("2014-05-26"),prec.day.no)))
 day = day[with(day, order(Date.resp)), ]
-for (i in 1:252) {
+for (i in 1:531) {
   day$Date[(1+(i-1)*prec.day.no):(i*prec.day.no)] = as.Date((day$Date.resp[i*prec.day.no]-prec.day.no+1) : day$Date.resp[i*prec.day.no])
   day$iter[(1+(i-1)*prec.day.no):(i*prec.day.no)] = i
   # day$Date.resp[(1+(i-1)*prec.day.no):(i*prec.day.no)] = as.Date(unique(resp.fol$Date)[i])
 }
 Tair.sub = subset(Tair[, c("chamber","T_treatment","Date","time","Tair_al")], Date %in% day$Date)
-Tair.sub$repeats = ifelse(Tair.sub$Date %in% as.Date(c("2013-09-15","2014-05-26")),1,
-                          ifelse(Tair.sub$Date %in% as.Date(c("2013-09-16","2014-05-25")),2,3))
+Tair.sub$repeats = ifelse(Tair.sub$Date %in% as.Date(c("2012-12-10","2014-05-26")),1,
+                          ifelse(Tair.sub$Date %in% as.Date(c("2012-12-11","2014-05-25")),2,3))
 Tair.sub = Tair.sub[rep(seq(nrow(Tair.sub)), Tair.sub$repeats),]
 
 Tair.sub = unique(merge(Tair.sub, day, by="Date", allow.cartesian=TRUE))

@@ -7,7 +7,8 @@
 # This script calcualtes LogLikelihood to find the most accurate model
 logLikelihood.wtc3 <- function (no.param.par.var,data.set,output,with.storage,model.comparison) {
   logLi <- matrix(0, nrow=nrow(data.set), ncol = 1) # Initialising the logLi
-  data_count = sum(!is.na(data.set$LM)) + sum(!is.na(data.set$WM)) + sum(!is.na(data.set$RM)) + sum(!is.na(data.set$Ra)) + sum(!is.na(data.set$TNC_leaf)) + sum(!is.na(data.set$litter))
+  # data_count = sum(!is.na(data.set$LM)) + sum(!is.na(data.set$WM)) + sum(!is.na(data.set$RM)) + sum(!is.na(data.set$Ra)) + sum(!is.na(data.set$TNC_leaf)) + sum(!is.na(data.set$litter))
+  data_count = sum(!is.na(data.set$LM)) + sum(!is.na(data.set$WM)) + sum(!is.na(data.set$RM)) + sum(!is.na(data.set$TNC_leaf)) + sum(!is.na(data.set$litter))
   # data_count = sum(!is.na(data.set$LM)) + sum(!is.na(data.set$WM)) + sum(!is.na(data.set$RM)) + sum(!is.na(data.set$TNC_leaf)) + sum(!is.na(data.set$litter))
   # data_count = sum(!is.na(data.set$LM)) + sum(!is.na(data.set$WM)) + sum(!is.na(data.set$RM)) + sum(!is.na(data.set$litter))
   
@@ -24,11 +25,11 @@ logLikelihood.wtc3 <- function (no.param.par.var,data.set,output,with.storage,mo
       logLi[i] = logLi[i] - ((data_count/sum(!is.na(data.set$RM)))*(0.5*((output$Mroot[i] - data.set$RM[i])/data.set$RM_SE[i])^2 - log(data.set$RM_SE[i]) - log(2*pi)^0.5)) # multiplied by 2 to give extra weight
       # logLi[i] = logLi[i] - ((output$Mroot[i] - data.set$RM[i])/data.set$RM_SE[i])^2 - log(data.set$RM_SE[i]) - log(2*pi)^0.5 # multiplied by 20 to give extra weight
     }
-    if (i > 1) {
-      if (!is.na(data.set$Ra[i])) {
-        logLi[i] = logLi[i] - ((data_count/sum(!is.na(data.set$Ra)))*(0.5*((output$Rabove[i] - data.set$Ra[i]) / data.set$Ra_SE[i])^2 - log(data.set$Ra_SE[i]) - log(2*pi)^0.5))
-      }
-    }
+    # if (i > 1) {
+    #   if (!is.na(data.set$Ra[i])) {
+    #     logLi[i] = logLi[i] - ((data_count/sum(!is.na(data.set$Ra)))*(0.5*((output$Rabove[i] - data.set$Ra[i]) / data.set$Ra_SE[i])^2 - log(data.set$Ra_SE[i]) - log(2*pi)^0.5))
+    #   }
+    # }
     if (!is.null(data.set$litter)) {
       if (!is.na(data.set$litter[i])) {
         logLi[i] = logLi[i] - ((data_count/sum(!is.na(data.set$litter)))*(0.5*((output$Mlit[i] - data.set$litter[i])/data.set$litter_SE[i])^2 - log(data.set$litter_SE[i]) - log(2*pi)^0.5))
@@ -941,7 +942,8 @@ CBM.wtc3 <- function(chainLength, no.param.par.var, treat.group, with.storage, m
 #-----------------------------------------------------------------------------------------
 # Defining the model to iteratively calculate Cstorage, Cleaf, Cwood, Croot, Sleaf, Swood, Sroot
 model <- function (no.param,data.set,tnc.partitioning,Y,k,af,as,sf,sr) {
-  Mleaf = Mwood = Mroot = Mlit = Y.modelled = Rabove = c()
+  # Mleaf = Mwood = Mroot = Mlit = Y.modelled = Rabove = c()
+  Mleaf = Mwood = Mroot = Mlit = Y.modelled = c()
   Mleaf[1] <- data.set$LM[1]
   Mwood[1] <- data.set$WM[1]
   Mroot[1] <- data.set$RM[1]
@@ -965,7 +967,7 @@ model <- function (no.param,data.set,tnc.partitioning,Y,k,af,as,sf,sr) {
   Cwood[1] <- data.set$WM[1] - Swood[1]
   Croot[1] <- data.set$RM[1] - Sroot[1]
   
-  Rabove[1] = data.set$Ra[1]
+  # Rabove[1] = data.set$Ra[1]
   Rm[1] = data.set$Rd.foliage.mean[1]*Mleaf[1] + data.set$Rd.stem.mean[1]*Mwood[1]*data.set$SMratio[1] +
     data.set$Rd.branch.mean[1]*Mwood[1]*data.set$BMratio[1] +
     data.set$Rd.fineroot.mean[1]*Mroot[1]*data.set$FRratio[1] + data.set$Rd.intermediateroot.mean[1]*Mroot[1]*data.set$IRratio[1] +
@@ -1022,8 +1024,8 @@ model <- function (no.param,data.set,tnc.partitioning,Y,k,af,as,sf,sr) {
     # Y.modelled[i] = Y.i
     # Rabove[i] = data.set$Rd.foliage.mean[i-1]*Mleaf[i-1] + data.set$Rd.stem.mean[i-1]*Mwood[i-1]*data.set$SMratio[i-1] + data.set$Rd.branch.mean[i-1]*Mwood[i-1]*data.set$BMratio[i-1] +
     #   Y.i*(Mleaf[i]-Mleaf[i-1] + Mwood[i]-Mwood[i-1])
-    Rabove[i] = data.set$Rd.foliage.mean[i]*Mleaf[i] + data.set$Rd.stem.mean[i]*Mwood[i]*data.set$SMratio[i] + data.set$Rd.branch.mean[i]*Mwood[i]*data.set$BMratio[i] +
-      Y.i*(Mleaf[i]-Mleaf[i-1] + Mwood[i]-Mwood[i-1])
+    # Rabove[i] = data.set$Rd.foliage.mean[i]*Mleaf[i] + data.set$Rd.stem.mean[i]*Mwood[i]*data.set$SMratio[i] + data.set$Rd.branch.mean[i]*Mwood[i]*data.set$BMratio[i] +
+    #   Y.i*(Mleaf[i]-Mleaf[i-1] + Mwood[i]-Mwood[i-1])
     Mlit[i] <- sf.i*Cleaf[i] # foliage litter fall
   }
   # Rm[i] = data.set$Rd.foliage.mean[i]*Mleaf[i] + data.set$Rd.stem.mean[i]*Mwood[i]*data.set$SMratio[i] + 
@@ -1032,7 +1034,8 @@ model <- function (no.param,data.set,tnc.partitioning,Y,k,af,as,sf,sr) {
   #   data.set$Rd.coarseroot.mean[i]*Mroot[i]*data.set$CRratio[i] + data.set$Rd.boleroot.mean[i]*Mroot[i]*data.set$BRratio[i]
   
   Mlit = cumsum(Mlit)
-  output = data.frame(Cstorage,Mleaf,Mwood,Mroot,Mlit,Sleaf,Rm,Rabove)
+  # output = data.frame(Cstorage,Mleaf,Mwood,Mroot,Mlit,Sleaf,Rm,Rabove)
+  output = data.frame(Cstorage,Mleaf,Mwood,Mroot,Mlit,Sleaf,Rm)
   
   return(output)
 }
@@ -1040,7 +1043,8 @@ model <- function (no.param,data.set,tnc.partitioning,Y,k,af,as,sf,sr) {
 #----------------------------------------------------------------------------------------------------------------
 # Defining the model to iteratively calculate Cstorage, Cleaf, Cwood, Croot, Sleaf, Swood, Sroot
 model.monthly <- function (data.set,j,tnc.partitioning,Y,k,af,as,sf,sr) {
-  Mleaf = Mwood = Mroot = Mlit = Rabove = c()
+  # Mleaf = Mwood = Mroot = Mlit = Rabove = c()
+  Mleaf = Mwood = Mroot = Mlit = c()
   Mleaf[1] <- data.set$LM[1]
   Mwood[1] <- data.set$WM[1]
   Mroot[1] <- data.set$RM[1]
@@ -1060,7 +1064,7 @@ model.monthly <- function (data.set,j,tnc.partitioning,Y,k,af,as,sf,sr) {
   Cwood[1] <- data.set$WM[1] - Swood[1]
   Croot[1] <- data.set$RM[1] - Sroot[1]
   
-  Rabove[1] = data.set$Ra[1]
+  # Rabove[1] = data.set$Ra[1]
   Rm[1] = data.set$Rd.foliage.mean[1]*Mleaf[1] + data.set$Rd.stem.mean[1]*Mwood[1]*data.set$SMratio[1] +
     data.set$Rd.branch.mean[1]*Mwood[1]*data.set$BMratio[1] +
     data.set$Rd.fineroot.mean[1]*Mroot[1]*data.set$FRratio[1] + data.set$Rd.intermediateroot.mean[1]*Mroot[1]*data.set$IRratio[1] +
@@ -1098,8 +1102,8 @@ model.monthly <- function (data.set,j,tnc.partitioning,Y,k,af,as,sf,sr) {
     
     # Rabove[i] = data.set$Rd.foliage.mean[i]*Mleaf[i] + data.set$Rd.stem.mean[i]*Mwood[i]*data.set$SMratio[i] + data.set$Rd.branch.mean[i]*Mwood[i]*data.set$BMratio[i] +
     #   Y[(i-1)-(j[i-1])]*(Mleaf[i]-Mleaf[i-1] + Mwood[i]-Mwood[i-1])
-    Rabove[i] = data.set$Rd.foliage.mean[i]*Mleaf[i] + data.set$Rd.stem.mean[i]*Mwood[i]*data.set$SMratio[i] + data.set$Rd.branch.mean[i]*Mwood[i]*data.set$BMratio[i] +
-      Y[(i-1)-(j[i-1])]*(Mleaf[i]-Mleaf[i-1] + Mwood[i]-Mwood[i-1])
+    # Rabove[i] = data.set$Rd.foliage.mean[i]*Mleaf[i] + data.set$Rd.stem.mean[i]*Mwood[i]*data.set$SMratio[i] + data.set$Rd.branch.mean[i]*Mwood[i]*data.set$BMratio[i] +
+    #   Y[(i-1)-(j[i-1])]*(Mleaf[i]-Mleaf[i-1] + Mwood[i]-Mwood[i-1])
     Mlit[i] <- sf[(i-1)-(j[i-1])]*Cleaf[i] # foliage litter fall
   }
   # Rm[i] = data.set$Rd.foliage.mean[i]*Mleaf[i] + data.set$Rd.stem.mean[i]*Mwood[i]*data.set$SMratio[i] + 
@@ -1108,7 +1112,8 @@ model.monthly <- function (data.set,j,tnc.partitioning,Y,k,af,as,sf,sr) {
   #   data.set$Rd.coarseroot.mean[i]*Mroot[i]*data.set$CRratio[i] + data.set$Rd.boleroot.mean[i]*Mroot[i]*data.set$BRratio[i]
   
   Mlit = cumsum(Mlit)
-  output = data.frame(Cstorage,Mleaf,Mwood,Mroot,Mlit,Sleaf,Rm,Rabove)
+  # output = data.frame(Cstorage,Mleaf,Mwood,Mroot,Mlit,Sleaf,Rm,Rabove)
+  output = data.frame(Cstorage,Mleaf,Mwood,Mroot,Mlit,Sleaf,Rm)
   
   return(output)
 }
@@ -1129,13 +1134,14 @@ model.monthly <- function (data.set,j,tnc.partitioning,Y,k,af,as,sf,sr) {
 
 # Defining the model to iteratively calculate Cleaf, Cwood, Croot
 model.without.storage <- function (no.param,data.set,Y,af,as,sf,sr) {
-  Mleaf = Mwood = Mroot = Mlit = Rm = Y.modelled = Rabove = c()
+  # Mleaf = Mwood = Mroot = Mlit = Rm = Y.modelled = Rabove = c()
+  Mleaf = Mwood = Mroot = Mlit = Rm = Y.modelled = c()
   Mleaf[1] <- data.set$LM[1]
   Mwood[1] <- data.set$WM[1]
   Mroot[1] <- data.set$RM[1]
   Mlit[1] <- data.set$litter[1]
   
-  Rabove[1] = data.set$Ra[1]
+  # Rabove[1] = data.set$Ra[1]
   Rm[1] = data.set$Rd.foliage.mean[1]*Mleaf[1] + data.set$Rd.stem.mean[1]*Mwood[1]*data.set$SMratio[1] +
     data.set$Rd.branch.mean[1]*Mwood[1]*data.set$BMratio[1] +
     data.set$Rd.fineroot.mean[1]*Mroot[1]*data.set$FRratio[1] + data.set$Rd.intermediateroot.mean[1]*Mroot[1]*data.set$IRratio[1] +
@@ -1169,11 +1175,12 @@ model.without.storage <- function (no.param,data.set,Y,af,as,sf,sr) {
     Mroot[i] <- Mroot[i-1] + (data.all$GPP[i-1] - Rm[i-1]) * (1-af.i-as.i)*(1-Y.i) - sr.i*Mroot[i-1]
     
     # Y.modelled[i] = Y.i
-    Rabove[i] = data.set$Rd.foliage.mean[i-1]*Mleaf[i-1] + data.set$Rd.stem.mean[i-1]*Mwood[i-1]*data.set$SMratio[i-1] + data.set$Rd.branch.mean[i-1]*Mwood[i-1]*data.set$BMratio[i-1] +
-      Y.i*(Mleaf[i]-Mleaf[i-1] + Mwood[i]-Mwood[i-1])
+    # Rabove[i] = data.set$Rd.foliage.mean[i-1]*Mleaf[i-1] + data.set$Rd.stem.mean[i-1]*Mwood[i-1]*data.set$SMratio[i-1] + data.set$Rd.branch.mean[i-1]*Mwood[i-1]*data.set$BMratio[i-1] +
+    #   Y.i*(Mleaf[i]-Mleaf[i-1] + Mwood[i]-Mwood[i-1])
   }
   Mlit = cumsum(Mlit)
-  output = data.frame(Mleaf,Mwood,Mroot,Mlit,Rm,Rabove)
+  # output = data.frame(Mleaf,Mwood,Mroot,Mlit,Rm,Rabove)
+  output = data.frame(Mleaf,Mwood,Mroot,Mlit,Rm)
   return(output)
 }
 
@@ -1183,13 +1190,14 @@ model.without.storage <- function (no.param,data.set,Y,af,as,sf,sr) {
 
 # Defining the model to iteratively calculate Cleaf, Cwood, Croot
 model.without.storage.monthly <- function (data.set,j,Y,af,as,sf,sr) {
-  Mleaf = Mwood = Mroot = Mlit = Rm = Rabove = c()
+  # Mleaf = Mwood = Mroot = Mlit = Rm = Rabove = c()
+  Mleaf = Mwood = Mroot = Mlit = Rm = c()
   Mleaf[1] <- data.set$LM[1]
   Mwood[1] <- data.set$WM[1]
   Mroot[1] <- data.set$RM[1]
   Mlit[1] <- data.set$litter[1]
   
-  Rabove[1] = data.set$Ra[1]
+  # Rabove[1] = data.set$Ra[1]
   Rm[1] = data.set$Rd.foliage.mean[1]*Mleaf[1] + data.set$Rd.stem.mean[1]*Mwood[1]*data.set$SMratio[1] +
     data.set$Rd.branch.mean[1]*Mwood[1]*data.set$BMratio[1] +
     data.set$Rd.fineroot.mean[1]*Mroot[1]*data.set$FRratio[1] + data.set$Rd.intermediateroot.mean[1]*Mroot[1]*data.set$IRratio[1] +
@@ -1219,8 +1227,8 @@ model.without.storage.monthly <- function (data.set,j,Y,af,as,sf,sr) {
     Mwood[i] <- Mwood[i-1] + (data.all$GPP[i-1] - Rm[i-1]) *as[(i-1)-(j[i-1])]*(1-Y[(i-1)-(j[i-1])])
     Mroot[i] <- Mroot[i-1] + (data.all$GPP[i-1] - Rm[i-1]) *(1-af[(i-1)-(j[i-1])]-as[(i-1)-(j[i-1])])*(1-Y[(i-1)-(j[i-1])]) - sr[(i-1)-(j[i-1])]*Mroot[i-1]
     
-    Rabove[i] = data.set$Rd.foliage.mean[i]*Mleaf[i] + data.set$Rd.stem.mean[i]*Mwood[i]*data.set$SMratio[i] + data.set$Rd.branch.mean[i]*Mwood[i]*data.set$BMratio[i] +
-      Y[(i-1)-(j[i-1])]*(Mleaf[i]-Mleaf[i-1] + Mwood[i]-Mwood[i-1])
+    # Rabove[i] = data.set$Rd.foliage.mean[i]*Mleaf[i] + data.set$Rd.stem.mean[i]*Mwood[i]*data.set$SMratio[i] + data.set$Rd.branch.mean[i]*Mwood[i]*data.set$BMratio[i] +
+    #   Y[(i-1)-(j[i-1])]*(Mleaf[i]-Mleaf[i-1] + Mwood[i]-Mwood[i-1])
   }
   # Rm[i] = data.set$Rd.foliage.mean[i]*Mleaf[i] + data.set$Rd.stem.mean[i]*Mwood[i]*data.set$SMratio[i] + 
   #   data.set$Rd.branch.mean[i]*Mwood[i]*data.set$BMratio[i] + 
@@ -1228,7 +1236,8 @@ model.without.storage.monthly <- function (data.set,j,Y,af,as,sf,sr) {
   #   data.set$Rd.coarseroot.mean[i]*Mroot[i]*data.set$CRratio[i] + data.set$Rd.boleroot.mean[i]*Mroot[i]*data.set$BRratio[i]
   
   Mlit = cumsum(Mlit)
-  output = data.frame(Mleaf,Mwood,Mroot,Mlit,Rm,Rabove)
+  # output = data.frame(Mleaf,Mwood,Mroot,Mlit,Rm,Rabove)
+  output = data.frame(Mleaf,Mwood,Mroot,Mlit,Rm)
   return(output)
 }
 

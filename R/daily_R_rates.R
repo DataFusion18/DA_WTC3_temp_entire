@@ -51,23 +51,25 @@ rd15.root$rd15.intermediateroot = exp ((log(rd15.root$rd15.coarseroot) + log(rd1
 
 
 #----------------------------------------------------------------------------------------------------------------
-# import site weather data, take only soil temperatures at 10 cm depth, format date stuff
-files <- list.files(path = "raw_data/WTC_TEMP_CM_WTCMET", pattern = ".csv", full.names = TRUE)
-temp <- lapply(files, fread, sep=",")
-met.data <- rbindlist( temp )
+# import site weather data, take only soil temperatures at 10 cm depth
+# files <- list.files(path = "raw_data/WTC_TEMP_CM_WTCMET", pattern = ".csv", full.names = TRUE)
+# temp <- lapply(files, fread, sep=",")
+# met.data.raw <- rbindlist( temp )
+# 
+# met.data.raw <- met.data.raw[ , c("chamber","DateTime","Tair_al","SoilTemp_Avg.1.","SoilTemp_Avg.2.","PPFD_Avg")]
+# met.data.raw$SoilTemp <- rowMeans(met.data.raw[,c("SoilTemp_Avg.1.","SoilTemp_Avg.2.")], na.rm=TRUE)
+# met.data.raw$Date <- as.Date(met.data.raw$DateTime)
+# 
+# # need to turn the datetime into hms
+# met.data.raw$DateTime <- ymd_hms(met.data.raw$DateTime)
+# met.data.raw$time <- format(met.data.raw$DateTime, format='%H:%M:%S')
+# 
+# # subset by Date range of experiment
+# met.data <- subset(met.data.raw[, c("chamber","Date","time","Tair_al","SoilTemp","PPFD_Avg")], Date  >= "2013-09-17" & Date  <= "2014-05-26")
+# met.data$chamber = as.factor(met.data$chamber)
 
-met.data <- met.data[ , c("chamber","DateTime","Tair_al","SoilTemp_Avg.1.","SoilTemp_Avg.2.","PPFD_Avg")]
-met.data$SoilTemp <- rowMeans(met.data[,c("SoilTemp_Avg.1.","SoilTemp_Avg.2.")], na.rm=TRUE)
-met.data$Date <- as.Date(met.data$DateTime)
-
-# need to turn the datetime into hms
-met.data$DateTime <- ymd_hms(met.data$DateTime)
-met.data$time <- format(met.data$DateTime, format='%H:%M:%S')
-
-# subset by Date range of experiment
-met.data <- subset(met.data[, c("chamber","Date","time","Tair_al","SoilTemp","PPFD_Avg")], Date  >= "2013-09-17" & Date  <= "2014-05-26")
-met.data$chamber = as.factor(met.data$chamber)
-met.data = merge(met.data, unique(height.dia[,c("chamber","T_treatment")]), by="chamber")
+met.data <- read.csv("processed_data/met.la.soil.data.all.csv", header=T)
+# met.data = merge(met.data, unique(height.dia[,c("chamber","T_treatment")]), by="chamber")
 
 met.data$period <- ifelse(met.data$PPFD_Avg>2,"Day","Night")
 
@@ -77,7 +79,7 @@ met.data$period <- ifelse(met.data$PPFD_Avg>2,"Day","Night")
 
 # met.data.na1 = met.data[is.na(met.data$SoilTemp),] # Check any NA values for soil temperature
 # met.data.na2 = met.data[is.na(met.data$Tair_al),] # Check any NA values for air temperature
-# met.data[Date == as.Date("2013-10-06")]
+met.data$Date = as.Date(met.data$Date)
 
 # need to calculate Rdark through time using rdarkq10 equation by treatment
 met.data <- merge(met.data, rd15.root, by=c("T_treatment"))
@@ -100,16 +102,19 @@ Rd <- summaryBy(Rd.foliage+Rd.stem+Rd.branch+Rd.fineroot+Rd.intermediateroot+Rd.
 # colSums(is.na(Rd)) # Check any NA values for Rd
 # Rd.na = Rd[is.na(Rd$Rd.foliage.mean),]
 
-# Fill missing values due to atmospheric data gaps
-Rd.sub1 = subset(Rd, T_treatment %in% as.factor("ambient"))
-for (i in 3:ncol(Rd.sub1)) {
-  Rd.sub1[,i] = na.approx(Rd.sub1[,..i])
-}
-Rd.sub2 = subset(Rd, T_treatment %in% as.factor("elevated"))
-for (i in 3:ncol(Rd.sub2)) {
-  Rd.sub2[,i] = na.approx(Rd.sub2[,..i])
-}
-Rd = rbind(Rd.sub1,Rd.sub2)
+# #----------------------------------------------------------------------------------------------------------------
+# # Fill missing values due to atmospheric data gaps
+# Rd.sub1 = subset(Rd, T_treatment %in% as.factor("ambient"))
+# for (i in 3:ncol(Rd.sub1)) {
+#   Rd.sub1[,i] = na.approx(Rd.sub1[,..i])
+# }
+# Rd.sub2 = subset(Rd, T_treatment %in% as.factor("elevated"))
+# for (i in 3:ncol(Rd.sub2)) {
+#   Rd.sub2[,i] = na.approx(Rd.sub2[,..i])
+# }
+# Rd = rbind(Rd.sub1,Rd.sub2)
+# #----------------------------------------------------------------------------------------------------------------
+
 # names(Rd)[3:ncol(Rd)] = c("Rd.foliage","Rd.stem","Rd.branch","Rd.fineroot","Rd.intermediateroot","Rd.coarseroot","Rd.boleroot")
 # colSums(is.na(Rd.fill)) # Check any NA values for Rd
 

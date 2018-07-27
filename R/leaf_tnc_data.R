@@ -3,7 +3,7 @@
 tnc = read.csv("raw_data/WTC_TEMP_CM_LEAFCARB_20130515-20140402_L2.csv") # unit = mg of tnc per g of dry leafmass
 tnc = na.omit(tnc)
 tnc$Date = as.Date(tnc$Date)
-tnc = subset(tnc, Date >= as.Date("2013-09-17") & Date <= as.Date("2014-05-27"))
+tnc = subset(tnc, Date >= as.Date("2012-12-12") & Date <= as.Date("2014-05-27"))
 # tnc$chamber_type = as.factor( ifelse(tnc$chamber %in% drought.chamb, "drought", "watered") )
 keeps <- c("Date", "chamber", "T_treatment", "TNC_mgg")
 tnc = tnc[ , keeps, drop = FALSE]

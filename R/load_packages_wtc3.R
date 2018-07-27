@@ -62,6 +62,7 @@ Library(imputeTS)
 Library(gdata)
 Library(parallel)
 Library(snow)
+Library(tidyr)
 
 #- the following libraries aren't on CRAN, but can be installed from github or bitbucket with devtools
 if (require("devtools")==F) {install.packages("devtools")

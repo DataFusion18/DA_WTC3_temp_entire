@@ -22,6 +22,7 @@ data = subset(data, Date >= as.Date("2013-09-17") & Date <= as.Date("2014-05-27"
 # # write csv file with daily inputs of GPP, Ra, LA
 # write.csv(data, file = "processed_data/data_GPP_Ra_LA.csv", row.names = FALSE)
 
+#----------------------------------------------------------------------------------------------------------------
 #- plot GPP, Ra, and LA data over time for various treatments
 font.size = 12
 plots = list()
@@ -34,7 +35,7 @@ plots[[1]] = ggplot(data=data, aes(x=Date, y=GPP, group = interaction(T_treatmen
   scale_x_date(date_labels="%b %y",date_breaks  ="1 month",limits = c(min(data$Date), max(data$Date))) +
   labs(colour="Temperature") +
   scale_color_manual(labels = c("ambient", "warmed"), values = c("blue", "red")) +
-  theme_bw() +
+  theme_bw() + ggtitle("Partitioned GPP from flux measurement") +
   theme(legend.title = element_text(colour="black", size=font.size)) +
   theme(legend.text = element_text(colour="black", size = font.size)) +
   theme(legend.position = c(0.2,0.85), legend.box = "horizontal") + theme(legend.key.height=unit(0.8,"line")) +
@@ -52,7 +53,7 @@ plots[[2]] = ggplot(data=data, aes(x=Date, y=Ra, group = interaction(T_treatment
   scale_x_date(date_labels="%b %y",date_breaks  ="1 month",limits = c(min(data$Date), max(data$Date))) +
   labs(colour="Temperature") +
   scale_color_manual(labels = c("ambient", "warmed"), values = c("blue", "red")) +
-  theme_bw() +
+  theme_bw() + ggtitle("Partitioned Rabove from flux measurement") +
   theme(legend.title = element_text(colour="black", size=font.size)) +
   theme(legend.text = element_text(colour="black", size = font.size)) +
   theme(legend.position = c(0.2,0.85), legend.box = "horizontal") + theme(legend.key.height=unit(0.8,"line")) +
@@ -67,3 +68,4 @@ do.call(grid.arrange,  plots)
 dev.off()
 
 do.call(grid.arrange,  plots)
+

@@ -234,10 +234,10 @@ partitionHourlyFluxCUE_arr <- function(data.hr.gf=data.hr.gf,Ea=57.69,lagdates,l
   #data.hr.gf3$Ra_est <- with(data.hr.gf3,R_Tref*Q10^((Tair_al-Tref)/10)) # estimate respiration rate. This is a negative number.
   data.hr.gf3$Ra_est <- with(data.hr.gf3,R_Tref*exp((Ea*1000/(rvalue*Tref_K))*(1-Tref_K/(Tair_al+273.15)))) # estimate respiration rate. This is a negative number.
   data.hr.gf3$Ra_est <- ifelse(data.hr.gf3$period=="Day",
-                              data.hr.gf3$Ra_est-leafRreduction*leafRtoTotal*data.hr.gf3$Ra_est,
-                              data.hr.gf3$Ra_est) # estimate respiration rate. This is a negative number. If it's day, subtract 30% from the leaf R fraction
+                               data.hr.gf3$Ra_est-leafRreduction*leafRtoTotal*data.hr.gf3$Ra_est,
+                               data.hr.gf3$Ra_est) # estimate respiration rate. This is a negative number. If it's day, subtract 30% from the leaf R fraction
   
-
+  
   data.hr.gf3$GPP <- ifelse(data.hr.gf3$period=="Night",0,data.hr.gf3$FluxCO2_g-data.hr.gf3$Ra_est)
   data.hr.gf3$Ra <- ifelse(data.hr.gf3$period=="Night",data.hr.gf3$FluxCO2_g,data.hr.gf3$Ra_est)
   
@@ -255,7 +255,7 @@ returnCUE.day <- function(dat=data.hr.p){
   dat$GPP_la <- with(dat,GPP/leafArea)
   dat$GPP_la_umol <- with(dat,GPP_la/12*1*10^6/60/60)
   dat$PAR_mol <- dat$PAR*60*60*1*10^-6
-
+  
   #- create a date variable that moves the window for "night" observations, to sum observations for the night period following a day period
   dat$Date2 <- as.Date(dat$DateTime)
   dat$hour <- hour(dat$DateTime)
@@ -268,13 +268,13 @@ returnCUE.day <- function(dat=data.hr.p){
   
   #- create daily sums 
   data.day <- dplyr::summarize(group_by(dat,Date2,chamber,T_treatment,chamber_type,period),
-                              GPP = sum(GPP,na.rm=T),
-                              Ra = sum(Ra,na.rm=T),
-                              FluxCO2_g=sum(FluxCO2_g,na.rm=T),
-                              Tair_al=mean(Tair_al,na.rm=T),
-                              VPDair=max(VPDair,na.rm=T),
-                              PAR=sum(PAR_mol,na.rm=T),
-                              leafArea=mean(leafArea,na.rm=T))
+                               GPP = sum(GPP,na.rm=T),
+                               Ra = sum(Ra,na.rm=T),
+                               FluxCO2_g=sum(FluxCO2_g,na.rm=T),
+                               Tair_al=mean(Tair_al,na.rm=T),
+                               VPDair=max(VPDair,na.rm=T),
+                               PAR=sum(PAR_mol,na.rm=T),
+                               leafArea=mean(leafArea,na.rm=T))
   data.day <- as.data.frame(data.day)
   data.day <- data.day[with(data.day,order(Date2,chamber)),]
   names(data.day)[1] <- "Date"
@@ -351,11 +351,12 @@ returnTreeMass <- function(plotson=F){
   #- now get an estimate of leaf mass for every day of the experiment
   # get the interpolated leaf areas (laDaily)
   
-  dat.hr <- data.frame(data.table::fread("raw_data/WTC_TEMP_CM_WTCFLUX_20130914-20140526_L2_V2.csv"))
+  # dat.hr <- data.frame(data.table::fread("raw_data/WTC_TEMP_CM_WTCFLUX_20130914-20140526_L2_V2.csv"))
+  dat.hr <- data.frame(data.table::fread("processed_data/met.la.data.all.csv"))
   dat.hr$DateTime <- as.POSIXct(dat.hr$DateTime,format="%Y-%m-%d %H:%M:%S",tz="GMT")
-  dat.hr$Date <- as.Date(dat.hr$DateTime)
+  # dat.hr$Date <- as.Date(dat.hr$DateTime)
   dat.hr$chamber <- as.factor(dat.hr$chamber)
-  laDaily <- summaryBy(leafArea~Date+chamber,data=dat.hr,keep.names=T,na.rm=T)
+  laDaily <- summaryBy(leafarea~Date+chamber,data=dat.hr,keep.names=T,na.rm=T)
   
   # get a canopy-weighted SLA estimate
   #setwd("//ad.uws.edu.au/dfshare/HomesHWK$/30035219/My Documents/Work/HFE/WTC3/gx_wtc3/")
@@ -367,7 +368,7 @@ returnTreeMass <- function(plotson=F){
   
   # merge SLA and leaf area to estimate leaf mass for each day
   leafMass <- merge(laDaily,SLA,by=c("chamber"))
-  leafMass$leafMass <- with(leafMass,leafArea/SLA*10000)
+  leafMass$leafMass <- with(leafMass,leafarea/SLA*10000)
   
   treeMass1 <- merge(stem_branch_mass,leafMass,by=c("chamber","Date"))
   treeMass1$boleMass <- with(treeMass1,mass_wood+mass_bark)
@@ -399,7 +400,13 @@ returnd2h <- function(){
   size2$diam_15 <- size[,16]
   size3 <- subset(size2,chamber_n<=12 & Stem_number==1)
   
-  
+  D.65 <- lm(diam ~ diam_15, data=size3)
+  # visreg(D.15, "X65", overlay=TRUE)
+  # summary(D.15)
+  eq.D = function(x){coefficients(D.65)[1] + coefficients(D.65)[2] * x }
+  index = complete.cases(size3$diam)
+  size3$diam[!index] = eq.D(size3$diam_15[!index])
+  size3$diam[size3$diam < 0] = 0
   
   # tree 11 is different, because the height of stem 1 is not the actual true height. put the max height of the two stems in as the Plant_height
   tree11 <- subset(size2,chamber_n==11)
@@ -413,7 +420,7 @@ returnd2h <- function(){
   size3$Plant_height <- size3$Plant_height/100
   
   #get rid of NA's
-  size4 <- subset(size3,diam>0)
+  size4 <- subset(size3,diam>=0)
   size4 <- size4[with(size4,order(DateTime,chamber_n)),]
   
   #get just the data with diameter at 15
@@ -495,7 +502,7 @@ numericdfr <- function(dfr){
 #------------------------------------------------------------------------------------------------------------
 # get an estimate of bole volume for every measurement day
 getvol <- function(){
-
+  
   # browser()
   # get the data. the "interpolated 38" csv was manual editied in excel to linearly interpolate the UPPER stem estimates
   #   on measurement date 38 as the mean of measurements #37 and #39.
@@ -2515,6 +2522,4 @@ plot.Mroot <- function(shift.output.Mroot) {
 
 
 #----------------------------------------------------------------------------------------------------------------
-#----------------------------------------------------------------------------------------------------------------
-
-
+#------------------------------------------------------------------------------------------------------------

@@ -12,7 +12,7 @@ plots[[1]] = ggplot(data.biomass, aes(x=Date, y=WM, group = T_treatment, colour=
   # geom_ribbon(data = data.biomass, aes(ymin=WM-WM_SE, ymax=WM+WM_SE), linetype=2, alpha=0.1,size=0.1) +
   # geom_line(data = data.biomass, aes(x = Date, y = WM, group = interaction(T_treatment,chamber_type), colour=T_treatment, linetype=chamber_type)) + 
   ylab(expression("Wood Mass"~"(g C "*plant^"-1"*")")) +
-  scale_x_date(date_labels="%b %y",date_breaks  ="1 month",limits = c(min(data.biomass$Date)-2, max(data.biomass$Date)+2)) +
+  scale_x_date(date_labels="%b %y",date_breaks  ="2 month",limits = c(min(data.biomass$Date)-2, max(data.biomass$Date)+2)) +
   labs(colour="Temperature") +
   scale_color_manual(labels = c("ambient", "elevated"), values = c("blue", "red")) +
   theme_bw() +
@@ -31,7 +31,7 @@ plots[[2]] = ggplot(data.biomass, aes(x=Date, y=RM, group = T_treatment, colour=
   geom_errorbar(position=pd,aes(ymin=RM-RM_SE, ymax=RM+RM_SE), colour="grey", width=1) +
   # geom_line(data = data.biomass, aes(x = Date, y = RM, group = interaction(T_treatment,chamber_type), colour=T_treatment, linetype=chamber_type)) +
   ylab(expression("Root Mass"~"(g C "*plant^"-1"*")")) +
-  scale_x_date(date_labels="%b %y",date_breaks  ="1 month",limits = c(min(data.biomass$Date)-2, max(data.biomass$Date)+2)) +
+  scale_x_date(date_labels="%b %y",date_breaks  ="2 month",limits = c(min(data.biomass$Date)-2, max(data.biomass$Date)+2)) +
   labs(colour="Temperature") +
   scale_color_manual(labels = c("ambient", "elevated"), values = c("blue", "red")) +
   theme_bw() +
@@ -50,7 +50,7 @@ plots[[3]] = ggplot(data.biomass, aes(x=Date, y=LM, group = T_treatment, colour=
   geom_errorbar(position=pd,aes(ymin=LM-LM_SE, ymax=LM+LM_SE), colour="grey", width=1) +
   # geom_line(data = data.biomass, aes(x = Date, y = LM, group = interaction(T_treatment,chamber_type), colour=T_treatment, linetype=chamber_type)) + 
   ylab(expression("Foliage Mass"~"(g C "*plant^"-1"*")")) +
-  scale_x_date(date_labels="%b %y",date_breaks  ="1 month",limits = c(min(data.biomass$Date)-2, max(data.biomass$Date)+2)) +
+  scale_x_date(date_labels="%b %y",date_breaks  ="2 month",limits = c(min(data.biomass$Date)-2, max(data.biomass$Date)+2)) +
   labs(colour="Temperature") +
   scale_color_manual(labels = c("ambient", "elevated"), values = c("blue", "red")) +
   theme_bw() +
@@ -68,3 +68,13 @@ do.call(grid.arrange,  plots)
 dev.off()
 
 do.call(grid.arrange,  plots)
+
+
+#----------------------------------------------------------------------------------------------------------------
+# Calculate the final biomass difference between the ambient and warmed treatments
+data.biomass.final = subset(data.biomass, Date == as.Date("2014-05-26"))
+
+biomass.increase = (data.biomass.final$LM[2] + data.biomass.final$WM[2] + data.biomass.final$RM[2]) - (data.biomass.final$LM[1] + data.biomass.final$WM[1] + data.biomass.final$RM[1]) 
+biomass.increase.percent = biomass.increase / (data.biomass.final$LM[1] + data.biomass.final$WM[1] + data.biomass.final$RM[1]) * 100
+
+

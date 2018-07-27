@@ -8,9 +8,9 @@ treeMass$Treatment <- as.factor(paste(treeMass$T_treatment, treeMass$chamber_typ
 summary(aov(BMratio ~ Treatment, data = treeMass)) # NO, there is no significant difference accross the treatments
 summary(aov(SMratio ~ Treatment, data = treeMass)) # NO, there is no significant difference accross the treatments
 
-woodmass.ratio = data.frame(matrix(ncol = 1, nrow = 252))
+woodmass.ratio = data.frame(matrix(ncol = 1, nrow = 531))
 names(woodmass.ratio) = c("Date")
-woodmass.ratio$Date = as.Date(as.Date("2013-09-17"):as.Date("2014-05-26"))
+woodmass.ratio$Date = as.Date(as.Date("2012-12-12"):as.Date("2014-05-26"))
 
 woodmass.ratio.data = summaryBy(BMratio+SMratio ~ Date, data=treeMass, FUN=c(mean,standard.error))
 names(woodmass.ratio.data)[2:ncol(woodmass.ratio.data)] = c("BMratio","SMratio","BMratio_SE","SMratio_SE")
@@ -41,9 +41,9 @@ summary(aov(IRratio ~ Treatment, data = rootmass.harvest)) # NO, there is no sig
 summary(aov(CRratio ~ Treatment, data = rootmass.harvest)) # NO, there is no significant difference accross the treatments
 summary(aov(BRratio ~ Treatment, data = rootmass.harvest)) # NO, there is no significant difference accross the treatments
 
-rootmass.harvest.ratio = data.frame(matrix(ncol = 9, nrow = 252))
+rootmass.harvest.ratio = data.frame(matrix(ncol = 9, nrow = 531))
 names(rootmass.harvest.ratio) = c("Date","FRratio","IRratio","CRratio","BRratio","FRratio_SE","IRratio_SE","CRratio_SE","BRratio_SE")
-rootmass.harvest.ratio$Date = as.Date(as.Date("2013-09-17"):as.Date("2014-05-26"))
+rootmass.harvest.ratio$Date = as.Date(as.Date("2012-12-12"):as.Date("2014-05-26"))
 
 rootmass.harvest.ratio[nrow(rootmass.harvest.ratio),] <- summaryBy(FRratio+IRratio+CRratio+BRratio ~ Date, data=rootmass.harvest, FUN=c(mean,standard.error), keep.names=TRUE , na.rm=TRUE) # Sum of all same day Rd
 # names(rootmass.harvest.ratio)[2:ncol(rootmass.harvest.ratio)] = c("FRratio","IRratio","CRratio","BRratio","FRratio_SE","IRratio_SE","CRratio_SE","BRratio_SE")
@@ -71,12 +71,12 @@ rootmass.harvest.ratio.melt$SE = melt(rootmass.harvest.ratio[,c("Date","FRratio_
 
 treeMass.ratio = merge(woodmass.ratio, rootmass.harvest.ratio, by="Date", all=TRUE)
 # treeMass.ratio = subset(treeMass.ratio, Date >= as.Date("2013-09-17") & Date <= as.Date("2014-02-12"))
-treeMass.ratio = subset(treeMass.ratio, Date >= as.Date("2013-09-17") & Date <= as.Date("2014-05-26"))
+treeMass.ratio = subset(treeMass.ratio, Date >= as.Date("2012-12-12") & Date <= as.Date("2014-05-26"))
 
 treeMass.ratio.melt = rbind(woodmass.ratio.melt, rootmass.harvest.ratio.melt)
 
 # Merge woodmass and rootmass partitioning data with daily GPP, Ra, LA, mass pool data
-data.all = merge(data.GPP.Ra.LA.mass, treeMass.ratio, by="Date", all=TRUE)
+data.all = merge(data.GPP.LA.mass, treeMass.ratio, by="Date", all=TRUE)
 
 # font.size = 12
 pd <- position_dodge(0) # move the overlapped errorbars horizontally
