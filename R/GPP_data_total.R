@@ -8,8 +8,16 @@ gpp.data = rbind(gpp.data.amb,gpp.data.ele)
 gpp.data$Date <- as.POSIXct(gpp.data$Date,format="%Y-%m-%d")
 # gpp.data$Date <- as.Date(gpp.data$Date)
 
-gpp.data.final <- summaryBy(gCarbon_tree ~ Date+T_treatment, data=gpp.data, FUN=c(mean,standard.error))
-names(gpp.data.final)[3:4] = c("GPP", "GPP_SE")
+# Average the ambient and elevated temperature treatments considering the drought/watered treatment seperated from the start of the experiment
+# n=3 for whole period, considering only the well-watered treatment for both ambient and warmed treatments
+drought.chamb = unique(height.dia$chamber[ height.dia$W_treatment %in% as.factor("drydown")])
+gpp.data.sub = gpp.data
+gpp.data.sub$chamber_type = as.factor( ifelse(gpp.data.sub$chamber %in% drought.chamb, "drought_treat", "watered_treat") )
+
+gpp.data.final <- summaryBy(gCarbon_tree ~ Date+T_treatment+chamber_type, data=gpp.data.sub, FUN=c(mean,standard.error))
+names(gpp.data.final)[4:5] = c("GPP", "GPP_SE")
+gpp.data.final = subset(gpp.data.final,chamber_type %in% as.factor("watered_treat"))
+gpp.data.final$chamber_type = NULL
 gpp.data.final = subset(gpp.data.final, Date >= as.Date("2012-12-12") & Date <= as.Date("2014-05-26"))
 gpp.data.final$Date <- as.Date(gpp.data.final$Date)+1
 
@@ -59,3 +67,5 @@ do.call(grid.arrange,  plots)
 dev.off()
 
 do.call(grid.arrange,  plots)
+
+

@@ -17,12 +17,18 @@ treeMass = na.omit(treeMass.daily) # consider only fortnightly direct measuremen
 # treeMass = treeMass.daily # consider daily data interpolated from fortnightly direct measurements of H and D
 
 treeMass$woodMass = treeMass$branchMass + treeMass$boleMass
-# treeMass$chamber_type = as.factor( ifelse(treeMass$chamber %in% drought.chamb, "drought", "watered") )
-# treeMass.sum = summaryBy(leafMass+woodMass ~ Date+T_treatment+chamber_type, data=treeMass, FUN=c(mean,standard.error))
-# names(treeMass.sum)[4:7] = c("LM","WM","LM_SE","WM_SE")
-# treeMass.sum[,c(4:7)] = treeMass.sum[,c(4:7)] * c1 # unit conversion from gDM to gC
-treeMass.sum = summaryBy(leafMass+woodMass ~ Date+T_treatment, data=treeMass, FUN=c(mean,standard.error))
-names(treeMass.sum)[3:6] = c("LM","WM","LM_SE","WM_SE")
-treeMass.sum[,c(3:6)] = treeMass.sum[,c(3:6)] * c1 # unit conversion from gDM to gC
+
+# Average the ambient and elevated temperature treatments considering the drought/watered treatment seperated from the start of the experiment
+# n=3 for whole period, considering only the well-watered treatment for both ambient and warmed treatments
+treeMass$chamber_type = as.factor( ifelse(treeMass$chamber %in% drought.chamb, "drought", "watered") )
+treeMass.sum = summaryBy(leafMass+woodMass ~ Date+T_treatment+chamber_type, data=treeMass, FUN=c(mean,standard.error))
+names(treeMass.sum)[4:7] = c("LM","WM","LM_SE","WM_SE")
+treeMass.sum[,c(4:7)] = treeMass.sum[,c(4:7)] * c1 # unit conversion from gDM to gC
+treeMass.sum = subset(treeMass.sum, chamber_type %in% as.factor("watered"))
+treeMass.sum$chamber_type = NULL
+
+# treeMass.sum = summaryBy(leafMass+woodMass ~ Date+T_treatment, data=treeMass, FUN=c(mean,standard.error))
+# names(treeMass.sum)[3:6] = c("LM","WM","LM_SE","WM_SE")
+# treeMass.sum[,c(3:6)] = treeMass.sum[,c(3:6)] * c1 # unit conversion from gDM to gC
 
 

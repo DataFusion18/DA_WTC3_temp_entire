@@ -952,15 +952,15 @@ model <- function (no.param,data.set,tnc.partitioning,Y,k,af,as,sf,sr) {
   Cstorage = Sleaf = Swood = Sroot = c()
   
   # From WTC-4 experiment for TNC partitioning to tree organs
-  Sleaf[1] = data.set$TNC_leaf[min(which(complete.cases(data.set$TNC_leaf)))] # Consider the first available leaf tnc data as the starting point
-  Swood[1] = data.set$TNC_wood[min(which(complete.cases(data.set$TNC_wood)))] # Consider the first available leaf tnc data as the starting point
-  Sroot[1] = data.set$TNC_root[min(which(complete.cases(data.set$TNC_root)))] # Consider the first available leaf tnc data as the starting point
-  Cstorage[1] = data.set$TNC_tot[min(which(complete.cases(data.set$TNC_tot)))] # Consider the first available leaf tnc data as the starting point
+  # Sleaf[1] = data.set$TNC_leaf[min(which(complete.cases(data.set$TNC_leaf)))] # Consider the first available leaf tnc data as the starting point
+  # Swood[1] = data.set$TNC_wood[min(which(complete.cases(data.set$TNC_wood)))] # Consider the first available leaf tnc data as the starting point
+  # Sroot[1] = data.set$TNC_root[min(which(complete.cases(data.set$TNC_root)))] # Consider the first available leaf tnc data as the starting point
+  # Cstorage[1] = data.set$TNC_tot[min(which(complete.cases(data.set$TNC_tot)))] # Consider the first available leaf tnc data as the starting point
   
-  # Sleaf[1] = 10
-  # Swood[1] = 5
-  # Sroot[1] = 5
-  # Cstorage[1] = 20
+  Sleaf[1] = 0.1*Mleaf[1]
+  Swood[1] = 0.025*Mwood[1]
+  Sroot[1] = 0.025*Mroot[1]
+  Cstorage[1] = Sleaf[1] + Swood[1] + Sroot[1]
   
   Cleaf <- Croot <- Cwood <- Rm <- c()
   Cleaf[1] <- data.set$LM[1] - Sleaf[1]

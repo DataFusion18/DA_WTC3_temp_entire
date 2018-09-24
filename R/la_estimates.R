@@ -12,7 +12,7 @@ la.count <- subset(la.count, chamber_n<=12 & DateTime <= as.Date("2013-12-24"))
 
 # get the leaf size data
 la.size <- read.csv("raw_data/WTC_TEMP_CM_BIOMASS-LEAFAREA_20130909_L1.csv")
-la.size <- summaryBy(leafsize~chamber,data=la.size,FUN=max,na.rm=T,keep.names=T)
+la.size <- summaryBy(leafsize~chamber,data=la.size,FUN=mean,na.rm=T,keep.names=T)
 
 la.count <- merge(la.count, la.size, by="chamber")
 la.count$leafarea = la.count$Total_Leaf_Number * la.count$leafsize/10000 # unit conversion to m2

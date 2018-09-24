@@ -262,11 +262,11 @@ write.csv(met.la.data.all, file = "processed_data/met.la.data.all.csv", row.name
 
 #----------------------------------------------------------------------------------------------------------------
 
-for (i in 1:nlevels(chambers)) {
-  with(subset(met.la.data.all, chamber %in% as.factor(chambers[i]) & Date > as.Date("2013-09-10") & Date < as.Date("2013-10-10")), 
-       plot(DateTime,PPFD_Avg, type="l",lty=2,lwd=0.3,main=paste(chambers[i]),
-            xlab="",ylab=expression("Leaf area"~(cm^2))))
-}
+# for (i in 1:nlevels(chambers)) {
+#   with(subset(met.la.data.all, chamber %in% as.factor(chambers[i]) & Date > as.Date("2013-09-10") & Date < as.Date("2013-10-10")), 
+#        plot(DateTime,PPFD_Avg, type="l",lty=2,lwd=0.3,main=paste(chambers[i]),
+#             xlab="",ylab=expression("Leaf area"~(cm^2))))
+# }
 
 #----------------------------------------------------------------------------------------------------------------
 # Do some plotting
@@ -308,13 +308,95 @@ dev.off()
 
 #----------------------------------------------------------------------------------------------------------------
 # Merge daily LA data with modeled GPP values for both treatments
-la.data.final <- summaryBy(leafarea ~ Date+T_treatment, data=met.la.data.all, FUN=c(mean,standard.error))
-names(la.data.final)[3:4] = c("LA", "LA_SE")
+la.data.final <- summaryBy(leafarea+Tair_al ~ Date+T_treatment, data=met.la.data.all, FUN=c(mean,standard.error))
+names(la.data.final)[3:6] = c("LA", "Tair", "LA_SE", "Tair_SE")
 la.data.final = subset(la.data.final, Date >= as.Date("2012-12-12") & Date <= as.Date("2014-05-26"))
 
 gpp.la.data.final = merge(gpp.data.final,la.data.final,by=c("Date", "T_treatment"), all=TRUE)
 
+#----------------------------------------------------------------------------------------------------------------
+#- plot W/A GPP and W/A LAI data over time
+GPP_warmed = subset(gpp.la.data.final, gpp.la.data.final$T_treatment %in% as.factor("elevated"))
+GPP_ambient = subset(gpp.la.data.final, gpp.la.data.final$T_treatment %in% as.factor("ambient"))
+GPP_ratio = GPP_warmed
+GPP_ratio$GPP = GPP_warmed$GPP / GPP_ambient$GPP
+GPP_ratio$Date = as.POSIXlt(GPP_ratio$Date,tz="AEST")
+daterange=c(as.POSIXlt(min(GPP_ratio$Date)),as.POSIXlt(max(GPP_ratio$Date)))
 
+#- plot W/A LAI data over time
+LA_warmed = subset(gpp.la.data.final, gpp.la.data.final$T_treatment %in% as.factor("elevated"))
+LA_ambient = subset(gpp.la.data.final, gpp.la.data.final$T_treatment %in% as.factor("ambient"))
+LA_ratio = LA_warmed
+LA_ratio$LA = LA_warmed$LA / LA_ambient$LA
+LA_ratio$Date = as.POSIXlt(LA_ratio$Date,tz="AEST")
+
+png("output/1.GPP_LA_ratio.png", units="px", width=5000, height=2500, res=250)
+par(mfrow=c(2,1), mar=c(5,4.5,3,1))
+plot(GPP_ratio$GPP~as.Date(GPP_ratio$Date),data=GPP_ratio,xlab="",ylab="GPP ratio (Warmed/Ambient)",pch=1,
+     type="p",lwd=3,cex=0.3,cex.lab=1)
+axis.POSIXct(1, at=seq(daterange[1], daterange[2], by="month"), format="%d-%m-%Y")
+
+plot(LA_ratio$LA~as.Date(LA_ratio$Date),data=LA_ratio,xlab="",ylab="LA ratio (Warmed/Ambient)",pch=1,
+     type="p",lwd=3,cex=0.3,cex.lab=1)
+axis.POSIXct(1, at=seq(daterange[1], daterange[2], by="month"), format="%d-%m-%Y")
+dev.off()
+
+png("output/1.GPP_Tair_2013_Summer.png", units="px", width=5000, height=2500, res=250)
+par(mfrow=c(2,1), mar=c(5,4.5,3,1))
+plot(gpp.la.data.final$GPP~gpp.la.data.final$Tair,data=gpp.la.data.final,xlab=expression("Daily Temperature "(degree~C)),
+     ylab=expression(GPP~"(g C "*d^"-1"*")"),pch=1,main=paste("Entire experiment"),
+     type="p",lwd=3,cex=0.3,cex.lab=1)
+gpp.la.data.final.sub = subset(gpp.la.data.final, Date >= as.Date("2012-12-12") & Date <= as.Date("2013-06-01"))
+plot(gpp.la.data.final.sub$GPP~gpp.la.data.final.sub$Tair,data=gpp.la.data.final.sub,xlab=expression("Daily Temperature "(degree~C)),
+     ylab=expression(GPP~"(g C "*d^"-1"*")"),pch=1,main=paste("Dec 2012 to May 2013"),
+     type="p",lwd=3,cex=0.3,cex.lab=1)
+dev.off()
+
+png("output/9.1.Tair_2013_Summer.png", units="px", width=5000, height=2500, res=250)
+par(mfrow=c(1,2), mar=c(5,4.5,3,1))
+gpp.la.data.final.sub = subset(gpp.la.data.final, Date >= as.Date("2012-12-12") & Date <= as.Date("2013-03-01"))
+plot(subset(gpp.la.data.final.sub$Tair, gpp.la.data.final.sub$T_treatment %in% as.factor("elevated"))~
+       subset(gpp.la.data.final.sub$Tair, gpp.la.data.final.sub$T_treatment %in% as.factor("ambient")),xlab=expression(Ambient~daily~temperature~(degree*C)),
+     ylab=expression(Warmed~daily~temperature~(degree*C)),pch=1,main=paste("2013 Summer Dec 2012 to Feb 2013"),
+     type="p",lwd=3,cex=0.3,cex.lab=1)
+x = c(10,30)
+y = c(13,33)
+segmentInf <- function(xs, ys){
+  fit <- lm(ys~xs)
+  abline(fit)
+}
+segmentInf(x,y)
+
+met.la.data.all.sub = subset(met.la.data.all, Date >= as.Date("2013-01-01") & Date <= as.Date("2013-01-31") & chamber %in% as.factor(c("C01","C02")))
+plot(subset(met.la.data.all.sub$Tair, met.la.data.all.sub$T_treatment %in% as.factor("elevated"))~
+       subset(met.la.data.all.sub$Tair, met.la.data.all.sub$T_treatment %in% as.factor("ambient")),xlab=expression(Ambient~hourly~temperature~(degree*C)),
+     ylab=expression(Warmed~hourly~temperature~(degree*C)),pch=1,main=paste("2013 January - Chamber 01 vs Chamber 02"),
+     type="p",lwd=3,cex=0.3,cex.lab=1)
+segmentInf(x,y)
+dev.off()
+
+# font.size = 12
+# plots = list()
+# pd <- position_dodge(0)
+# plots[[1]] = ggplot(data=gpp.la.data.final.sub, aes(x=Date, y=Tair, group = interaction(T_treatment), colour=T_treatment)) + 
+#   geom_point(position=pd) +
+#   # geom_errorbar(position=pd, aes(ymin=GPP-GPP_SE, ymax=GPP+GPP_SE), colour="grey", width=1) +
+#   geom_line(position=pd, data = gpp.la.data.final.sub, aes(x = Date, y = Tair, group = interaction(T_treatment), colour=T_treatment)) +
+#   ylab(expression(Average~daily~temperature~(degree*C))) +
+#   scale_x_date(date_labels="%d %b %y",date_breaks  ="2 week",limits = c(min(gpp.la.data.final.sub$Date), max(gpp.la.data.final.sub$Date))) +
+#   labs(colour="Temperature") +
+#   scale_color_manual(labels = c("ambient", "warmed"), values = c("blue", "red")) +
+#   theme_bw() + 
+#   theme(legend.title = element_text(colour="black", size=font.size)) +
+#   theme(legend.text = element_text(colour="black", size = font.size)) +
+#   theme(legend.position = c(0.2,0.85), legend.box = "horizontal") + theme(legend.key.height=unit(0.8,"line")) +
+#   theme(legend.key = element_blank()) +
+#   theme(text = element_text(size=font.size)) +
+#   theme(axis.title.x = element_blank()) +
+#   theme(axis.title.y = element_text(size = font.size, vjust=0.3)) +
+#   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) 
+# 
+# dev.off()
 #----------------------------------------------------------------------------------------------------------------
 #----------------------------------------------------------------------------------------------------------------
 # import site weather data, take only Tair, format date stuff
@@ -369,42 +451,328 @@ write.csv(met.la.soil.data.all, file = "processed_data/met.la.soil.data.all.csv"
 
 #----------------------------------------------------------------------------------------------------------------
 #----------------------------------------------------------------------------------------------------------------
-# Compare the WTC-3 PAR data with ROS weather station PAR data to find out the reason behind variation in PAR between two consecutive summers of 2013 and 2014
-# Seems like the WTC-3 surface might got dusty over time which reduced the PAR in 2014 summer compared to previous summer of 2013
-files <- list.files(path = "raw_data/ROS_metdata", pattern = ".dat", full.names = TRUE)
-temp <- lapply(files, fread, sep=",")
-ros.par <- rbindlist( temp )
-ros.par = data.frame(ros.par)
-keeps <- c("TIMESTAMP", "PPFD_Avg")
-ros.par = ros.par[ , keeps, drop = FALSE]
-names(ros.par) = c("DateTime", "PPFD_Avg")
-
-ros.par$DateTime = as.POSIXct(ros.par$DateTime,format="%Y-%m-%d %H:%M:%S",tz="GMT")
-ros.par = ros.par[complete.cases(ros.par), ]
-ros.par$Date = as.Date(ros.par$DateTime)
-ros.par$hour <- cut(ros.par$DateTime, breaks = "hour")
-ros.par$hour <- as.POSIXct(ros.par$hour, format="%Y-%m-%d %H:%M:%S",tz="GMT")
-
-ros.par.sub = subset(ros.par, Date >= as.Date("2012-12-12") & Date <= as.Date("2014-05-26"))
-ros.par.sub$PPFD_Avg = as.numeric(as.character(ros.par.sub$PPFD_Avg))
-
-getmeans  <- function(ros.par.sub) c(PPFD_Avg = mean(ros.par.sub$PPFD_Avg,na.rm=TRUE))
-ros.par.sub.means <- ddply(ros.par.sub, .(hour), getmeans)
-ros.par.sub.means$hour <- as.POSIXct(ros.par.sub.means$hour, format="%Y-%m-%d %H:%M:%S",tz="GMT")
-names(ros.par.sub.means)[1] = c("DateTime")
-
-png("output/11.PAR_data_test.png", units="px", width=5000, height=2500, res=250)
-par(mfrow=c(1,3), mar=c(5,4.5,3,1))
-for (i in c(1,12)) {
-  with(subset(met.la.data.all, chamber %in% as.factor(chambers[i])), 
-       plot(DateTime,PPFD_Avg, type="l",lty=2,lwd=0.3,main=paste(chambers[i]),
-            xlab="",ylab=expression("PAR"~(mu ~ mol ~ m^{-2} ~ s^{-1}))))
-}
-plot(ros.par.sub.means$DateTime,ros.par.sub.means$PPFD_Avg, type="l",lty=2,lwd=0.3,main=paste("ROS_WS"),xlab="",ylab=expression("PAR"~(mu ~ mol ~ m^{-2} ~ s^{-1})))
-dev.off()
+# # Compare the WTC-3 PAR data with ROS weather station PAR data to find out the reason behind variation in PAR between two consecutive summers of 2013 and 2014
+# # Seems like the WTC-3 surface might got dusty over time which reduced the PAR in 2014 summer compared to previous summer of 2013
+# files <- list.files(path = "raw_data/ROS_metdata", pattern = ".dat", full.names = TRUE)
+# temp <- lapply(files, fread, sep=",")
+# ros.par <- rbindlist( temp )
+# ros.par = data.frame(ros.par)
+# keeps <- c("TIMESTAMP", "PPFD_Avg")
+# ros.par = ros.par[ , keeps, drop = FALSE]
+# names(ros.par) = c("DateTime", "PPFD_Avg")
+# 
+# ros.par$DateTime = as.POSIXct(ros.par$DateTime,format="%Y-%m-%d %H:%M:%S",tz="GMT")
+# ros.par = ros.par[complete.cases(ros.par), ]
+# ros.par$Date = as.Date(ros.par$DateTime)
+# ros.par$hour <- cut(ros.par$DateTime, breaks = "hour")
+# ros.par$hour <- as.POSIXct(ros.par$hour, format="%Y-%m-%d %H:%M:%S",tz="GMT")
+# 
+# # ros.par.sub = subset(ros.par, Date >= as.Date("2012-12-12") & Date <= as.Date("2014-05-26"))
+# ros.par.sub = subset(ros.par, Date >= as.Date("2012-12-18") & Date <= as.Date("2013-02-11"))
+# ros.par.sub$PPFD_Avg = as.numeric(as.character(ros.par.sub$PPFD_Avg))
+# 
+# getmeans  <- function(ros.par.sub) c(PPFD_Avg = mean(ros.par.sub$PPFD_Avg,na.rm=TRUE))
+# ros.par.sub.means <- ddply(ros.par.sub, .(hour), getmeans)
+# ros.par.sub.means$hour <- as.POSIXct(ros.par.sub.means$hour, format="%Y-%m-%d %H:%M:%S",tz="GMT")
+# names(ros.par.sub.means)[1] = c("DateTime")
+# 
+# png("output/11.PAR_data_test.png", units="px", width=5000, height=2500, res=250)
+# par(mfrow=c(1,3), mar=c(5,4.5,3,1))
+# for (i in c(1,12)) {
+#   with(subset(met.la.data.all, chamber %in% as.factor(chambers[i])), 
+#        plot(DateTime,PPFD_Avg, type="l",lty=2,lwd=0.3,main=paste(chambers[i]),
+#             xlab="",ylab=expression("PAR"~(mu ~ mol ~ m^{-2} ~ s^{-1}))))
+# }
+# plot(ros.par.sub.means$DateTime,ros.par.sub.means$PPFD_Avg, type="l",lty=2,lwd=0.3,main=paste("ROS_WS"),xlab="",ylab=expression("PAR"~(mu ~ mol ~ m^{-2} ~ s^{-1})))
+# dev.off()
+# 
+# daterange=c(as.POSIXlt(min(met.la.data.all$DateTime)),as.POSIXlt(max(met.la.data.all$DateTime)))
+# png("output/11.PAR_data_test_C10.png", units="px", width=5000, height=2500, res=250)
+# par(mfrow=c(1,1), mar=c(5,4.5,3,1))
+# for (i in c(10)) {
+#   with(subset(met.la.data.all, chamber %in% as.factor(chambers[i])), 
+#        plot(DateTime,PPFD_Avg,col='blue',type="l",lty=1,lwd=0.3,xaxt="n",main=paste("Compare PAR measurements"),
+#             xlab="",ylab=expression("PAR"~(mu ~ mol ~ m^{-2} ~ s^{-1}))))
+#   axis.POSIXct(1, at=seq(daterange[1], daterange[2], by="month"), format="%d-%b-%Y")
+# }
+# lines(ros.par.sub.means$DateTime,ros.par.sub.means$PPFD_Avg,col='red',type="l",lty=2,lwd=0.3,xaxt="n",
+#       xlab="",ylab=expression("PAR"~(mu ~ mol ~ m^{-2} ~ s^{-1})))
+# legend("topright",legend=paste(c("Chamber 10","ROS WS")),col=c('blue','red'),lty=1,bty="n",cex=1.5,pt.cex=2)
+# dev.off()
+# 
+# png("output/11.PAR_data_test_C12.png", units="px", width=5000, height=2500, res=250)
+# par(mfrow=c(1,1), mar=c(5,4.5,3,1))
+# for (i in c(12)) {
+#   with(subset(met.la.data.all, chamber %in% as.factor(chambers[i])), 
+#        plot(DateTime,PPFD_Avg,col='blue',type="l",lty=1,lwd=0.3,xaxt="n",main=paste("Compare PAR measurements"),
+#             xlab="",ylab=expression("PAR"~(mu ~ mol ~ m^{-2} ~ s^{-1}))))
+#   axis.POSIXct(1, at=seq(daterange[1], daterange[2], by="month"), format="%d-%b-%Y")
+# }
+# lines(ros.par.sub.means$DateTime,ros.par.sub.means$PPFD_Avg,col='red',type="l",lty=2,lwd=0.3,xaxt="n",
+#       xlab="",ylab=expression("PAR"~(mu ~ mol ~ m^{-2} ~ s^{-1})))
+# legend("topright",legend=paste(c("Chamber 12","ROS WS")),col=c('blue','red'),lty=1,bty="n",cex=1.5,pt.cex=2)
+# dev.off()
+# 
+# #----------------------------------------------------------------------------------------------------------------
+# met.la.data.all.sub = subset(met.la.data.all, Date >= as.Date("2012-12-12") & Date <= as.Date("2013-02-11"))
+# 
+# png("output/11.PAR_data_test.png", units="px", width=5000, height=2500, res=250)
+# par(mfrow=c(1,3), mar=c(5,4.5,3,1))
+# for (i in c(1,12)) {
+#   with(subset(met.la.data.all.sub, chamber %in% as.factor(chambers[i])), 
+#        plot(DateTime,PPFD_Avg, type="l",lty=2,lwd=0.3,main=paste(chambers[i]),
+#             xlab="",ylab=expression("PAR"~(mu ~ mol ~ m^{-2} ~ s^{-1}))))
+# }
+# plot(ros.par.sub.means$DateTime,ros.par.sub.means$PPFD_Avg, type="l",lty=2,lwd=0.3,main=paste("ROS_WS"),xlab="",ylab=expression("PAR"~(mu ~ mol ~ m^{-2} ~ s^{-1})))
+# dev.off()
+# 
+# daterange=c(as.POSIXlt(min(met.la.data.all.sub$DateTime)),as.POSIXlt(max(met.la.data.all.sub$DateTime)))
+# png("output/11.PAR_data_test_C1_ROS_WTC.png", units="px", width=5000, height=2500, res=250)
+# par(mfrow=c(1,2), mar=c(5,4.5,3,1))
+# for (i in c(1)) {
+#   with(subset(met.la.data.all.sub, chamber %in% as.factor(chambers[i])), 
+#        plot(DateTime,PPFD_Avg,col='blue',type="l",lty=1,lwd=0.3,xaxt="n",main=paste("Compare PAR measurements"),
+#             xlab="",ylab=expression("PAR"~(mu ~ mol ~ m^{-2} ~ s^{-1}))))
+#   axis.POSIXct(1, at=seq(daterange[1], daterange[2], by="week"), format="%d-%b-%Y")
+#   met.la.data.all.1 = subset(met.la.data.all.sub, chamber %in% as.factor(chambers[i]))
+# }
+# lines(ros.par.sub.means$DateTime,ros.par.sub.means$PPFD_Avg,col='red',type="l",lty=2,lwd=0.3,xaxt="n",
+#       xlab="",ylab=expression("PAR"~(mu ~ mol ~ m^{-2} ~ s^{-1})))
+# legend("topright",legend=paste(c("Chamber 1","ROS WS")),col=c('blue','red'),lty=1,bty="n",cex=1.5,pt.cex=2)
+# 
+# plot(ros.par.sub.means$PPFD_Avg,met.la.data.all.1$PPFD_Avg,type="p",lty=1,main=paste("Compare PAR measurements"),
+#      xlab=expression("ROS PAR"~(mu ~ mol ~ m^{-2} ~ s^{-1})),ylab=expression("WTC PAR"~(mu ~ mol ~ m^{-2} ~ s^{-1})))
+# model10 <- lm(met.la.data.all.1$PPFD_Avg~ros.par.sub.means$PPFD_Avg)
+# abline(model10,col="red",lwd=2)
+# coef(model10)
+# abline(0,1,col="blue",lwd=2)
+# dev.off()
+# 
+# png("output/11.PAR_data_test_C10_ROS_WTC.png", units="px", width=5000, height=2500, res=250)
+# par(mfrow=c(1,2), mar=c(5,4.5,3,1))
+# for (i in c(10)) {
+#   with(subset(met.la.data.all.sub, chamber %in% as.factor(chambers[i])), 
+#        plot(DateTime,PPFD_Avg,col='blue',type="l",lty=1,lwd=0.3,xaxt="n",main=paste("Compare PAR measurements"),
+#             xlab="",ylab=expression("PAR"~(mu ~ mol ~ m^{-2} ~ s^{-1}))))
+#   axis.POSIXct(1, at=seq(daterange[1], daterange[2], by="week"), format="%d-%b-%Y")
+#   met.la.data.all.10 = subset(met.la.data.all.sub, chamber %in% as.factor(chambers[i]))
+# }
+# lines(ros.par.sub.means$DateTime,ros.par.sub.means$PPFD_Avg,col='red',type="l",lty=2,lwd=0.3,xaxt="n",
+#       xlab="",ylab=expression("PAR"~(mu ~ mol ~ m^{-2} ~ s^{-1})))
+# legend("topright",legend=paste(c("Chamber 10","ROS WS")),col=c('blue','red'),lty=1,bty="n",cex=1.5,pt.cex=2)
+# 
+# plot(ros.par.sub.means$PPFD_Avg,met.la.data.all.10$PPFD_Avg,type="p",lty=1,main=paste("Compare PAR measurements"),
+#      xlab=expression("ROS PAR"~(mu ~ mol ~ m^{-2} ~ s^{-1})),ylab=expression("WTC PAR"~(mu ~ mol ~ m^{-2} ~ s^{-1})))
+# model10 <- lm(met.la.data.all.10$PPFD_Avg~ros.par.sub.means$PPFD_Avg)
+# abline(model10,col="red",lwd=2)
+# coef(model10)
+# abline(0,1,col="blue",lwd=2)
+# dev.off()
+# 
+# png("output/11.PAR_data_test_C12_ROS_WTC.png", units="px", width=5000, height=2500, res=250)
+# par(mfrow=c(1,2), mar=c(5,4.5,3,1))
+# for (i in c(12)) {
+#   with(subset(met.la.data.all.sub, chamber %in% as.factor(chambers[i])), 
+#        plot(DateTime,PPFD_Avg,col='blue',type="l",lty=1,lwd=0.3,xaxt="n",main=paste("Compare PAR measurements"),
+#             xlab="",ylab=expression("PAR"~(mu ~ mol ~ m^{-2} ~ s^{-1}))))
+#   axis.POSIXct(1, at=seq(daterange[1], daterange[2], by="week"), format="%d-%b-%Y")
+# }
+# lines(ros.par.sub.means$DateTime,ros.par.sub.means$PPFD_Avg,col='red',type="l",lty=2,lwd=0.3,xaxt="n",
+#       xlab="",ylab=expression("PAR"~(mu ~ mol ~ m^{-2} ~ s^{-1})))
+# legend("topright",legend=paste(c("Chamber 12","ROS WS")),col=c('blue','red'),lty=1,bty="n",cex=1.5,pt.cex=2)
+# 
+# met.la.data.all.12 = subset(met.la.data.all.sub, chamber %in% as.factor("C12"))
+# plot(ros.par.sub.means$PPFD_Avg,met.la.data.all.12$PPFD_Avg,type="p",lty=1,main=paste("Compare PAR measurements"),
+#      xlab=expression("ROS PAR"~(mu ~ mol ~ m^{-2} ~ s^{-1})),ylab=expression("WTC PAR"~(mu ~ mol ~ m^{-2} ~ s^{-1})))
+# model12 <- lm(met.la.data.all.12$PPFD_Avg~ros.par.sub.means$PPFD_Avg)
+# abline(model12,col="red",lwd=2)
+# coef(model12)
+# abline(0,1,col="blue",lwd=2)
+# dev.off()
+# 
+# plot(met.la.data.all.10$PPFD_Avg,met.la.data.all.12$PPFD_Avg,type="p",lty=1,main=paste("Compare PAR measurements"),
+#      xlab=expression("WTC10 PAR"~(mu ~ mol ~ m^{-2} ~ s^{-1})),ylab=expression("WTC12 PAR"~(mu ~ mol ~ m^{-2} ~ s^{-1})))
 
 #----------------------------------------------------------------------------------------------------------------
-#----------------------------------------------------------------------------------------------------------------
-
-
-
+# #----------------------------------------------------------------------------------------------------------------
+# WTC01.par <- read.table("raw_data/WTC_PAR/WTC01_Table2_20130228.dat",header=T,sep=",")
+# WTC01.par$chamber = as.factor("C01")
+# WTC02.par <- read.table("raw_data/WTC_PAR/WTC02_Table2_20130228.dat",header=T,sep=",")
+# WTC02.par$chamber = as.factor("C02")
+# WTC03.par <- read.table("raw_data/WTC_PAR/WTC03_Table2_20130228.dat",header=T,sep=",")
+# WTC03.par$chamber = as.factor("C03")
+# WTC04.par <- read.table("raw_data/WTC_PAR/WTC04_Table2_20130228.dat",header=T,sep=",")
+# WTC04.par$chamber = as.factor("C04")
+# WTC05.par <- read.table("raw_data/WTC_PAR/WTC05_Table2_20130228.dat",header=T,sep=",")
+# WTC05.par$chamber = as.factor("C05")
+# WTC06.par <- read.table("raw_data/WTC_PAR/WTC06_Table2_20130228.dat",header=T,sep=",")
+# WTC06.par$chamber = as.factor("C06")
+# WTC07.par <- read.table("raw_data/WTC_PAR/WTC07_Table2_20130228.dat",header=T,sep=",")
+# WTC07.par$chamber = as.factor("C07")
+# WTC08.par <- read.table("raw_data/WTC_PAR/WTC08_Table2_20130228.dat",header=T,sep=",")
+# WTC08.par$chamber = as.factor("C08")
+# WTC09.par <- read.table("raw_data/WTC_PAR/WTC09_Table2_20130228.dat",header=T,sep=",")
+# WTC09.par$chamber = as.factor("C09")
+# WTC10.par <- read.table("raw_data/WTC_PAR/WTC10_Table2_20130228.dat",header=T,sep=",")
+# WTC10.par$chamber = as.factor("C10")
+# WTC11.par <- read.table("raw_data/WTC_PAR/WTC11_Table2_20130228.dat",header=T,sep=",")
+# WTC11.par$chamber = as.factor("C11")
+# WTC12.par <- read.table("raw_data/WTC_PAR/WTC12_Table2_20130228.dat",header=T,sep=",")
+# WTC12.par$chamber = as.factor("C12")
+# 
+# WTC.par = rbind(WTC01.par,WTC02.par,WTC03.par,WTC04.par,WTC05.par,WTC06.par,WTC07.par,WTC08.par,WTC09.par,WTC10.par,WTC11.par,WTC12.par)
+# keeps <- c("TIMESTAMP", "chamber", "PPFD_Avg")
+# WTC.par = WTC.par[ , keeps, drop = FALSE]
+# names(WTC.par) = c("DateTime", "chamber", "PPFD_Avg")
+# # 
+# WTC.par$DateTime = as.POSIXct(WTC.par$DateTime,format="%Y-%m-%d %H:%M:%S",tz="GMT")
+# WTC.par = WTC.par[complete.cases(WTC.par), ]
+# WTC.par$Date = as.Date(WTC.par$DateTime)
+# WTC.par$hour <- cut(WTC.par$DateTime, breaks = "hour")
+# WTC.par$hour <- as.POSIXct(WTC.par$hour, format="%Y-%m-%d %H:%M:%S",tz="GMT")
+# # 
+# # ros.par.sub = subset(ros.par, Date >= as.Date("2012-12-12") & Date <= as.Date("2014-05-26"))
+# WTC.par.sub = subset(WTC.par, Date >= as.Date("2012-12-18") & Date <= as.Date("2013-02-11"))
+# WTC.par.sub$PPFD_Avg = as.numeric(as.character(WTC.par.sub$PPFD_Avg))
+# 
+# # WTC.par.sub = WTC.par
+# getmeans  <- function(WTC.par.sub) c(PPFD_Avg = mean(WTC.par.sub$PPFD_Avg,na.rm=TRUE))
+# WTC.par.sub.means <- ddply(WTC.par.sub, .(hour,chamber), getmeans)
+# WTC.par.sub.means$hour <- as.POSIXct(WTC.par.sub.means$hour, format="%Y-%m-%d %H:%M:%S",tz="GMT")
+# names(WTC.par.sub.means)[1] = c("DateTime")
+# 
+# # WTC.par.sub = subset(WTC.par.sub.means, DateTime >= as.Date("2012-12-18") & DateTime <= as.Date("2013-02-11"))
+# daterange=c(as.POSIXlt(min(WTC.par.sub.means$DateTime)),as.POSIXlt(max(WTC.par.sub.means$DateTime)))
+# 
+# met.la.data.all.1 = subset(met.la.data.all.1, Date >= as.Date("2012-12-18") & Date <= as.Date("2013-02-11"))
+# plots = list() 
+# # png("output/11.PAR_data_test_C02_WTC.png", units="px", width=5000, height=2500, res=250)
+# par(mfrow=c(2,1), mar=c(5,4.5,3,1))
+# plot(met.la.data.all.1$DateTime,met.la.data.all.1$PPFD_Avg,col='red',type="l",lty=2,lwd=0.3,xaxt="n",
+#      xlab="",ylab=expression("PAR"~(mu ~ mol ~ m^{-2} ~ s^{-1})))
+# for (i in c(2)) {
+#   with(subset(WTC.par.sub.means, chamber %in% as.factor(chambers[i])),
+#        lines(DateTime,PPFD_Avg,col='blue',type="l",lty=1,lwd=0.3,xaxt="n",main=paste("Compare PAR measurements"),
+#              xlab="",ylab=expression("PAR"~(mu ~ mol ~ m^{-2} ~ s^{-1}))))
+#   axis.POSIXct(1, at=seq(daterange[1], daterange[2], by="week"), format="%d-%b-%Y")
+# }
+# legend("topright",legend=paste(c("Chamber 2 inside","WTC outside")),col=c('blue','red'),lty=1,bty="n",cex=1.5,pt.cex=2)
+# 
+# WTC.par.sub.2 = subset(WTC.par.sub.means, chamber %in% as.factor("C02"))
+# plot(met.la.data.all.1$PPFD_Avg,WTC.par.sub.2$PPFD_Avg,type="p",lty=1,main=paste("Compare PAR measurements"),
+#      xlab=expression("WTC outside PAR"~(mu ~ mol ~ m^{-2} ~ s^{-1})),ylab=expression("WTC 2 inside PAR"~(mu ~ mol ~ m^{-2} ~ s^{-1})))
+# model2 <- lm(WTC.par.sub.2$PPFD_Avg ~ poly(met.la.data.all.1$PPFD_Avg, 2))
+# # points(ros.par.sub.means$PPFD_Avg, fitted(model10), col='red', pch=20)
+# lines(sort(met.la.data.all.1$PPFD_Avg), fitted(model2)[order(met.la.data.all.1$PPFD_Avg)], col='red', type='l',lwd=2)
+# # coef(model2)
+# abline(0,1,col="blue",lwd=2)
+# plots[[1]] = recordPlot()
+# 
+# # png("output/11.PAR_data_test_C05_WTC.png", units="px", width=5000, height=2500, res=250)
+# par(mfrow=c(2,1), mar=c(5,4.5,3,1))
+# plot(met.la.data.all.1$DateTime,met.la.data.all.1$PPFD_Avg,col='red',type="l",lty=2,lwd=0.3,xaxt="n",
+#      xlab="",ylab=expression("PAR"~(mu ~ mol ~ m^{-2} ~ s^{-1})))
+# for (i in c(5)) {
+#   with(subset(WTC.par.sub.means, chamber %in% as.factor(chambers[i])),
+#        lines(DateTime,PPFD_Avg,col='blue',type="l",lty=1,lwd=0.3,xaxt="n",main=paste("Compare PAR measurements"),
+#              xlab="",ylab=expression("PAR"~(mu ~ mol ~ m^{-2} ~ s^{-1}))))
+#   axis.POSIXct(1, at=seq(daterange[1], daterange[2], by="week"), format="%d-%b-%Y")
+# }
+# legend("topright",legend=paste(c("Chamber 5 inside","WTC outside")),col=c('blue','red'),lty=1,bty="n",cex=1.5,pt.cex=2)
+# 
+# WTC.par.sub.5 = subset(WTC.par.sub.means, chamber %in% as.factor("C05"))
+# plot(met.la.data.all.1$PPFD_Avg,WTC.par.sub.5$PPFD_Avg,type="p",lty=1,main=paste("Compare PAR measurements"),
+#      xlab=expression("WTC outside PAR"~(mu ~ mol ~ m^{-2} ~ s^{-1})),ylab=expression("WTC 5 inside PAR"~(mu ~ mol ~ m^{-2} ~ s^{-1})))
+# model5 <- lm(WTC.par.sub.5$PPFD_Avg ~ poly(met.la.data.all.1$PPFD_Avg, 2))
+# # points(ros.par.sub.means$PPFD_Avg, fitted(model10), col='red', pch=20)
+# lines(sort(met.la.data.all.1$PPFD_Avg), fitted(model5)[order(met.la.data.all.1$PPFD_Avg)], col='red', type='l',lwd=2)
+# # coef(model5)
+# abline(0,1,col="blue",lwd=2)
+# plots[[2]] = recordPlot()
+# 
+# par(mfrow=c(2,1), mar=c(5,4.5,3,1))
+# plot(met.la.data.all.1$DateTime,met.la.data.all.1$PPFD_Avg,col='red',type="l",lty=2,lwd=0.3,xaxt="n",
+#      xlab="",ylab=expression("PAR"~(mu ~ mol ~ m^{-2} ~ s^{-1})))
+# for (i in c(8)) {
+#   with(subset(WTC.par.sub.means, chamber %in% as.factor(chambers[i])),
+#        lines(DateTime,PPFD_Avg,col='blue',type="l",lty=1,lwd=0.3,xaxt="n",main=paste("Compare PAR measurements"),
+#              xlab="",ylab=expression("PAR"~(mu ~ mol ~ m^{-2} ~ s^{-1}))))
+#   axis.POSIXct(1, at=seq(daterange[1], daterange[2], by="week"), format="%d-%b-%Y")
+# }
+# legend("topright",legend=paste(c("Chamber 8 inside","WTC outside")),col=c('blue','red'),lty=1,bty="n",cex=1.5,pt.cex=2)
+# 
+# WTC.par.sub.8 = subset(WTC.par.sub.means, chamber %in% as.factor("C08"))
+# plot(met.la.data.all.1$PPFD_Avg,WTC.par.sub.8$PPFD_Avg,type="p",lty=1,main=paste("Compare PAR measurements"),
+#      xlab=expression("WTC outside PAR"~(mu ~ mol ~ m^{-2} ~ s^{-1})),ylab=expression("WTC 8 inside PAR"~(mu ~ mol ~ m^{-2} ~ s^{-1})))
+# model8 <- lm(WTC.par.sub.12$PPFD_Avg ~ poly(met.la.data.all.1$PPFD_Avg, 2))
+# # points(met.la.data.all.1$PPFD_Avg, fitted(model12), col='red', pch=20)
+# lines(sort(met.la.data.all.1$PPFD_Avg), fitted(model8)[order(met.la.data.all.1$PPFD_Avg)], col='red', type='l',lwd=2)
+# coef(model8)
+# abline(0,1,col="blue",lwd=2)
+# plots[[3]] = recordPlot()
+# 
+# # png("output/11.PAR_data_test_C10_WTC.png", units="px", width=5000, height=2500, res=250)
+# par(mfrow=c(2,1), mar=c(5,4.5,3,1))
+# plot(met.la.data.all.1$DateTime,met.la.data.all.1$PPFD_Avg,col='red',type="l",lty=2,lwd=0.3,xaxt="n",
+#      xlab="",ylab=expression("PAR"~(mu ~ mol ~ m^{-2} ~ s^{-1})))
+# for (i in c(10)) {
+#   with(subset(WTC.par.sub.means, chamber %in% as.factor(chambers[i])),
+#        lines(DateTime,PPFD_Avg,col='blue',type="l",lty=1,lwd=0.3,xaxt="n",main=paste("Compare PAR measurements"),
+#              xlab="",ylab=expression("PAR"~(mu ~ mol ~ m^{-2} ~ s^{-1}))))
+#   axis.POSIXct(1, at=seq(daterange[1], daterange[2], by="week"), format="%d-%b-%Y")
+# }
+# legend("topright",legend=paste(c("Chamber 10 inside","WTC outside")),col=c('blue','red'),lty=1,bty="n",cex=1.5,pt.cex=2)
+# 
+# WTC.par.sub.10 = subset(WTC.par.sub.means, chamber %in% as.factor("C10"))
+# plot(met.la.data.all.1$PPFD_Avg,WTC.par.sub.12$PPFD_Avg,type="p",lty=1,main=paste("Compare PAR measurements"),
+#      xlab=expression("WTC outside PAR"~(mu ~ mol ~ m^{-2} ~ s^{-1})),ylab=expression("WTC 10 inside PAR"~(mu ~ mol ~ m^{-2} ~ s^{-1})))
+# model10 <- lm(WTC.par.sub.12$PPFD_Avg ~ poly(met.la.data.all.1$PPFD_Avg, 2))
+# # points(ros.par.sub.means$PPFD_Avg, fitted(model10), col='red', pch=20)
+# lines(sort(met.la.data.all.1$PPFD_Avg), fitted(model10)[order(met.la.data.all.1$PPFD_Avg)], col='red', type='l',lwd=2)
+# # coef(model10)
+# abline(0,1,col="blue",lwd=2)
+# plots[[4]] = recordPlot()
+# 
+# # png("output/11.PAR_data_test_C12_WTC.png", units="px", width=5000, height=2500, res=250)
+# par(mfrow=c(2,1), mar=c(5,4.5,3,1))
+# plot(met.la.data.all.1$DateTime,met.la.data.all.1$PPFD_Avg,col='red',type="l",lty=2,lwd=0.3,xaxt="n",
+#      xlab="",ylab=expression("PAR"~(mu ~ mol ~ m^{-2} ~ s^{-1})))
+# for (i in c(12)) {
+#   with(subset(WTC.par.sub.means, chamber %in% as.factor(chambers[i])),
+#        lines(DateTime,PPFD_Avg,col='blue',type="l",lty=1,lwd=0.3,xaxt="n",main=paste("Compare PAR measurements"),
+#              xlab="",ylab=expression("PAR"~(mu ~ mol ~ m^{-2} ~ s^{-1}))))
+#   axis.POSIXct(1, at=seq(daterange[1], daterange[2], by="week"), format="%d-%b-%Y")
+# }
+# legend("topright",legend=paste(c("Chamber 12 inside","WTC outside")),col=c('blue','red'),lty=1,bty="n",cex=1.5,pt.cex=2)
+# 
+# WTC.par.sub.12 = subset(WTC.par.sub.means, chamber %in% as.factor("C12"))
+# plot(met.la.data.all.1$PPFD_Avg,WTC.par.sub.12$PPFD_Avg,type="p",lty=1,main=paste("Compare PAR measurements"),
+#      xlab=expression("WTC outside PAR"~(mu ~ mol ~ m^{-2} ~ s^{-1})),ylab=expression("WTC 12 inside PAR"~(mu ~ mol ~ m^{-2} ~ s^{-1})))
+# model12 <- lm(WTC.par.sub.12$PPFD_Avg ~ poly(met.la.data.all.1$PPFD_Avg, 2))
+# # points(met.la.data.all.1$PPFD_Avg, fitted(model12), col='red', pch=20)
+# lines(sort(met.la.data.all.1$PPFD_Avg), fitted(model12)[order(met.la.data.all.1$PPFD_Avg)], col='red', type='l',lwd=2)
+# coef(model12)
+# abline(0,1,col="blue",lwd=2)
+# plots[[5]] = recordPlot()
+# 
+# pdf(file = "output/11.WTC3_PAR_comparison.pdf")
+# plots[[1]]
+# plots[[2]]
+# plots[[3]]
+# plots[[4]]
+# plots[[5]]
+# dev.off()
+# 
+# WTC.par.sub.means.week = subset(WTC.par.sub.means, DateTime >= as.Date("2013-01-23") & DateTime <= as.Date("2013-01-30") )
+# png("output/11.PAR_WTC_oneweek.png", units="px", width=5000, height=2500, res=250)
+# par(mfrow=c(1,1), mar=c(5,4.5,3,1))
+# with(subset(WTC.par.sub.means.week, chamber %in% as.factor(chambers[1])),
+#      plot(DateTime,PPFD_Avg,col="red",type="l",lty=1,lwd=0.3,xaxt="n",main=paste("Compare PAR measurements"),
+#            xlab="",ylab=expression("PAR"~(mu ~ mol ~ m^{-2} ~ s^{-1}))))
+# for (i in c(2:12)) {
+#   with(subset(WTC.par.sub.means.week, chamber %in% as.factor(chambers[i])),
+#        lines(DateTime,PPFD_Avg,col=as.factor(chambers[i]),type="l",lty=1,lwd=0.3))
+# }
+# axis.POSIXct(1, at=seq(daterange[1], daterange[2], by="day"), format="%d-%b-%Y")
+# legend("topright",legend=paste(c(as.character(chambers))),col=as.factor(chambers),lty=1,bty="n",cex=1,pt.cex=1)
+# dev.off()

@@ -32,15 +32,15 @@ data.free.pot = data.free.pot[,-4]
 rootmass.harvest = read.csv("raw_data/WTC_TEMP_CM_HARVEST-ROOTS_20140529-20140606_L1_v1.csv")
 # rootmass.harvest$chamber_type = as.factor( ifelse(rootmass.harvest$chamber %in% drought.chamb, "drought", "watered") )
 rootmass.harvest$Date = as.Date("2014-05-26")
-# rootmass.harvest = merge(unique(height.dia[,c("chamber","T_treatment","chamber_type")]), rootmass.harvest, by=c("chamber"))
-rootmass.harvest = merge(unique(height.dia[,c("chamber","T_treatment")]), rootmass.harvest, by=c("chamber"))
+rootmass.harvest = merge(unique(height.dia[,c("chamber","T_treatment","chamber_type")]), rootmass.harvest, by=c("chamber"))
+# rootmass.harvest = merge(unique(height.dia[,c("chamber","T_treatment")]), rootmass.harvest, by=c("chamber"))
 
-# height.dia.sub = subset(height.dia, Date %in% as.Date("2014-05-27") & T_treatment %in% as.factor("ambient") & chamber_type %in% as.factor("watered"))
-height.dia.sub = subset(height.dia, Date %in% as.Date("2014-05-27") & T_treatment %in% as.factor("ambient"))
+height.dia.sub = subset(height.dia, Date %in% as.Date("2014-05-27") & T_treatment %in% as.factor("ambient") & chamber_type %in% as.factor("watered"))
+# height.dia.sub = subset(height.dia, Date %in% as.Date("2014-05-27") & T_treatment %in% as.factor("ambient"))
 keeps <- c("chamber", "height", "diameter")
 height.dia.sub = height.dia.sub[ , keeps, drop = FALSE]
-# height.dia.sub <- merge(height.dia.sub, rootmass.harvest[,c("chamber","RootDMtotal","chamber_type")], by=c("chamber"))
-height.dia.sub <- merge(height.dia.sub, rootmass.harvest[,c("chamber","RootDMtotal")], by=c("chamber"))
+height.dia.sub <- merge(height.dia.sub, rootmass.harvest[,c("chamber","RootDMtotal","chamber_type")], by=c("chamber"))
+# height.dia.sub <- merge(height.dia.sub, rootmass.harvest[,c("chamber","RootDMtotal")], by=c("chamber"))
 keeps <- c("RootDMtotal", "diameter", "height")
 height.dia.sub = height.dia.sub[ , keeps, drop = FALSE]
 names(height.dia.sub) <- c("rootmass","diameter","height")
@@ -72,7 +72,9 @@ height.dia.initial$RM_SE = ( (((coefficients(rm2)[2]*height.dia.initial$diameter
 # processing the harvest rootmass
 rootmass.harvest.mean <- summaryBy(RootDMtotal ~ Date+T_treatment+chamber_type, data=rootmass.harvest, FUN=c(mean,standard.error))
 names(rootmass.harvest.mean)[3:4] = c("RM","RM_SE")
-
+rootmass.harvest.mean = subset(rootmass.harvest.mean, chamber_type %in% as.factor("watered"))
+rootmass.harvest.mean$chamber_type = NULL
+                               
 rootmass = merge(height.dia.initial[,c("Date","T_treatment","RM","RM_SE")], rootmass.harvest.mean, all = TRUE)
 # rootmass = height.dia.initial[,c("Date","T_treatment","chamber_type","RM","RM_SE")]
 # rootmass = height.dia.initial[,c("Date","T_treatment","RM","RM_SE")]

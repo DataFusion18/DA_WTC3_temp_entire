@@ -1,0 +1,280 @@
+Leafmass models:
+----------------
+### Linear regression with D (all data log-transformed):
+Call:
+lm(formula = log(LM) ~ log(D), data = data.harvest.all)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-1.2511 -0.2587  0.0670  0.3039  0.9851 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -1.59636    0.08248  -19.35   <2e-16 ***
+log(D)       1.74077    0.04457   39.06   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.4468 on 218 degrees of freedom
+Multiple R-squared:  0.875,	Adjusted R-squared:  0.8744 
+F-statistic:  1525 on 1 and 218 DF,  p-value: < 2.2e-16
+
+
+### Linear regression with H (all data log-transformed):
+Call:
+lm(formula = log(LM) ~ log(H), data = data.harvest.all)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.54874 -0.33304 -0.00058  0.36183  1.40491 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -7.73168    0.29100  -26.57   <2e-16 ***
+log(H)       2.22000    0.07018   31.63   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.5345 on 218 degrees of freedom
+Multiple R-squared:  0.8211,	Adjusted R-squared:  0.8203 
+F-statistic:  1001 on 1 and 218 DF,  p-value: < 2.2e-16
+
+
+### Linear regression with DH (all data log-transformed):
+Call:
+lm(formula = log(LM) ~ log(DH), data = data.harvest.all)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.30267 -0.20032  0.03282  0.23997  1.02060 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  -2.2353     0.0874  -25.58   <2e-16 ***
+log(DH)       1.0292     0.0235   43.80   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.4036 on 218 degrees of freedom
+Multiple R-squared:  0.898,	Adjusted R-squared:  0.8975 
+F-statistic:  1919 on 1 and 218 DF,  p-value: < 2.2e-16
+
+
+### Linear regression with D2H (all data log-transformed):
+Call:
+lm(formula = log(LM) ~ log(D2H), data = data.harvest.all)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.24481 -0.19759  0.05135  0.25183  0.94828 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -0.52650    0.05183  -10.16   <2e-16 ***
+log(D2H)     0.65284    0.01492   43.75   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.4041 on 218 degrees of freedom
+Multiple R-squared:  0.8977,	Adjusted R-squared:  0.8973 
+F-statistic:  1914 on 1 and 218 DF,  p-value: < 2.2e-16
+
+### Comparison between both models:
+    df      AIC
+lm1  3 273.8758
+lm2  3 352.6592
+lm3  3 229.1391
+lm4  3 229.6323
+    df      BIC
+lm1  3 284.0567
+lm2  3 362.8401
+lm3  3 239.3200
+lm4  3 239.8132
+
+
+Woodmass models:
+----------------
+### Linear regression with H and D (all data log-transformed):
+Call:
+lm(formula = log(WM) ~ log(D), data = data.harvest.all)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.26634 -0.39281 -0.04431  0.47884  1.03594 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -2.95334    0.09366  -31.53   <2e-16 ***
+log(D)       2.38508    0.05061   47.12   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.5074 on 218 degrees of freedom
+Multiple R-squared:  0.9106,	Adjusted R-squared:  0.9102 
+F-statistic:  2221 on 1 and 218 DF,  p-value: < 2.2e-16
+
+
+### Linear regression with H (all data log-transformed):
+Call:
+lm(formula = log(WM) ~ log(H), data = data.harvest.all)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.49323 -0.46251  0.04399  0.40216  1.26635 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -11.61067    0.30756  -37.75   <2e-16 ***
+log(H)        3.10272    0.07418   41.83   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.5649 on 218 degrees of freedom
+Multiple R-squared:  0.8892,	Adjusted R-squared:  0.8887 
+F-statistic:  1750 on 1 and 218 DF,  p-value: < 2.2e-16
+
+
+### Linear regression with DH (all data log-transformed):
+Call:
+lm(formula = log(WM) ~ log(DH), data = data.harvest.all)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.34175 -0.26615 -0.07444  0.32502  1.05120 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -3.87119    0.08174  -47.36   <2e-16 ***
+log(DH)      1.42212    0.02197   64.72   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.3775 on 218 degrees of freedom
+Multiple R-squared:  0.9505,	Adjusted R-squared:  0.9503 
+F-statistic:  4188 on 1 and 218 DF,  p-value: < 2.2e-16
+
+
+### Linear regression with D2H (all data log-transformed):
+Call:
+lm(formula = log(WM) ~ log(D2H), data = data.harvest.all)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.29819 -0.29801 -0.08855  0.37384  1.05472 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -1.50175    0.05132  -29.27   <2e-16 ***
+log(D2H)     0.89930    0.01477   60.87   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.4001 on 218 degrees of freedom
+Multiple R-squared:  0.9444,	Adjusted R-squared:  0.9442 
+F-statistic:  3705 on 1 and 218 DF,  p-value: < 2.2e-16
+
+### Comparison between both models:
+    df      AIC
+wm1  3 329.8086
+wm2  3 377.0199
+wm3  3 199.6739
+wm4  3 225.2250
+    df      BIC
+wm1  3 339.9895
+wm2  3 387.2007
+wm3  3 209.8548
+wm4  3 235.4059
+
+
+Rootmass models:
+----------------
+### Linear regression with H and D (all data log-transformed):
+Call:
+lm(formula = log(RM) ~ log(D), data = data.harvest.all)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-2.01977 -0.41362  0.01393  0.44356  1.28814 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -3.79424    0.10520  -36.07   <2e-16 ***
+log(D)       2.93364    0.05685   51.61   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.5699 on 218 degrees of freedom
+Multiple R-squared:  0.9243,	Adjusted R-squared:  0.924 
+F-statistic:  2663 on 1 and 218 DF,  p-value: < 2.2e-16
+
+
+### Linear regression with H (all data log-transformed):
+Call:
+lm(formula = log(RM) ~ log(H), data = data.harvest.all)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-2.5169 -1.0201  0.1624  0.8994  2.4235 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -12.5614     0.6186  -20.31   <2e-16 ***
+log(H)        3.3591     0.1492   22.52   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.136 on 218 degrees of freedom
+Multiple R-squared:  0.6993,	Adjusted R-squared:  0.6979 
+F-statistic: 506.9 on 1 and 218 DF,  p-value: < 2.2e-16
+
+
+### Linear regression with DH (all data log-transformed):
+Call:
+lm(formula = log(RM) ~ log(DH), data = data.harvest.all)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-1.8768 -0.6957  0.1429  0.5391  1.8742 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -4.60556    0.16282  -28.29   <2e-16 ***
+log(DH)      1.65934    0.04378   37.91   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.752 on 218 degrees of freedom
+Multiple R-squared:  0.8683,	Adjusted R-squared:  0.8677 
+F-statistic:  1437 on 1 and 218 DF,  p-value: < 2.2e-16
+
+
+### Linear regression with D2H (all data log-transformed):
+Call:
+lm(formula = log(RM) ~ log(D2H), data = data.harvest.all)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-1.9191 -0.5620  0.1109  0.4976  1.6238 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -1.90192    0.08529  -22.30   <2e-16 ***
+log(D2H)     1.06998    0.02456   43.57   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.6649 on 218 degrees of freedom
+Multiple R-squared:  0.897,	Adjusted R-squared:  0.8965 
+F-statistic:  1899 on 1 and 218 DF,  p-value: < 2.2e-16
+
+### Comparison between both models:
+    df      AIC
+rm1  3 380.9199
+rm2  3 684.4914
+rm3  3 502.9106
+rm4  3 448.7695
+    df      BIC
+rm1  3 391.1007
+rm2  3 694.6723
+rm3  3 513.0915
+rm4  3 458.9504

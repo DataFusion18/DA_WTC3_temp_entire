@@ -352,7 +352,7 @@ returnTreeMass <- function(plotson=F){
   # get the interpolated leaf areas (laDaily)
   
   # dat.hr <- data.frame(data.table::fread("raw_data/WTC_TEMP_CM_WTCFLUX_20130914-20140526_L2_V2.csv"))
-  dat.hr <- data.frame(data.table::fread("processed_data/met.la.data.all.csv"))
+  dat.hr <- data.frame(data.table::fread("processed_data/met.la.data.all.csv")) # LA data processed in previous step 4: "la_estimates.R"
   dat.hr$DateTime <- as.POSIXct(dat.hr$DateTime,format="%Y-%m-%d %H:%M:%S",tz="GMT")
   # dat.hr$Date <- as.Date(dat.hr$DateTime)
   dat.hr$chamber <- as.factor(dat.hr$chamber)
